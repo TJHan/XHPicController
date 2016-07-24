@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PicStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="100" />
+          <Property Name="CustomerPhone" Type="varchar" MaxLength="50" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CustomField">
+          <Key>
+            <PropertyRef Name="CustomFieldID" />
+          </Key>
+          <Property Name="CustomFieldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomFieldName" Type="varchar" MaxLength="100" />
+          <Property Name="CustomFieldTypeID" Type="int" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="IsAlive" Type="bit" />
+          <Property Name="CustomFieldDefaultValue" Type="varchar" MaxLength="100" />
+          <Property Name="TableID" Type="int" />
+        </EntityType>
+        <EntityType Name="CustomFieldData">
+          <Key>
+            <PropertyRef Name="CustomFieldDataID" />
+          </Key>
+          <Property Name="CustomFieldDataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomFieldValue" Type="varchar(max)" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="CustomFieldID" Type="int" />
+        </EntityType>
+        <EntityType Name="CustomFieldDataList">
+          <Key>
+            <PropertyRef Name="CustomFieldDataListID" />
+          </Key>
+          <Property Name="CustomFieldDataListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomFieldItemName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CustomFieldType">
+          <Key>
+            <PropertyRef Name="CustomFieldTypeID" />
+          </Key>
+          <Property Name="CustomFieldTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomFieldTypeName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="PicStoreModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomField" EntityType="Self.CustomField" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomFieldData" EntityType="Self.CustomFieldData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomFieldDataList" EntityType="Self.CustomFieldDataList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomFieldType" EntityType="Self.CustomFieldType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PicStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CustomField">
+          <Key>
+            <PropertyRef Name="CustomFieldID" />
+          </Key>
+          <Property Name="CustomFieldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomFieldName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CustomFieldTypeID" Type="Int32" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsAlive" Type="Boolean" />
+          <Property Name="CustomFieldDefaultValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TableID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CustomFieldData">
+          <Key>
+            <PropertyRef Name="CustomFieldDataID" />
+          </Key>
+          <Property Name="CustomFieldDataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomFieldValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomFieldID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CustomFieldDataList">
+          <Key>
+            <PropertyRef Name="CustomFieldDataListID" />
+          </Key>
+          <Property Name="CustomFieldDataListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomFieldItemName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CustomFieldType">
+          <Key>
+            <PropertyRef Name="CustomFieldTypeID" />
+          </Key>
+          <Property Name="CustomFieldTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomFieldTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="PicStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="CustomField" EntityType="Self.CustomField" />
+          <EntitySet Name="CustomFieldData" EntityType="Self.CustomFieldData" />
+          <EntitySet Name="CustomFieldDataList" EntityType="Self.CustomFieldDataList" />
+          <EntitySet Name="CustomFieldType" EntityType="Self.CustomFieldType" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PicStoreModelStoreContainer" CdmEntityContainer="PicStoreEntities">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="PicStoreModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomField">
+            <EntityTypeMapping TypeName="PicStoreModel.CustomField">
+              <MappingFragment StoreEntitySet="CustomField">
+                <ScalarProperty Name="CustomFieldID" ColumnName="CustomFieldID" />
+                <ScalarProperty Name="CustomFieldName" ColumnName="CustomFieldName" />
+                <ScalarProperty Name="CustomFieldTypeID" ColumnName="CustomFieldTypeID" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="IsAlive" ColumnName="IsAlive" />
+                <ScalarProperty Name="CustomFieldDefaultValue" ColumnName="CustomFieldDefaultValue" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomFieldData">
+            <EntityTypeMapping TypeName="PicStoreModel.CustomFieldData">
+              <MappingFragment StoreEntitySet="CustomFieldData">
+                <ScalarProperty Name="CustomFieldDataID" ColumnName="CustomFieldDataID" />
+                <ScalarProperty Name="CustomFieldValue" ColumnName="CustomFieldValue" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CustomFieldID" ColumnName="CustomFieldID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomFieldDataList">
+            <EntityTypeMapping TypeName="PicStoreModel.CustomFieldDataList">
+              <MappingFragment StoreEntitySet="CustomFieldDataList">
+                <ScalarProperty Name="CustomFieldDataListID" ColumnName="CustomFieldDataListID" />
+                <ScalarProperty Name="CustomFieldItemName" ColumnName="CustomFieldItemName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomFieldType">
+            <EntityTypeMapping TypeName="PicStoreModel.CustomFieldType">
+              <MappingFragment StoreEntitySet="CustomFieldType">
+                <ScalarProperty Name="CustomFieldTypeID" ColumnName="CustomFieldTypeID" />
+                <ScalarProperty Name="CustomFieldTypeName" ColumnName="CustomFieldTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="PicStoreModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

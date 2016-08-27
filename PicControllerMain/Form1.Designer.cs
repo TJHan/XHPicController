@@ -29,20 +29,23 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labSetting = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.txtCreateOrder = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.lvDataList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.编号 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.客户姓名 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.联系电话 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.添加时间 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.订单数量 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.编辑 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtCustomerName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtCreateCustomer = new System.Windows.Forms.Button();
+            this.labSetting = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +54,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.txtCreateCustomer);
+            this.groupBox1.Controls.Add(this.btnClear);
+            this.groupBox1.Controls.Add(this.txtCreateOrder);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtPhone);
@@ -63,52 +67,36 @@
             this.groupBox1.Size = new System.Drawing.Size(826, 507);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "数据查询";
+            this.groupBox1.Text = "订单数据查询";
             // 
-            // labSetting
+            // btnClear
             // 
-            this.labSetting.AutoSize = true;
-            this.labSetting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labSetting.Location = new System.Drawing.Point(12, 9);
-            this.labSetting.Name = "labSetting";
-            this.labSetting.Size = new System.Drawing.Size(53, 12);
-            this.labSetting.TabIndex = 0;
-            this.labSetting.Text = "系统设置";
-            this.labSetting.Click += new System.EventHandler(this.labSetting_Click);
+            this.btnClear.Location = new System.Drawing.Point(87, 93);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 7;
+            this.btnClear.Text = "清空";
+            this.btnClear.UseVisualStyleBackColor = true;
             // 
-            // lvDataList
+            // txtCreateOrder
             // 
-            this.lvDataList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvDataList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.编号,
-            this.客户姓名,
-            this.联系电话,
-            this.添加时间,
-            this.订单数量,
-            this.编辑});
-            this.lvDataList.Location = new System.Drawing.Point(6, 122);
-            this.lvDataList.Name = "lvDataList";
-            this.lvDataList.Size = new System.Drawing.Size(814, 343);
-            this.lvDataList.TabIndex = 0;
-            this.lvDataList.UseCompatibleStateImageBehavior = false;
+            this.txtCreateOrder.Location = new System.Drawing.Point(745, 93);
+            this.txtCreateOrder.Name = "txtCreateOrder";
+            this.txtCreateOrder.Size = new System.Drawing.Size(75, 23);
+            this.txtCreateOrder.TabIndex = 6;
+            this.txtCreateOrder.Text = "新建订单";
+            this.txtCreateOrder.UseVisualStyleBackColor = true;
+            this.txtCreateOrder.Click += new System.EventHandler(this.txtCreateOrder_Click);
             // 
-            // txtCustomerName
+            // btnSearch
             // 
-            this.txtCustomerName.Location = new System.Drawing.Point(6, 42);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(137, 21);
-            this.txtCustomerName.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "客户姓名：";
+            this.btnSearch.Location = new System.Drawing.Point(6, 93);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 5;
+            this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label2
             // 
@@ -126,30 +114,99 @@
             this.txtPhone.Size = new System.Drawing.Size(137, 21);
             this.txtPhone.TabIndex = 3;
             // 
-            // btnSearch
+            // label1
             // 
-            this.btnSearch.Location = new System.Drawing.Point(6, 93);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 5;
-            this.btnSearch.Text = "查询";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "客户姓名：";
             // 
-            // txtCreateCustomer
+            // txtCustomerName
             // 
-            this.txtCreateCustomer.Location = new System.Drawing.Point(87, 93);
-            this.txtCreateCustomer.Name = "txtCreateCustomer";
-            this.txtCreateCustomer.Size = new System.Drawing.Size(75, 23);
-            this.txtCreateCustomer.TabIndex = 6;
-            this.txtCreateCustomer.Text = "新建客户";
-            this.txtCreateCustomer.UseVisualStyleBackColor = true;
-            this.txtCreateCustomer.Click += new System.EventHandler(this.txtCreateCustomer_Click);
+            this.txtCustomerName.Location = new System.Drawing.Point(6, 42);
+            this.txtCustomerName.Name = "txtCustomerName";
+            this.txtCustomerName.Size = new System.Drawing.Size(137, 21);
+            this.txtCustomerName.TabIndex = 1;
+            // 
+            // lvDataList
+            // 
+            this.lvDataList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvDataList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.编号,
+            this.客户姓名,
+            this.联系电话,
+            this.添加时间,
+            this.订单数量,
+            this.编辑});
+            this.lvDataList.Location = new System.Drawing.Point(6, 122);
+            this.lvDataList.Name = "lvDataList";
+            this.lvDataList.Size = new System.Drawing.Size(814, 343);
+            this.lvDataList.TabIndex = 0;
+            this.lvDataList.UseCompatibleStateImageBehavior = false;
+            this.lvDataList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            // 
+            // 编号
+            // 
+            this.编号.Text = "编号";
+            this.编号.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // 客户姓名
+            // 
+            this.客户姓名.Text = "客户姓名";
+            this.客户姓名.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // 联系电话
+            // 
+            this.联系电话.Text = "联系电话";
+            // 
+            // 添加时间
+            // 
+            this.添加时间.Text = "添加时间";
+            // 
+            // 订单数量
+            // 
+            this.订单数量.Text = "订单数量";
+            // 
+            // 编辑
+            // 
+            this.编辑.Text = "编辑";
+            // 
+            // labSetting
+            // 
+            this.labSetting.AutoSize = true;
+            this.labSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labSetting.Location = new System.Drawing.Point(12, 9);
+            this.labSetting.Name = "labSetting";
+            this.labSetting.Size = new System.Drawing.Size(53, 12);
+            this.labSetting.TabIndex = 0;
+            this.labSetting.Text = "系统设置";
+            this.labSetting.Click += new System.EventHandler(this.labSetting_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(80, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "客户管理";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 550);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.labSetting);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -177,9 +234,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.Button txtCreateCustomer;
-
-
+        private System.Windows.Forms.Button txtCreateOrder;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label3;
     }
 }
 

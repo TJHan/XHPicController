@@ -19,5 +19,11 @@ namespace PicControllerMain
         public Nullable<System.DateTime> EnteredDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Status { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> FinishDate { get; set; }
+        public string Comment { get; set; }
+        public Nullable<decimal> TotalAmount { get; set; }
+        public Nullable<decimal> AdvanceAmount { get; set; }
+        public Nullable<decimal> ExpendDays { get; set; }
     }
 }

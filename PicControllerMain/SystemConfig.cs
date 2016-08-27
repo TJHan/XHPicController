@@ -24,6 +24,8 @@ namespace PicControllerMain
         private void LoadPage()
         {
             BindFieldType();
+            BindTableType();
+            BindFieldList();
         }
 
         /// <summary>
@@ -31,11 +33,34 @@ namespace PicControllerMain
         /// </summary>
         private void BindFieldType()
         {
-            DataController controller = new DataController();
-            IEnumerable<CustomFieldType> list = controller.GetCustomFieldTypeList();
-            ddlFieldType.DataSource = list;
-            ddlFieldType.ValueMember = "CustomFieldTypeID";
-            ddlFieldType.DisplayMember = "CustomFieldTypeName";
+            try
+            {
+                DataController controller = new DataController();
+                IEnumerable<CustomFieldType> list = controller.GetCustomFieldTypeList();
+                ddlFieldType.DataSource = list;
+                ddlFieldType.ValueMember = "CustomFieldTypeID";
+                ddlFieldType.DisplayMember = "CustomFieldTypeName";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        class item
+        {
+            public string Key { get; set; }
+            public string Text { get; set; }
+        }
+
+        private void BindTableType()
+        {
+            List<item> list = new List<item>() {
+                new item { Key="1", Text="客户" },
+                new item { Key="2", Text="订单" }
+            };
+            ddlTableList.DataSource = list;
+            ddlTableList.DisplayMember = "Text";
+            ddlTableList.ValueMember = "Key";
         }
 
         /// <summary>
@@ -46,9 +71,15 @@ namespace PicControllerMain
             int type = 0;
             DataController controller = new DataController();
             IEnumerable<CustomField> list = controller.GetCustomFieldList(type);
+            string typeName = string.Empty;
             foreach (var customField in list)
             {
                 ListViewItem item = new ListViewItem();
+                item.SubItems.Add(customField.CustomFieldID.ToString());                
+                item.SubItems.Add(customField.CustomFieldName);
+                item.SubItems.Add(customField.CustomFieldTypeID.ToString());
+                typeName = customField.TableIndex == 1 ? "客户类" : "订单类";
+                item.SubItems.Add(typeName);
                 lvFieldItemList.Items.Add(item);
             }
         }
@@ -76,9 +107,20 @@ namespace PicControllerMain
                 return;
             }
             DataController controller = new DataController();
-            if (controller.SaveCustomField(ddlTableList.SelectedValue.ToString().ToInt(), txtFieldName.Text, ddlFieldType.SelectedValue.ToString().ToInt()))
+            List<string> itemList = new List<string>();
+            if (ddlFieldType.SelectedValue.ToString() == "5" || ddlFieldType.SelectedValue.ToString() == "6")
             {
+                foreach (var item in lbItemList.Items)
+                {
+                    itemList.Add(item.ToString());
+                }
+            }
+            int keyID = controller.SaveCustomField(ddlTableList.SelectedValue.ToString().ToInt(), txtFieldName.Text, ddlFieldType.SelectedValue.ToString().ToInt(), itemList);
+            if (keyID > 0)
+            {
+                ClearController();
                 MessageBox.Show("保存成功");
+                BindFieldList();
             }
             else
             {
@@ -88,7 +130,44 @@ namespace PicControllerMain
 
         private void ddlFieldType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ddlFieldType.SelectedIndex > -1)
+            {
+                if (ddlFieldType.SelectedValue.ToString() == "5" || ddlFieldType.SelectedValue.ToString() == "6")
+                {
+                    gbItemEdit.Visible = true;
+                }
+                else {
+                    gbItemEdit.Visible = false;
+                }
+            }
 
+        }
+
+        /// <summary>
+        /// 添加集合控件的选项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnItemAdd_Click(object sender, EventArgs e)
+        {
+            if (lbItemList.Items.Contains(txtItemName.Text.Trim()))
+            {
+                MessageBox.Show("此项已存在");
+                return;
+            }
+            lbItemList.Items.Add(txtItemName.Text.Trim());
+            txtItemName.Text = string.Empty;
+            txtItemName.Focus();
+        }
+
+        private void ClearController()
+        {
+            ddlFieldType.SelectedIndex = 0;
+            ddlTableList.SelectedIndex = 0;
+            txtItemName.Text = string.Empty;
+            txtFieldName.Text = string.Empty;
+            lbItemList.Items.Clear();
+            gbItemEdit.Visible = false;
         }
     }
 }

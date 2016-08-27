@@ -19,5 +19,9 @@ namespace PicControllerMain
         public string CustomerPhone { get; set; }
         public Nullable<System.DateTime> EnteredDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
+        public string WeiXin { get; set; }
+        public string QQ { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
     }
 }

@@ -21,6 +21,6 @@ namespace PicControllerMain
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<bool> IsAlive { get; set; }
         public string CustomFieldDefaultValue { get; set; }
-        public Nullable<int> TableID { get; set; }
+        public Nullable<int> TableIndex { get; set; }
     }
 }

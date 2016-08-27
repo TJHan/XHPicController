@@ -16,7 +16,7 @@ namespace PicControllerMain
     public partial class PicStoreEntities : DbContext
     {
         public PicStoreEntities()
-            : base("name=PicStoreEntities")
+            : base("name=PicStoreEntities1")
         {
         }
     

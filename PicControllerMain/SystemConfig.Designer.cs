@@ -34,23 +34,21 @@
             this.LFieldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LFieldDataType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LFieldTable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LFieldEdit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ddlTableList = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtFieldName = new System.Windows.Forms.TextBox();
+            this.btnAddField = new System.Windows.Forms.Button();
+            this.gbItemEdit = new System.Windows.Forms.GroupBox();
+            this.lbItemList = new System.Windows.Forms.ListBox();
+            this.btnItemAdd = new System.Windows.Forms.Button();
+            this.txtItemName = new System.Windows.Forms.TextBox();
             this.ddlFieldType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.gbItemEdit = new System.Windows.Forms.GroupBox();
-            this.txtItemName = new System.Windows.Forms.TextBox();
-            this.btnItemAdd = new System.Windows.Forms.Button();
-            this.lvItemList = new System.Windows.Forms.ListView();
-            this.lItemName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.IItemOrderNbr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtFieldName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ddlTableList = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnAddField = new System.Windows.Forms.Button();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -64,26 +62,28 @@
             this.groupBox1.Controls.Add(this.lvFieldItemList);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 610);
+            this.groupBox1.Size = new System.Drawing.Size(351, 610);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "已添加的字段";
             // 
             // lvFieldItemList
             // 
-            this.lvFieldItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.lvFieldItemList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
             this.LFieldNbr,
             this.LFieldName,
             this.LFieldDataType,
             this.LFieldTable,
-            this.LFieldEdit});
-            this.lvFieldItemList.Location = new System.Drawing.Point(6, 59);
+            this.columnHeader2});
+            this.lvFieldItemList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvFieldItemList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvFieldItemList.Location = new System.Drawing.Point(3, 17);
             this.lvFieldItemList.Name = "lvFieldItemList";
-            this.lvFieldItemList.Size = new System.Drawing.Size(268, 545);
+            this.lvFieldItemList.Size = new System.Drawing.Size(345, 590);
             this.lvFieldItemList.TabIndex = 1;
             this.lvFieldItemList.UseCompatibleStateImageBehavior = false;
+            this.lvFieldItemList.View = System.Windows.Forms.View.Details;
             // 
             // LFieldNbr
             // 
@@ -100,10 +100,7 @@
             // LFieldTable
             // 
             this.LFieldTable.Text = "所属分类";
-            // 
-            // LFieldEdit
-            // 
-            this.LFieldEdit.Text = "操作";
+            this.LFieldTable.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox2
             // 
@@ -111,9 +108,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Location = new System.Drawing.Point(298, 12);
+            this.groupBox2.Location = new System.Drawing.Point(369, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(700, 610);
+            this.groupBox2.Size = new System.Drawing.Size(629, 610);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "字段详情";
@@ -130,48 +127,59 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(6, 39);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(688, 426);
+            this.groupBox3.Size = new System.Drawing.Size(617, 426);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "新建字段";
             // 
-            // label1
+            // btnAddField
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "所属分类：";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddField.Location = new System.Drawing.Point(65, 397);
+            this.btnAddField.Name = "btnAddField";
+            this.btnAddField.Size = new System.Drawing.Size(75, 23);
+            this.btnAddField.TabIndex = 7;
+            this.btnAddField.Text = "保存";
+            this.btnAddField.UseVisualStyleBackColor = true;
+            this.btnAddField.Click += new System.EventHandler(this.btnAddField_Click);
             // 
-            // ddlTableList
+            // gbItemEdit
             // 
-            this.ddlTableList.FormattingEnabled = true;
-            this.ddlTableList.Items.AddRange(new object[] {
-            "客户",
-            "订单"});
-            this.ddlTableList.Location = new System.Drawing.Point(134, 32);
-            this.ddlTableList.Name = "ddlTableList";
-            this.ddlTableList.Size = new System.Drawing.Size(184, 20);
-            this.ddlTableList.TabIndex = 1;
+            this.gbItemEdit.Controls.Add(this.lbItemList);
+            this.gbItemEdit.Controls.Add(this.btnItemAdd);
+            this.gbItemEdit.Controls.Add(this.txtItemName);
+            this.gbItemEdit.Location = new System.Drawing.Point(329, 20);
+            this.gbItemEdit.Name = "gbItemEdit";
+            this.gbItemEdit.Size = new System.Drawing.Size(282, 281);
+            this.gbItemEdit.TabIndex = 6;
+            this.gbItemEdit.TabStop = false;
+            this.gbItemEdit.Text = "选项编辑";
             // 
-            // label2
+            // lbItemList
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(76, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "字段名：";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbItemList.FormattingEnabled = true;
+            this.lbItemList.ItemHeight = 12;
+            this.lbItemList.Location = new System.Drawing.Point(7, 20);
+            this.lbItemList.Name = "lbItemList";
+            this.lbItemList.Size = new System.Drawing.Size(269, 220);
+            this.lbItemList.TabIndex = 8;
             // 
-            // txtFieldName
+            // btnItemAdd
             // 
-            this.txtFieldName.Location = new System.Drawing.Point(135, 59);
-            this.txtFieldName.Name = "txtFieldName";
-            this.txtFieldName.Size = new System.Drawing.Size(183, 21);
-            this.txtFieldName.TabIndex = 3;
+            this.btnItemAdd.Location = new System.Drawing.Point(181, 247);
+            this.btnItemAdd.Name = "btnItemAdd";
+            this.btnItemAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnItemAdd.TabIndex = 4;
+            this.btnItemAdd.Text = "添加";
+            this.btnItemAdd.UseVisualStyleBackColor = true;
+            this.btnItemAdd.Click += new System.EventHandler(this.btnItemAdd_Click);
+            // 
+            // txtItemName
+            // 
+            this.txtItemName.Location = new System.Drawing.Point(7, 247);
+            this.txtItemName.MaxLength = 100;
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.Size = new System.Drawing.Size(167, 21);
+            this.txtItemName.TabIndex = 3;
             // 
             // ddlFieldType
             // 
@@ -192,67 +200,50 @@
             this.label3.Text = "字段类型：";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // gbItemEdit
+            // txtFieldName
             // 
-            this.gbItemEdit.Controls.Add(this.lvItemList);
-            this.gbItemEdit.Controls.Add(this.btnItemAdd);
-            this.gbItemEdit.Controls.Add(this.txtItemName);
-            this.gbItemEdit.Location = new System.Drawing.Point(408, 20);
-            this.gbItemEdit.Name = "gbItemEdit";
-            this.gbItemEdit.Size = new System.Drawing.Size(274, 281);
-            this.gbItemEdit.TabIndex = 6;
-            this.gbItemEdit.TabStop = false;
-            this.gbItemEdit.Text = "选项编辑";
+            this.txtFieldName.Location = new System.Drawing.Point(135, 59);
+            this.txtFieldName.Name = "txtFieldName";
+            this.txtFieldName.Size = new System.Drawing.Size(183, 21);
+            this.txtFieldName.TabIndex = 3;
             // 
-            // txtItemName
+            // label2
             // 
-            this.txtItemName.Location = new System.Drawing.Point(7, 247);
-            this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(167, 21);
-            this.txtItemName.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(76, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "字段名：";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnItemAdd
+            // ddlTableList
             // 
-            this.btnItemAdd.Location = new System.Drawing.Point(181, 247);
-            this.btnItemAdd.Name = "btnItemAdd";
-            this.btnItemAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnItemAdd.TabIndex = 4;
-            this.btnItemAdd.Text = "添加";
-            this.btnItemAdd.UseVisualStyleBackColor = true;
+            this.ddlTableList.FormattingEnabled = true;
+            this.ddlTableList.Location = new System.Drawing.Point(134, 32);
+            this.ddlTableList.Name = "ddlTableList";
+            this.ddlTableList.Size = new System.Drawing.Size(184, 20);
+            this.ddlTableList.TabIndex = 1;
             // 
-            // lvItemList
+            // label1
             // 
-            this.lvItemList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.lItemName,
-            this.IItemOrderNbr,
-            this.columnHeader1});
-            this.lvItemList.Location = new System.Drawing.Point(7, 21);
-            this.lvItemList.Name = "lvItemList";
-            this.lvItemList.Size = new System.Drawing.Size(261, 220);
-            this.lvItemList.TabIndex = 5;
-            this.lvItemList.UseCompatibleStateImageBehavior = false;
-            // 
-            // lItemName
-            // 
-            this.lItemName.Text = "选项名称";
-            // 
-            // IItemOrderNbr
-            // 
-            this.IItemOrderNbr.Text = "选项排序号";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(63, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "所属分类：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "操作";
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 10;
             // 
-            // btnAddField
+            // columnHeader2
             // 
-            this.btnAddField.Location = new System.Drawing.Point(65, 397);
-            this.btnAddField.Name = "btnAddField";
-            this.btnAddField.Size = new System.Drawing.Size(75, 23);
-            this.btnAddField.TabIndex = 7;
-            this.btnAddField.Text = "保存";
-            this.btnAddField.UseVisualStyleBackColor = true;
-            this.btnAddField.Click += new System.EventHandler(this.btnAddField_Click);
+            this.columnHeader2.Text = "操作";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SystemConfig
             // 
@@ -281,7 +272,6 @@
         private System.Windows.Forms.ColumnHeader LFieldName;
         private System.Windows.Forms.ColumnHeader LFieldDataType;
         private System.Windows.Forms.ColumnHeader LFieldTable;
-        private System.Windows.Forms.ColumnHeader LFieldEdit;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
@@ -293,11 +283,9 @@
         private System.Windows.Forms.GroupBox gbItemEdit;
         private System.Windows.Forms.TextBox txtItemName;
         private System.Windows.Forms.Button btnItemAdd;
-        private System.Windows.Forms.ListView lvItemList;
-        private System.Windows.Forms.ColumnHeader lItemName;
-        private System.Windows.Forms.ColumnHeader IItemOrderNbr;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Button btnAddField;
-
+        private System.Windows.Forms.ListBox lbItemList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

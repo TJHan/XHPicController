@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PicControllerMain.ParamsEntity;
 
 namespace PicControllerMain
 {
@@ -15,7 +16,8 @@ namespace PicControllerMain
         public Form1()
         {
             InitializeComponent();
-        }        
+            LoadData();
+        }
 
         /// <summary>
         /// 打开系统设置窗口
@@ -28,20 +30,52 @@ namespace PicControllerMain
             sc.Show();
         }
 
+        /// <summary>
+        /// 加载订单数据
+        /// </summary>
         private void LoadData()
-        { 
-
+        {
+            OrderSearchParams parms = new OrderSearchParams();
+            parms.ParamsCustomerName = txtCustomerName.Text.Trim();
+            parms.ParamsPhone = txtPhone.Text.Trim();
+            DataController controller = new DataController();
+            IQueryable list = controller.LoadOrderList(parms);
+            foreach (dynamic order in list)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Add(order.OrderID);
+                item.SubItems.Add(order.CustomerName);
+                item.SubItems.Add(order.CustomerPhone);
+                item.SubItems.Add(order.EnteredDate);
+                lvDataList.Items.Add(item);
+            }
         }
+              
 
         /// <summary>
-        /// 打开新建客户窗口
+        /// 订单查询
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtCreateCustomer_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            CustomerEdit ce = new CustomerEdit();
-            ce.Show();
+            LoadData();
+        }
+
+        /// <summary>
+        /// 打开新建订单窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtCreateOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            CustomerMain main = new CustomerMain();
+            main.Show();
         }
     }
 }

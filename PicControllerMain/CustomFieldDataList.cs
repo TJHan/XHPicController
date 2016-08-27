@@ -16,5 +16,6 @@ namespace PicControllerMain
     {
         public int CustomFieldDataListID { get; set; }
         public string CustomFieldItemName { get; set; }
+        public Nullable<int> CustomFieldID { get; set; }
     }
 }

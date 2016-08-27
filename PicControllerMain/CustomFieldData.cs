@@ -19,5 +19,6 @@ namespace PicControllerMain
         public Nullable<System.DateTime> EnteredDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CustomFieldID { get; set; }
+        public Nullable<int> TableID { get; set; }
     }
 }

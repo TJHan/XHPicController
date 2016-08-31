@@ -93,7 +93,7 @@ namespace PicControllerMain
         /// <summary>
         /// 获取订单集合
         /// </summary>
-        /// <param name="pEntity">查询参数对象</param>
+        /// <param name="pEntity">查询参数对象</param>o
         /// <returns></returns>
         public IQueryable LoadOrderList(OrderSearchParams pEntity)
         {
@@ -106,7 +106,8 @@ namespace PicControllerMain
                            c.CustomerPhone,
                            o.EnteredDate
                        };
-            if (!string.IsNullOrEmpty(pEntity.ParamsCustomerName)) {
+            if (!string.IsNullOrEmpty(pEntity.ParamsCustomerName))
+            {
                 list = list.Where(d => d.CustomerName.Contains(pEntity.ParamsCustomerName));
             }
             if (!string.IsNullOrEmpty(pEntity.ParamsPhone))
@@ -117,6 +118,34 @@ namespace PicControllerMain
 
         }
 
+        /// <summary>
+        /// 订单创建页面查询客户信息集合
+        /// </summary>
+        /// <param name="pEntity"></param>
+        /// <returns></returns>
+        public List<Customer> LoadCustomerList(OrderCustomerSearchParams pEntity)
+        {
+            var list = _picStormContent.Customer.Where(d => d.CustomerName.Contains(pEntity.ParamsString)
+            || d.CustomerPhone.Contains(pEntity.ParamsString)
+            || d.Address.Contains(pEntity.ParamsString)
+            || d.WeiXin.Contains(pEntity.ParamsString)
+            || d.QQ.Contains(pEntity.ParamsString)
+            || d.Email.Contains(pEntity.ParamsString)).ToList();
+            return list;
+        }
+
+        /// <summary>
+        /// 保存订单信息
+        /// </summary>
+        /// <param name="entity">订单实体</param>
+        /// <returns></returns>
+        public bool SaveOrder(Order entity)
+        {
+            entity.EnteredDate = DateTime.Now;
+            entity.UpdateDate = DateTime.Now;
+            _picStormContent.Order.Add(entity);
+            return _picStormContent.SaveChanges() == 1;
+        }
         #endregion
 
         #region 客户操作
@@ -129,7 +158,8 @@ namespace PicControllerMain
         public IQueryable LoadCustomerList(CustomerSearchParams pEntity)
         {
             var list = from c in _picStormContent.Customer
-                       select new {
+                       select new
+                       {
                            c.CustomerID,
                            c.CustomerName,
                            c.CustomerPhone,
@@ -138,15 +168,15 @@ namespace PicControllerMain
                        };
             if (!string.IsNullOrEmpty(pEntity.ParamsCustomerName))
             {
-                list = list.Where(d => d.CustomerName.Equals(pEntity.ParamsCustomerName));
+                list = list.Where(d => d.CustomerName.Contains(pEntity.ParamsCustomerName));
             }
             if (!string.IsNullOrEmpty(pEntity.ParamsPhone))
             {
-                list = list.Where(d => d.CustomerPhone.Equals(pEntity.ParamsPhone));
+                list = list.Where(d => d.CustomerPhone.Contains(pEntity.ParamsPhone));
             }
             if (!string.IsNullOrEmpty(pEntity.ParamsAddress))
             {
-                list = list.Where(d => d.Address.Equals(pEntity.ParamsAddress));
+                list = list.Where(d => d.Address.Contains(pEntity.ParamsAddress));
             }
             return list;
         }

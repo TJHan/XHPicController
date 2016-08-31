@@ -20,4 +20,12 @@ namespace PicControllerMain.ParamsEntity
         /// </summary>
         public string ParamsPhone { get; set; }
     }
+
+    /// <summary>
+    /// 订单创建页面查询客户条件实体
+    /// </summary>
+    public class OrderCustomerSearchParams
+    {
+        public string ParamsString { get; set; }
+    }
 }

@@ -43,10 +43,10 @@ namespace PicControllerMain
             foreach (dynamic order in list)
             {
                 ListViewItem item = new ListViewItem();
-                item.SubItems.Add(order.OrderID);
+                item.SubItems.Add(order.OrderID.ToString());
                 item.SubItems.Add(order.CustomerName);
                 item.SubItems.Add(order.CustomerPhone);
-                item.SubItems.Add(order.EnteredDate);
+                item.SubItems.Add(order.EnteredDate.ToString("yyyy-MM-dd"));
                 lvDataList.Items.Add(item);
             }
         }
@@ -69,7 +69,8 @@ namespace PicControllerMain
         /// <param name="e"></param>
         private void txtCreateOrder_Click(object sender, EventArgs e)
         {
-
+            OrderEdit oe = new OrderEdit();
+            oe.Show();
         }
 
         private void label3_Click(object sender, EventArgs e)

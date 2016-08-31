@@ -31,18 +31,20 @@ namespace PicControllerMain
                 ParamsAddress = txtAddress.Text.Trim()
             };
             IQueryable list = controller.LoadCustomerList(param);
-            foreach (dynamic customer in list)
-            {
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Add(customer.CustomerID);
-                item.SubItems.Add(customer.CustomerName);
-                item.SubItems.Add(customer.CustomerPhone);
-                item.SubItems.Add(customer.EnteredDate);
-                item.SubItems.Add(customer.Address);
-                
-                lvCustomerList.Items.Add(item);
-            }
+            lvCustomerList.Items.Clear();
+            if (list != null) {
+                foreach (dynamic customer in list)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.SubItems.Add(customer.CustomerID.ToString());
 
+                    item.SubItems.Add(customer.CustomerName);
+                    item.SubItems.Add(customer.CustomerPhone);
+                    item.SubItems.Add(customer.EnteredDate.ToString());
+                    item.SubItems.Add(customer.Address);
+                    lvCustomerList.Items.Add(item);
+                }
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

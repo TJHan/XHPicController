@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PicControllerMain.ParamsEntity;
+using PicControllerMain.Common;
 
 namespace PicControllerMain
 {
@@ -69,5 +70,13 @@ namespace PicControllerMain
             CustomerEdit edit = new CustomerEdit();
             edit.Show();
         }
+
+        private void lvCustomerList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var index = lvCustomerList.SelectedIndices[0];
+            int id = lvCustomerList.Items[index].SubItems[1].Text.ToInt();
+            CustomerEdit edit = new CustomerEdit(id);
+            edit.Show();
+        }        
     }
 }

@@ -38,7 +38,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -96,14 +95,15 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader7,
-            this.columnHeader6});
+            this.columnHeader7});
+            this.lvCustomerList.FullRowSelect = true;
             this.lvCustomerList.Location = new System.Drawing.Point(8, 108);
             this.lvCustomerList.Name = "lvCustomerList";
             this.lvCustomerList.Size = new System.Drawing.Size(997, 464);
             this.lvCustomerList.TabIndex = 7;
             this.lvCustomerList.UseCompatibleStateImageBehavior = false;
             this.lvCustomerList.View = System.Windows.Forms.View.Details;
+            this.lvCustomerList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCustomerList_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -133,11 +133,6 @@
             // 
             this.columnHeader7.Text = "地址";
             this.columnHeader7.Width = 295;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "操作";
-            this.columnHeader6.Width = 131;
             // 
             // btnSearch
             // 
@@ -227,7 +222,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.Button btnClear;

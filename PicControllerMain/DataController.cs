@@ -193,6 +193,20 @@ namespace PicControllerMain
 
         public void UpdateCustomer(Customer entity)
         {
+            Customer en = new Customer();
+            en = _picStormContent.Customer.FirstOrDefault(d => d.CustomerID == entity.CustomerID);
+            en.CustomerName = entity.CustomerName;
+            en.CustomerPhone = entity.CustomerPhone;
+            en.WeiXin = entity.WeiXin;
+            en.QQ = entity.QQ;
+            en.Email = entity.Email;
+            en.Address = entity.Address;
+            en.UpdateDate = DateTime.Now;
+            _picStormContent.SaveChanges();
+        }
+
+        public void SaveCustomer(Customer entity)
+        {
             entity.EnteredDate = DateTime.Now;
             entity.UpdateDate = DateTime.Now;
             _picStormContent.Customer.Add(entity);

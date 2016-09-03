@@ -43,7 +43,6 @@
             this.联系电话 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.添加时间 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.订单数量 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.编辑 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.labSetting = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -77,6 +76,7 @@
             this.btnClear.TabIndex = 7;
             this.btnClear.Text = "清空";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtCreateOrder
             // 
@@ -141,8 +141,7 @@
             this.客户姓名,
             this.联系电话,
             this.添加时间,
-            this.订单数量,
-            this.编辑});
+            this.订单数量});
             this.lvDataList.Location = new System.Drawing.Point(6, 122);
             this.lvDataList.Name = "lvDataList";
             this.lvDataList.Size = new System.Drawing.Size(814, 343);
@@ -175,10 +174,6 @@
             // 订单数量
             // 
             this.订单数量.Text = "订单数量";
-            // 
-            // 编辑
-            // 
-            this.编辑.Text = "编辑";
             // 
             // labSetting
             // 
@@ -228,7 +223,6 @@
         private System.Windows.Forms.ColumnHeader 联系电话;
         private System.Windows.Forms.ColumnHeader 添加时间;
         private System.Windows.Forms.ColumnHeader 订单数量;
-        private System.Windows.Forms.ColumnHeader 编辑;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.Label label2;

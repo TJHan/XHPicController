@@ -40,6 +40,7 @@ namespace PicControllerMain
             parms.ParamsPhone = txtPhone.Text.Trim();
             DataController controller = new DataController();
             IQueryable list = controller.LoadOrderList(parms);
+            lvDataList.Items.Clear();
             foreach (dynamic order in list)
             {
                 ListViewItem item = new ListViewItem();
@@ -77,6 +78,12 @@ namespace PicControllerMain
         {
             CustomerMain main = new CustomerMain();
             main.Show();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtCustomerName.Text = string.Empty;
+            txtPhone.Text = string.Empty;
         }
     }
 }

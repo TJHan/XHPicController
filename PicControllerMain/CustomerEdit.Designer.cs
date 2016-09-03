@@ -42,6 +42,9 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PanelCustomFieldList = new System.Windows.Forms.Panel();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labTitle
@@ -152,7 +155,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(94, 240);
+            this.btnSave.Location = new System.Drawing.Point(94, 577);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 13;
@@ -160,11 +163,30 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.PanelCustomFieldList);
+            this.groupBox1.Location = new System.Drawing.Point(15, 220);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(701, 351);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "自定义字段";
+            // 
+            // PanelCustomFieldList
+            // 
+            this.PanelCustomFieldList.AutoScroll = true;
+            this.PanelCustomFieldList.Location = new System.Drawing.Point(79, 20);
+            this.PanelCustomFieldList.Name = "PanelCustomFieldList";
+            this.PanelCustomFieldList.Size = new System.Drawing.Size(616, 325);
+            this.PanelCustomFieldList.TabIndex = 0;
+            // 
             // CustomerEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 275);
+            this.ClientSize = new System.Drawing.Size(724, 612);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label6);
@@ -181,6 +203,7 @@
             this.Controls.Add(this.labTitle);
             this.Name = "CustomerEdit";
             this.Text = "客户详情页面";
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,5 +225,7 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel PanelCustomFieldList;
     }
 }

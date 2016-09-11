@@ -142,16 +142,19 @@
             this.联系电话,
             this.添加时间,
             this.订单数量});
+            this.lvDataList.FullRowSelect = true;
             this.lvDataList.Location = new System.Drawing.Point(6, 122);
             this.lvDataList.Name = "lvDataList";
             this.lvDataList.Size = new System.Drawing.Size(814, 343);
             this.lvDataList.TabIndex = 0;
             this.lvDataList.UseCompatibleStateImageBehavior = false;
             this.lvDataList.View = System.Windows.Forms.View.Details;
+            this.lvDataList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvDataList_MouseDoubleClick);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 10;
             // 
             // 编号
             // 
@@ -162,14 +165,17 @@
             // 
             this.客户姓名.Text = "客户姓名";
             this.客户姓名.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.客户姓名.Width = 154;
             // 
             // 联系电话
             // 
             this.联系电话.Text = "联系电话";
+            this.联系电话.Width = 177;
             // 
             // 添加时间
             // 
             this.添加时间.Text = "添加时间";
+            this.添加时间.Width = 140;
             // 
             // 订单数量
             // 

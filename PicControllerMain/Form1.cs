@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PicControllerMain.ParamsEntity;
+using PicControllerMain.Common;
 
 namespace PicControllerMain
 {
@@ -84,6 +85,14 @@ namespace PicControllerMain
         {
             txtCustomerName.Text = string.Empty;
             txtPhone.Text = string.Empty;
+        }
+        
+        private void lvDataList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var index = lvDataList.SelectedIndices[0];
+            int id = lvDataList.Items[index].SubItems[1].Text.ToInt();
+            OrderEdit edit = new OrderEdit(id);
+            edit.Show();
         }
     }
 }

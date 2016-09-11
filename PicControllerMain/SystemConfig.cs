@@ -72,6 +72,7 @@ namespace PicControllerMain
             DataController controller = new DataController();
             IEnumerable<CustomField> list = controller.GetCustomFieldList(type);
             string typeName = string.Empty;
+            lvFieldItemList.Items.Clear();
             foreach (var customField in list)
             {
                 ListViewItem item = new ListViewItem();

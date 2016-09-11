@@ -90,6 +90,12 @@ namespace PicControllerMain
         #endregion
 
         #region 订单操作
+
+        public Order FindOrder(int id)
+        {
+            return _picStormContent.Order.Find(id);
+        }
+
         /// <summary>
         /// 获取订单集合
         /// </summary>
@@ -139,12 +145,26 @@ namespace PicControllerMain
         /// </summary>
         /// <param name="entity">订单实体</param>
         /// <returns></returns>
-        public bool SaveOrder(Order entity)
+        public int SaveOrder(Order entity)
         {
             entity.EnteredDate = DateTime.Now;
             entity.UpdateDate = DateTime.Now;
             _picStormContent.Order.Add(entity);
-            return _picStormContent.SaveChanges() == 1;
+            _picStormContent.SaveChanges();
+            return entity.OrderID;
+        }
+
+        public void UpdateOrder(Order entity)
+        {
+            Order order = new Order();
+            order = _picStormContent.Order.FirstOrDefault(d => d.OrderID == entity.OrderID);
+            order.TotalAmount = entity.TotalAmount;
+            order.AdvanceAmount = entity.AdvanceAmount;
+            order.CustomerID = entity.CustomerID;
+            order.Status = entity.Status;
+            order.Comment = entity.Comment;
+            order.UpdateDate = DateTime.Now;
+            _picStormContent.SaveChanges();
         }
         #endregion
 
@@ -205,13 +225,71 @@ namespace PicControllerMain
             _picStormContent.SaveChanges();
         }
 
-        public void SaveCustomer(Customer entity)
+        public int SaveCustomer(Customer entity)
         {
             entity.EnteredDate = DateTime.Now;
             entity.UpdateDate = DateTime.Now;
             _picStormContent.Customer.Add(entity);
             _picStormContent.SaveChanges();
+            return entity.CustomerID;
+        }
+        #endregion
+
+        #region 自定义字段相关
+        /// <summary>
+        /// 根据CF主键ID获取其列表数据集合
+        /// </summary>
+        /// <param name="cfID"></param>
+        /// <returns></returns>
+        public IEnumerable<CustomFieldDataList> GetCustomFieldDataListList(int cfID)
+        {
+            IEnumerable<CustomFieldDataList> list = _picStormContent.CustomFieldDataList.Where<CustomFieldDataList>(d => d.CustomFieldID == cfID);
+            return list;
+        }
+
+        /// <summary>
+        /// 执行更新或添加自定义字段的用户录入值
+        /// </summary>
+        /// <param name="ItemList"></param>
+        public void UpdateCustomFieldData(List<CustomFieldsColumnsList> ItemList)
+        {            
+            foreach (var item in ItemList)
+            {
+                string sql = @"IF EXISTS(SELECT * FROM CustomFieldData WHERE CustomFieldID = @customFieldID AND TableID = @tableID)
+                                BEGIN
+	                                UPDATE CustomFieldData SET CustomFieldValue = @fieldValue, UpdateDate = GETDATE() WHERE CustomFieldID = @customFieldID AND TableID = @tableID
+                                END
+                                ELSE
+                                BEGIN
+	                                INSERT INTO CustomFieldData(CustomFieldValue,EnteredDate,UpdateDate,CustomFieldID,TableID)
+	                                VALUES(@fieldValue,GETDATE(),GETDATE(), @customFieldID, @tableID)
+                                END";
+                SqlParameter[] par = new SqlParameter[] {
+                    new SqlParameter("@customFieldID",item.CustomFieldID),
+                    new SqlParameter("@tableID", item.TableID),
+                    new SqlParameter("@fieldValue", item.FieldValue)
+                    };
+                _picStormContent.Database.ExecuteSqlCommand(sql, par);
+            }
+        }
+
+        /// <summary>
+        /// 获取自定义字段用户输入的值集合
+        /// </summary>
+        /// <param name="tableID"></param>
+        /// <returns></returns>
+        public List<CustomFieldData> GetCustomFieldValue(int tableID)
+        {
+             return _picStormContent.CustomFieldData.Where<CustomFieldData>(d => d.TableID == tableID).ToList();
         }
         #endregion
     }
+
+    public class CustomFieldsColumnsList
+    {
+        public int CustomFieldID { get; set; }
+        public int TableID { get; set; }
+        public string FieldValue { get; set; }
+    }
+
 }

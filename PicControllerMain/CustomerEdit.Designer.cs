@@ -168,7 +168,7 @@
             this.groupBox1.Controls.Add(this.PanelCustomFieldList);
             this.groupBox1.Location = new System.Drawing.Point(15, 220);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(701, 351);
+            this.groupBox1.Size = new System.Drawing.Size(934, 351);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "自定义字段";
@@ -176,16 +176,17 @@
             // PanelCustomFieldList
             // 
             this.PanelCustomFieldList.AutoScroll = true;
-            this.PanelCustomFieldList.Location = new System.Drawing.Point(79, 20);
+            this.PanelCustomFieldList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelCustomFieldList.Location = new System.Drawing.Point(6, 20);
             this.PanelCustomFieldList.Name = "PanelCustomFieldList";
-            this.PanelCustomFieldList.Size = new System.Drawing.Size(616, 325);
+            this.PanelCustomFieldList.Size = new System.Drawing.Size(922, 325);
             this.PanelCustomFieldList.TabIndex = 0;
             // 
             // CustomerEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 612);
+            this.ClientSize = new System.Drawing.Size(961, 612);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtAddress);

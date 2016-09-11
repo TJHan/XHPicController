@@ -40,6 +40,9 @@
             this.txtYuKuan = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtComment = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtCreateDate = new System.Windows.Forms.DateTimePicker();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,10 +53,17 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtComment = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PanelCustomFieldList = new System.Windows.Forms.Panel();
+            this.PanelCustomSelect = new System.Windows.Forms.Panel();
+            this.PanelOrderStatus = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ddlOrderStatus = new System.Windows.Forms.ComboBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.PanelCustomSelect.SuspendLayout();
+            this.PanelOrderStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -131,7 +141,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(37, 213);
+            this.label5.Location = new System.Drawing.Point(49, 213);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 9;
@@ -147,7 +157,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(53, 544);
+            this.btnSave.Location = new System.Drawing.Point(39, 763);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 11;
@@ -157,16 +167,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.PanelOrderStatus);
+            this.groupBox1.Controls.Add(this.PanelCustomSelect);
             this.groupBox1.Controls.Add(this.txtComment);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtCreateDate);
             this.groupBox1.Controls.Add(this.txtCustomerID);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.txtSearch);
-            this.groupBox1.Controls.Add(this.lvCustomerList);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtCustomer);
             this.groupBox1.Controls.Add(this.txtYuKuan);
@@ -178,10 +185,38 @@
             this.groupBox1.Controls.Add(this.txtTotalAmount);
             this.groupBox1.Location = new System.Drawing.Point(12, 47);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(746, 463);
+            this.groupBox1.Size = new System.Drawing.Size(746, 436);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "订单基础数据";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(5, 228);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(377, 12);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "【注：双击上面的客户条目即可选中客户到左边客户名和客户ID栏里】";
+            // 
+            // txtComment
+            // 
+            this.txtComment.Location = new System.Drawing.Point(96, 286);
+            this.txtComment.MaxLength = 5000;
+            this.txtComment.Multiline = true;
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(644, 142);
+            this.txtComment.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(37, 286);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 12);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "备注：";
             // 
             // txtCreateDate
             // 
@@ -210,7 +245,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(341, 23);
+            this.label6.Location = new System.Drawing.Point(37, 19);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 12);
             this.label6.TabIndex = 15;
@@ -218,7 +253,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(660, 18);
+            this.btnSearch.Location = new System.Drawing.Point(356, 14);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 14;
@@ -228,7 +263,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(436, 20);
+            this.txtSearch.Location = new System.Drawing.Point(132, 16);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(218, 21);
             this.txtSearch.TabIndex = 13;
@@ -241,7 +276,7 @@
             this.columnHeader2});
             this.lvCustomerList.FullRowSelect = true;
             this.lvCustomerList.HideSelection = false;
-            this.lvCustomerList.Location = new System.Drawing.Point(311, 52);
+            this.lvCustomerList.Location = new System.Drawing.Point(7, 48);
             this.lvCustomerList.Name = "lvCustomerList";
             this.lvCustomerList.Size = new System.Drawing.Size(429, 177);
             this.lvCustomerList.TabIndex = 12;
@@ -264,39 +299,79 @@
             this.columnHeader2.Text = "客户";
             this.columnHeader2.Width = 291;
             // 
-            // label8
+            // groupBox2
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(37, 265);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 12);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "备注：";
+            this.groupBox2.Controls.Add(this.PanelCustomFieldList);
+            this.groupBox2.Location = new System.Drawing.Point(12, 489);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(746, 268);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "自定义字段";
             // 
-            // txtComment
+            // PanelCustomFieldList
             // 
-            this.txtComment.Location = new System.Drawing.Point(96, 262);
-            this.txtComment.MaxLength = 5000;
-            this.txtComment.Multiline = true;
-            this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(644, 155);
-            this.txtComment.TabIndex = 20;
+            this.PanelCustomFieldList.AutoScroll = true;
+            this.PanelCustomFieldList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelCustomFieldList.Location = new System.Drawing.Point(6, 20);
+            this.PanelCustomFieldList.Name = "PanelCustomFieldList";
+            this.PanelCustomFieldList.Size = new System.Drawing.Size(734, 242);
+            this.PanelCustomFieldList.TabIndex = 0;
             // 
-            // label9
+            // PanelCustomSelect
             // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(309, 232);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(377, 12);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "【注：双击上面的客户条目即可选中客户到左边客户名和客户ID栏里】";
+            this.PanelCustomSelect.Controls.Add(this.label9);
+            this.PanelCustomSelect.Controls.Add(this.lvCustomerList);
+            this.PanelCustomSelect.Controls.Add(this.btnSearch);
+            this.PanelCustomSelect.Controls.Add(this.label6);
+            this.PanelCustomSelect.Controls.Add(this.txtSearch);
+            this.PanelCustomSelect.Location = new System.Drawing.Point(294, 9);
+            this.PanelCustomSelect.Name = "PanelCustomSelect";
+            this.PanelCustomSelect.Size = new System.Drawing.Size(446, 271);
+            this.PanelCustomSelect.TabIndex = 21;
+            // 
+            // PanelOrderStatus
+            // 
+            this.PanelOrderStatus.Controls.Add(this.ddlOrderStatus);
+            this.PanelOrderStatus.Controls.Add(this.label10);
+            this.PanelOrderStatus.Location = new System.Drawing.Point(6, 237);
+            this.PanelOrderStatus.Name = "PanelOrderStatus";
+            this.PanelOrderStatus.Size = new System.Drawing.Size(282, 43);
+            this.PanelOrderStatus.TabIndex = 22;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "订单状态：";
+            // 
+            // ddlOrderStatus
+            // 
+            this.ddlOrderStatus.FormattingEnabled = true;
+            this.ddlOrderStatus.Location = new System.Drawing.Point(92, 11);
+            this.ddlOrderStatus.Name = "ddlOrderStatus";
+            this.ddlOrderStatus.Size = new System.Drawing.Size(187, 20);
+            this.ddlOrderStatus.TabIndex = 24;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(677, 763);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "结单";
+            this.btnClose.UseVisualStyleBackColor = true;
             // 
             // OrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 722);
+            this.ClientSize = new System.Drawing.Size(1261, 798);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.labTitle);
@@ -304,6 +379,11 @@
             this.Text = "订单编辑";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.PanelCustomSelect.ResumeLayout(false);
+            this.PanelCustomSelect.PerformLayout();
+            this.PanelOrderStatus.ResumeLayout(false);
+            this.PanelOrderStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,5 +416,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtComment;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel PanelCustomFieldList;
+        private System.Windows.Forms.Panel PanelCustomSelect;
+        private System.Windows.Forms.Panel PanelOrderStatus;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox ddlOrderStatus;
+        private System.Windows.Forms.Button btnClose;
     }
 }

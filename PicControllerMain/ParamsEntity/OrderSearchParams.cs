@@ -19,6 +19,11 @@ namespace PicControllerMain.ParamsEntity
         /// 联系电话
         /// </summary>
         public string ParamsPhone { get; set; }
+
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public string ParamsOrderStatus { get; set; }
     }
 
     /// <summary>

@@ -17,7 +17,20 @@ namespace PicControllerMain
         public Form1()
         {
             InitializeComponent();
+            LoadOrderStatus();
             LoadData();
+        }
+
+        private void LoadOrderStatus()
+        {
+            ddlOrderStatus.Items.Insert(0, "订单状态");
+            foreach (var item in typeof(EnumOrderStatus).GetFields())
+            {
+                if (item.FieldType.IsEnum == true) {
+                    ddlOrderStatus.Items.Add(item.Name);
+                }
+            }
+            ddlOrderStatus.SelectedIndex = 0; 
         }
 
         /// <summary>
@@ -39,6 +52,7 @@ namespace PicControllerMain
             OrderSearchParams parms = new OrderSearchParams();
             parms.ParamsCustomerName = txtCustomerName.Text.Trim();
             parms.ParamsPhone = txtPhone.Text.Trim();
+            parms.ParamsOrderStatus = ddlOrderStatus.SelectedIndex > 0 ? ddlOrderStatus.SelectedItem.ToString() : string.Empty;
             DataController controller = new DataController();
             IQueryable list = controller.LoadOrderList(parms);
             lvDataList.Items.Clear();
@@ -49,10 +63,13 @@ namespace PicControllerMain
                 item.SubItems.Add(order.CustomerName);
                 item.SubItems.Add(order.CustomerPhone);
                 item.SubItems.Add(order.EnteredDate.ToString("yyyy-MM-dd"));
+                item.SubItems.Add(order.Status);
+                string finishDate = order.FinishDate != null ? order.FinishDate.ToString("yyyy-MM-dd") : string.Empty;
+                item.SubItems.Add(finishDate);
                 lvDataList.Items.Add(item);
             }
         }
-              
+
 
         /// <summary>
         /// 订单查询
@@ -85,8 +102,9 @@ namespace PicControllerMain
         {
             txtCustomerName.Text = string.Empty;
             txtPhone.Text = string.Empty;
+            ddlOrderStatus.SelectedIndex = 0;
         }
-        
+
         private void lvDataList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             var index = lvDataList.SelectedIndices[0];

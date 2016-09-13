@@ -40,30 +40,31 @@
             this.txtYuKuan = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PanelOrderStatus = new System.Windows.Forms.Panel();
+            this.ddlOrderStatus = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.PanelCustomSelect = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.lvCustomerList = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.txtComment = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCreateDate = new System.Windows.Forms.DateTimePicker();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lvCustomerList = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PanelCustomFieldList = new System.Windows.Forms.Panel();
-            this.PanelCustomSelect = new System.Windows.Forms.Panel();
-            this.PanelOrderStatus = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.ddlOrderStatus = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.PanelCustomSelect.SuspendLayout();
             this.PanelOrderStatus.SuspendLayout();
+            this.PanelCustomSelect.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -190,6 +191,44 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "订单基础数据";
             // 
+            // PanelOrderStatus
+            // 
+            this.PanelOrderStatus.Controls.Add(this.ddlOrderStatus);
+            this.PanelOrderStatus.Controls.Add(this.label10);
+            this.PanelOrderStatus.Location = new System.Drawing.Point(6, 237);
+            this.PanelOrderStatus.Name = "PanelOrderStatus";
+            this.PanelOrderStatus.Size = new System.Drawing.Size(282, 43);
+            this.PanelOrderStatus.TabIndex = 22;
+            // 
+            // ddlOrderStatus
+            // 
+            this.ddlOrderStatus.FormattingEnabled = true;
+            this.ddlOrderStatus.Location = new System.Drawing.Point(92, 11);
+            this.ddlOrderStatus.Name = "ddlOrderStatus";
+            this.ddlOrderStatus.Size = new System.Drawing.Size(187, 20);
+            this.ddlOrderStatus.TabIndex = 24;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "订单状态：";
+            // 
+            // PanelCustomSelect
+            // 
+            this.PanelCustomSelect.Controls.Add(this.label9);
+            this.PanelCustomSelect.Controls.Add(this.lvCustomerList);
+            this.PanelCustomSelect.Controls.Add(this.btnSearch);
+            this.PanelCustomSelect.Controls.Add(this.label6);
+            this.PanelCustomSelect.Controls.Add(this.txtSearch);
+            this.PanelCustomSelect.Location = new System.Drawing.Point(294, 9);
+            this.PanelCustomSelect.Name = "PanelCustomSelect";
+            this.PanelCustomSelect.Size = new System.Drawing.Size(446, 271);
+            this.PanelCustomSelect.TabIndex = 21;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -199,6 +238,63 @@
             this.label9.Size = new System.Drawing.Size(377, 12);
             this.label9.TabIndex = 21;
             this.label9.Text = "【注：双击上面的客户条目即可选中客户到左边客户名和客户ID栏里】";
+            // 
+            // lvCustomerList
+            // 
+            this.lvCustomerList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader1,
+            this.columnHeader2});
+            this.lvCustomerList.FullRowSelect = true;
+            this.lvCustomerList.HideSelection = false;
+            this.lvCustomerList.Location = new System.Drawing.Point(7, 48);
+            this.lvCustomerList.Name = "lvCustomerList";
+            this.lvCustomerList.Size = new System.Drawing.Size(429, 177);
+            this.lvCustomerList.TabIndex = 12;
+            this.lvCustomerList.UseCompatibleStateImageBehavior = false;
+            this.lvCustomerList.View = System.Windows.Forms.View.Details;
+            this.lvCustomerList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCustomerList_MouseDoubleClick);
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "";
+            this.columnHeader3.Width = 8;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "编号";
+            this.columnHeader1.Width = 48;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "客户";
+            this.columnHeader2.Width = 291;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(356, 14);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 14;
+            this.btnSearch.Text = "查找";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(37, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 12);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "客户筛选条件：";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(132, 16);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(218, 21);
+            this.txtSearch.TabIndex = 13;
             // 
             // txtComment
             // 
@@ -242,63 +338,6 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "客户ID：";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 12);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "客户筛选条件：";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(356, 14);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 14;
-            this.btnSearch.Text = "查找";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(132, 16);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(218, 21);
-            this.txtSearch.TabIndex = 13;
-            // 
-            // lvCustomerList
-            // 
-            this.lvCustomerList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader1,
-            this.columnHeader2});
-            this.lvCustomerList.FullRowSelect = true;
-            this.lvCustomerList.HideSelection = false;
-            this.lvCustomerList.Location = new System.Drawing.Point(7, 48);
-            this.lvCustomerList.Name = "lvCustomerList";
-            this.lvCustomerList.Size = new System.Drawing.Size(429, 177);
-            this.lvCustomerList.TabIndex = 12;
-            this.lvCustomerList.UseCompatibleStateImageBehavior = false;
-            this.lvCustomerList.View = System.Windows.Forms.View.Details;
-            this.lvCustomerList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvCustomerList_MouseDoubleClick);
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "";
-            this.columnHeader3.Width = 8;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "编号";
-            this.columnHeader1.Width = 48;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "客户";
-            this.columnHeader2.Width = 291;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.PanelCustomFieldList);
@@ -318,44 +357,6 @@
             this.PanelCustomFieldList.Size = new System.Drawing.Size(734, 242);
             this.PanelCustomFieldList.TabIndex = 0;
             // 
-            // PanelCustomSelect
-            // 
-            this.PanelCustomSelect.Controls.Add(this.label9);
-            this.PanelCustomSelect.Controls.Add(this.lvCustomerList);
-            this.PanelCustomSelect.Controls.Add(this.btnSearch);
-            this.PanelCustomSelect.Controls.Add(this.label6);
-            this.PanelCustomSelect.Controls.Add(this.txtSearch);
-            this.PanelCustomSelect.Location = new System.Drawing.Point(294, 9);
-            this.PanelCustomSelect.Name = "PanelCustomSelect";
-            this.PanelCustomSelect.Size = new System.Drawing.Size(446, 271);
-            this.PanelCustomSelect.TabIndex = 21;
-            // 
-            // PanelOrderStatus
-            // 
-            this.PanelOrderStatus.Controls.Add(this.ddlOrderStatus);
-            this.PanelOrderStatus.Controls.Add(this.label10);
-            this.PanelOrderStatus.Location = new System.Drawing.Point(6, 237);
-            this.PanelOrderStatus.Name = "PanelOrderStatus";
-            this.PanelOrderStatus.Size = new System.Drawing.Size(282, 43);
-            this.PanelOrderStatus.TabIndex = 22;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 14);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 12);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "订单状态：";
-            // 
-            // ddlOrderStatus
-            // 
-            this.ddlOrderStatus.FormattingEnabled = true;
-            this.ddlOrderStatus.Location = new System.Drawing.Point(92, 11);
-            this.ddlOrderStatus.Name = "ddlOrderStatus";
-            this.ddlOrderStatus.Size = new System.Drawing.Size(187, 20);
-            this.ddlOrderStatus.TabIndex = 24;
-            // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(677, 763);
@@ -364,12 +365,23 @@
             this.btnClose.TabIndex = 14;
             this.btnClose.Text = "结单";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(596, 763);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "打印订单";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // OrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 798);
+            this.ClientSize = new System.Drawing.Size(774, 798);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -379,11 +391,11 @@
             this.Text = "订单编辑";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.PanelCustomSelect.ResumeLayout(false);
-            this.PanelCustomSelect.PerformLayout();
             this.PanelOrderStatus.ResumeLayout(false);
             this.PanelOrderStatus.PerformLayout();
+            this.PanelCustomSelect.ResumeLayout(false);
+            this.PanelCustomSelect.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,5 +435,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox ddlOrderStatus;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button button1;
     }
 }

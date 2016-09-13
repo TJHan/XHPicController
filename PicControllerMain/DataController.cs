@@ -110,7 +110,9 @@ namespace PicControllerMain
                            o.OrderID,
                            c.CustomerName,
                            c.CustomerPhone,
-                           o.EnteredDate
+                           o.EnteredDate,
+                           o.Status,
+                           o.FinishDate
                        };
             if (!string.IsNullOrEmpty(pEntity.ParamsCustomerName))
             {
@@ -119,6 +121,10 @@ namespace PicControllerMain
             if (!string.IsNullOrEmpty(pEntity.ParamsPhone))
             {
                 list = list.Where(d => d.CustomerPhone.Contains(pEntity.ParamsPhone));
+            }
+            if (!string.IsNullOrEmpty(pEntity.ParamsOrderStatus))
+            {
+                list = list.Where(d => d.Status.Equals(pEntity.ParamsOrderStatus, StringComparison.CurrentCultureIgnoreCase));
             }
             return list;
 
@@ -164,6 +170,7 @@ namespace PicControllerMain
             order.Status = entity.Status;
             order.Comment = entity.Comment;
             order.UpdateDate = DateTime.Now;
+            order.FinishDate = entity.FinishDate;
             _picStormContent.SaveChanges();
         }
         #endregion

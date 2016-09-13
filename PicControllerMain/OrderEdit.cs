@@ -31,11 +31,13 @@ namespace PicControllerMain
             {
                 PanelCustomSelect.Visible = false;
                 LoadOrderStatus();
+                btnSave.Text = "更新";
             }
             else
             {
                 PanelOrderStatus.Visible = false;
                 LoadCustomer();
+                btnClose.Visible = false;
             }
         }
 
@@ -132,6 +134,10 @@ namespace PicControllerMain
                 {
                     entity.OrderID = OrderID;
                     entity.Status = ddlOrderStatus.SelectedItem as string;
+                    if (entity.Status == Enum.GetName(typeof(EnumOrderStatus), "订单结束"))
+                    {
+                        entity.FinishDate = DateTime.Now;
+                    }
                     controller.UpdateOrder(entity);
                 }
                 else {
@@ -346,24 +352,6 @@ namespace PicControllerMain
                 }
                 i++;
             }
-            //不好使
-            foreach (var item in PanelCustomFieldList.Controls)
-            {
-                if (item is ComboBox)
-                {
-                    ComboBox ddl = item as ComboBox;
-                    CustomFieldData cfEntity = new CustomFieldData();
-                    if (valueList != null)
-                    {
-                        cfEntity = valueList.Where<CustomFieldData>(d => d.CustomFieldID == ddl.Name.ToInt() && d.TableID == OrderID).FirstOrDefault();
-                        if (cfEntity != null)
-                        {
-                            //ddl.Text = cfEntity.CustomFieldValue;
-                            ddl.SelectedValue = cfEntity.CustomFieldValue;
-                        }
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -429,6 +417,19 @@ namespace PicControllerMain
                 }
             }
             controller.UpdateCustomFieldData(parList);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Order entity = new Order();
+            DataController controller = new DataController();
+            entity = controller.FindOrder(OrderID);            
+            entity.Status = Enum.GetName(typeof(EnumOrderStatus), EnumOrderStatus.订单结束);
+            entity.FinishDate = DateTime.Now;
+
+            controller.UpdateOrder(entity);
+            MessageBox.Show("订单已成功结束");
+            this.Close();
         }
     }
 }

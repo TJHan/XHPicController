@@ -13,9 +13,9 @@ namespace PicControllerMain
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PicStoreEntities : DbContext
+    public partial class PicStoreEntities1 : DbContext
     {
-        public PicStoreEntities()
+        public PicStoreEntities1()
             : base("name=PicStoreEntities1")
         {
         }

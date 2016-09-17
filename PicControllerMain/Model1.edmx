@@ -31,13 +31,14 @@
           <Property Name="IsAlive" Type="bit" />
           <Property Name="CustomFieldDefaultValue" Type="varchar" MaxLength="100" />
           <Property Name="TableIndex" Type="int" />
+          <Property Name="IsPrint" Type="bit" />
         </EntityType>
         <EntityType Name="CustomFieldData">
           <Key>
             <PropertyRef Name="CustomFieldDataID" />
           </Key>
           <Property Name="CustomFieldDataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomFieldValue" Type="text" />
+          <Property Name="CustomFieldValue" Type="varchar(max)" />
           <Property Name="EnteredDate" Type="datetime" />
           <Property Name="UpdateDate" Type="datetime" />
           <Property Name="CustomFieldID" Type="int" />
@@ -112,6 +113,7 @@
           <Property Name="IsAlive" Type="Boolean" />
           <Property Name="CustomFieldDefaultValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TableIndex" Type="Int32" />
+          <Property Name="IsPrint" Type="Boolean" />
         </EntityType>
         <EntityType Name="CustomFieldData">
           <Key>
@@ -187,6 +189,7 @@
           <EntitySetMapping Name="CustomField">
             <EntityTypeMapping TypeName="PicStoreModel.CustomField">
               <MappingFragment StoreEntitySet="CustomField">
+                <ScalarProperty Name="IsPrint" ColumnName="IsPrint" />
                 <ScalarProperty Name="CustomFieldID" ColumnName="CustomFieldID" />
                 <ScalarProperty Name="CustomFieldName" ColumnName="CustomFieldName" />
                 <ScalarProperty Name="CustomFieldTypeID" ColumnName="CustomFieldTypeID" />

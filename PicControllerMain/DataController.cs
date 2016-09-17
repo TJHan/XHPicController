@@ -9,10 +9,10 @@ namespace PicControllerMain
 {
     public class DataController
     {
-        private PicStoreEntities _picStormContent;
+        private PicStoreEntities1 _picStormContent;
         public DataController()
         {
-            _picStormContent = new PicStoreEntities();
+            _picStormContent = new PicStoreEntities1();
         }
 
         #region 自定义字段操作
@@ -33,7 +33,7 @@ namespace PicControllerMain
         /// <param name="fieldName"></param>
         /// <param name="fieldType"></param>
         /// <returns></returns>
-        public int SaveCustomField(int tableID, string fieldName, int fieldType, List<string> itemList = null)
+        public int SaveCustomField(int tableID, string fieldName, int fieldType, bool isPrint, List<string> itemList = null)
         {
             //检查是否此tableID下的此名字的字段已存在
             if (_picStormContent.CustomField.Where(d => d.CustomFieldName == fieldName && d.TableIndex == tableID).ToArray().Length > 0)
@@ -48,7 +48,8 @@ namespace PicControllerMain
                 EnteredDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
                 IsAlive = true,
-                CustomFieldDefaultValue = string.Empty
+                CustomFieldDefaultValue = string.Empty,
+                IsPrint = isPrint
             };
             _picStormContent.CustomField.Add(cf);
             if (_picStormContent.SaveChanges() == 1)
@@ -259,7 +260,7 @@ namespace PicControllerMain
         /// </summary>
         /// <param name="ItemList"></param>
         public void UpdateCustomFieldData(List<CustomFieldsColumnsList> ItemList)
-        {            
+        {
             foreach (var item in ItemList)
             {
                 string sql = @"IF EXISTS(SELECT * FROM CustomFieldData WHERE CustomFieldID = @customFieldID AND TableID = @tableID)
@@ -287,7 +288,7 @@ namespace PicControllerMain
         /// <returns></returns>
         public List<CustomFieldData> GetCustomFieldValue(int tableID)
         {
-             return _picStormContent.CustomFieldData.Where<CustomFieldData>(d => d.TableID == tableID).ToList();
+            return _picStormContent.CustomFieldData.Where<CustomFieldData>(d => d.TableID == tableID).ToList();
         }
         #endregion
     }

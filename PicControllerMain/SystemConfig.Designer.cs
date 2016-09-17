@@ -30,6 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lvFieldItemList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LFieldNbr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LFieldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LFieldDataType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,8 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ddlTableList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbPrint = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -74,9 +74,9 @@
             this.LFieldNbr,
             this.LFieldName,
             this.LFieldDataType,
-            this.LFieldTable,
-            this.columnHeader2});
+            this.LFieldTable});
             this.lvFieldItemList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvFieldItemList.FullRowSelect = true;
             this.lvFieldItemList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvFieldItemList.Location = new System.Drawing.Point(3, 17);
             this.lvFieldItemList.Name = "lvFieldItemList";
@@ -84,6 +84,12 @@
             this.lvFieldItemList.TabIndex = 1;
             this.lvFieldItemList.UseCompatibleStateImageBehavior = false;
             this.lvFieldItemList.View = System.Windows.Forms.View.Details;
+            this.lvFieldItemList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvFieldItemList_MouseDoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "";
+            this.columnHeader1.Width = 10;
             // 
             // LFieldNbr
             // 
@@ -117,6 +123,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cbPrint);
             this.groupBox3.Controls.Add(this.btnAddField);
             this.groupBox3.Controls.Add(this.gbItemEdit);
             this.groupBox3.Controls.Add(this.ddlFieldType);
@@ -235,15 +242,17 @@
             this.label1.Text = "所属分类：";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // columnHeader1
+            // cbPrint
             // 
-            this.columnHeader1.Text = "";
-            this.columnHeader1.Width = 10;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "操作";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cbPrint.AutoSize = true;
+            this.cbPrint.Checked = true;
+            this.cbPrint.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbPrint.Location = new System.Drawing.Point(135, 123);
+            this.cbPrint.Name = "cbPrint";
+            this.cbPrint.Size = new System.Drawing.Size(72, 16);
+            this.cbPrint.TabIndex = 9;
+            this.cbPrint.Text = "参与打印";
+            this.cbPrint.UseVisualStyleBackColor = true;
             // 
             // SystemConfig
             // 
@@ -286,6 +295,6 @@
         private System.Windows.Forms.Button btnAddField;
         private System.Windows.Forms.ListBox lbItemList;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.CheckBox cbPrint;
     }
 }

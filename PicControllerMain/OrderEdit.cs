@@ -431,5 +431,15 @@ namespace PicControllerMain
             MessageBox.Show("订单已成功结束");
             this.Close();
         }
+
+        /// <summary>
+        /// 打印订单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

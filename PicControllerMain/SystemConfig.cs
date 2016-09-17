@@ -76,7 +76,7 @@ namespace PicControllerMain
             foreach (var customField in list)
             {
                 ListViewItem item = new ListViewItem();
-                item.SubItems.Add(customField.CustomFieldID.ToString());                
+                item.SubItems.Add(customField.CustomFieldID.ToString());
                 item.SubItems.Add(customField.CustomFieldName);
                 item.SubItems.Add(customField.CustomFieldTypeID.ToString());
                 typeName = customField.TableIndex == 1 ? "客户类" : "订单类";
@@ -116,7 +116,7 @@ namespace PicControllerMain
                     itemList.Add(item.ToString());
                 }
             }
-            int keyID = controller.SaveCustomField(ddlTableList.SelectedValue.ToString().ToInt(), txtFieldName.Text, ddlFieldType.SelectedValue.ToString().ToInt(), itemList);
+            int keyID = controller.SaveCustomField(ddlTableList.SelectedValue.ToString().ToInt(), txtFieldName.Text, ddlFieldType.SelectedValue.ToString().ToInt(), cbPrint.Checked, itemList);
             if (keyID > 0)
             {
                 ClearController();
@@ -169,6 +169,11 @@ namespace PicControllerMain
             txtFieldName.Text = string.Empty;
             lbItemList.Items.Clear();
             gbItemEdit.Visible = false;
+        }
+
+        private void lvFieldItemList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

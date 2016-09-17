@@ -22,5 +22,6 @@ namespace PicControllerMain
         public Nullable<bool> IsAlive { get; set; }
         public string CustomFieldDefaultValue { get; set; }
         public Nullable<int> TableIndex { get; set; }
+        public Nullable<bool> IsPrint { get; set; }
     }
 }

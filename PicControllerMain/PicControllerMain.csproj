@@ -119,6 +119,12 @@
     </Compile>
     <Compile Include="ParamsEntity\CustomerSearchParams.cs" />
     <Compile Include="ParamsEntity\OrderSearchParams.cs" />
+    <Compile Include="PrintPerview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintPerview.Designer.cs">
+      <DependentUpon>PrintPerview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemConfig.cs">
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderEdit.resx">
       <DependentUpon>OrderEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintPerview.resx">
+      <DependentUpon>PrintPerview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

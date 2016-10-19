@@ -26,11 +26,12 @@ namespace PicControllerMain
             ddlOrderStatus.Items.Insert(0, "订单状态");
             foreach (var item in typeof(EnumOrderStatus).GetFields())
             {
-                if (item.FieldType.IsEnum == true) {
+                if (item.FieldType.IsEnum == true)
+                {
                     ddlOrderStatus.Items.Add(item.Name);
                 }
             }
-            ddlOrderStatus.SelectedIndex = 0; 
+            ddlOrderStatus.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -86,10 +87,14 @@ namespace PicControllerMain
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtCreateOrder_Click(object sender, EventArgs e)
+        private void btnCreateOrder_Click(object sender, EventArgs e)
         {
             OrderEdit oe = new OrderEdit();
-            oe.Show();
+            oe.ShowDialog();
+            if (oe.DialogResult == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -105,12 +110,42 @@ namespace PicControllerMain
             ddlOrderStatus.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// 点击订单修改订单信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lvDataList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             var index = lvDataList.SelectedIndices[0];
             int id = lvDataList.Items[index].SubItems[1].Text.ToInt();
             OrderEdit edit = new OrderEdit(id);
-            edit.Show();
+            edit.ShowDialog();
+            if (edit.DialogResult == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void labSetting_MouseHover(object sender, EventArgs e)
+        {
+            this.labSetting.BackColor = Color.LightGray;
+
+        }
+
+        private void labSetting_MouseLeave(object sender, EventArgs e)
+        {
+            this.labSetting.BackColor = Color.WhiteSmoke;
+        }
+
+        private void label3_MouseHover(object sender, EventArgs e)
+        {
+            this.label3.BackColor = Color.LightGray;
+        }
+
+        private void label3_MouseLeave(object sender, EventArgs e)
+        {
+            this.label3.BackColor = Color.WhiteSmoke;
         }
     }
 }

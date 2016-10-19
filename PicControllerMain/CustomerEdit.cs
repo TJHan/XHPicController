@@ -43,11 +43,13 @@ namespace PicControllerMain
             if (string.IsNullOrEmpty(txtUserName.Text.Trim()))
             {
                 MessageBox.Show("客户姓名不能为空");
+                txtUserName.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(txtPhone.Text.Trim()))
             {
                 MessageBox.Show("客户电话不能为空");
+                txtPhone.Focus();
                 return;
             }
             Customer entity = new Customer();
@@ -70,6 +72,7 @@ namespace PicControllerMain
             SaveCustomFieldValue();
 
             MessageBox.Show("数据保存成功");
+            this.DialogResult = DialogResult.OK;            
             this.Close();
         }
 

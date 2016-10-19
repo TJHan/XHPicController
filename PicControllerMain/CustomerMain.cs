@@ -68,7 +68,11 @@ namespace PicControllerMain
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             CustomerEdit edit = new CustomerEdit();
-            edit.Show();
+            edit.ShowDialog();
+            if (edit.DialogResult == DialogResult.OK)
+            {
+                LoadCustomerList();
+            }
         }
 
         private void lvCustomerList_MouseDoubleClick(object sender, MouseEventArgs e)

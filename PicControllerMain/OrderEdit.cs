@@ -134,7 +134,7 @@ namespace PicControllerMain
                 {
                     entity.OrderID = OrderID;
                     entity.Status = ddlOrderStatus.SelectedItem as string;
-                    if (entity.Status == Enum.GetName(typeof(EnumOrderStatus), "订单结束"))
+                    if (entity.Status == Enum.GetName(typeof(EnumOrderStatus), 4))
                     {
                         entity.FinishDate = DateTime.Now;
                     }
@@ -147,9 +147,10 @@ namespace PicControllerMain
                 SaveCustomFieldValue();
 
                 MessageBox.Show("订单数据保存成功");
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("订单数据保存异常，请重试");
             }

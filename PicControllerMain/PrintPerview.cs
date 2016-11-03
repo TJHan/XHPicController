@@ -16,30 +16,34 @@ namespace PicControllerMain
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnPrintSetup_Click(object sender, EventArgs e)
         {
             this.pageSetupDialog1.ShowDialog();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnPreview_Click(object sender, EventArgs e)
         {
             this.printPreviewDialog1.Document = printDocument1;
+
             this.printPreviewDialog1.ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
+            this.printDialog1.Document = this.printDocument1;
             if (this.printDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.printDocument1.Print();
             }
         }
-        private int currentY = 0;
+
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             //Bitmap map = new Bitmap(groupBox1.Width, groupBox1.Height);
             //groupBox1.DrawToBitmap(map, new Rectangle(0, 0, map.Width, map.Height));
             //e.Graphics.DrawImage(map, 0, 0, map.Width, map.Height);
+
+            int currentY = 0;
             System.Drawing.Printing.PrintDocument pd = sender as System.Drawing.Printing.PrintDocument;
             int width = PanelPrint.DisplayRectangle.Width;
             int height = PanelPrint.DisplayRectangle.Height;

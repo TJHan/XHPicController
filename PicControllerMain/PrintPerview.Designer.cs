@@ -34,13 +34,13 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labTitle = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnPrintSetup = new System.Windows.Forms.Button();
+            this.btnPreview = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.PanelPrint = new System.Windows.Forms.Panel();
             this.PanelPrint.SuspendLayout();
             this.SuspendLayout();
@@ -76,15 +76,15 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "订单详情：";
             // 
-            // label4
+            // labTitle
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(250, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "索尼娅摄影大标题";
+            this.labTitle.AutoSize = true;
+            this.labTitle.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labTitle.Location = new System.Drawing.Point(250, 16);
+            this.labTitle.Name = "labTitle";
+            this.labTitle.Size = new System.Drawing.Size(169, 20);
+            this.labTitle.TabIndex = 3;
+            this.labTitle.Text = "索尼娅摄影大标题";
             // 
             // label3
             // 
@@ -113,40 +113,40 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "客户编号：";
             // 
-            // button1
+            // btnPrintSetup
             // 
-            this.button1.Location = new System.Drawing.Point(134, 662);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "打印设置";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPrintSetup.Location = new System.Drawing.Point(134, 662);
+            this.btnPrintSetup.Name = "btnPrintSetup";
+            this.btnPrintSetup.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintSetup.TabIndex = 1;
+            this.btnPrintSetup.Text = "打印设置";
+            this.btnPrintSetup.UseVisualStyleBackColor = true;
+            this.btnPrintSetup.Click += new System.EventHandler(this.btnPrintSetup_Click);
             // 
-            // button2
+            // btnPreview
             // 
-            this.button2.Location = new System.Drawing.Point(247, 662);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "打印预览";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnPreview.Location = new System.Drawing.Point(247, 662);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(75, 23);
+            this.btnPreview.TabIndex = 2;
+            this.btnPreview.Text = "打印预览";
+            this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
-            // button3
+            // btnPrint
             // 
-            this.button3.Location = new System.Drawing.Point(475, 662);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "打印";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnPrint.Location = new System.Drawing.Point(475, 662);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 3;
+            this.btnPrint.Text = "打印";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // PanelPrint
             // 
             this.PanelPrint.BackColor = System.Drawing.Color.White;
-            this.PanelPrint.Controls.Add(this.label4);
+            this.PanelPrint.Controls.Add(this.labTitle);
             this.PanelPrint.Controls.Add(this.label5);
             this.PanelPrint.Controls.Add(this.label1);
             this.PanelPrint.Controls.Add(this.label2);
@@ -162,9 +162,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 697);
             this.Controls.Add(this.PanelPrint);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPrint);
+            this.Controls.Add(this.btnPreview);
+            this.Controls.Add(this.btnPrintSetup);
             this.Name = "PrintPerview";
             this.Text = "PrintPerview";
             this.PanelPrint.ResumeLayout(false);
@@ -179,13 +179,13 @@
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnPrintSetup;
+        private System.Windows.Forms.Button btnPreview;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labTitle;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel PanelPrint;
     }

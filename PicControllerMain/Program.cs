@@ -16,7 +16,7 @@ namespace PicControllerMain
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PrintPerview());
+            Application.Run(new Form1());
         }
     }
 }

@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CustomFieldsHandler.cs" />
     <Compile Include="Common\EnumOrderStatus.cs" />
     <Compile Include="Common\StringHelper.cs" />
     <Compile Include="Customer.cs">

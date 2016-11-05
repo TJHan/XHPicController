@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PicControllerMain.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,13 @@ namespace PicControllerMain
 {
     public partial class PrintPerview : Form
     {
-        public PrintPerview()
+        private int OrderID { get; set; }
+        public PrintPerview(int orderID)
         {
+            OrderID = orderID;
             InitializeComponent();
+            LoadPrintData();
+            LoadCustomFields();
         }
 
         private void btnPrintSetup_Click(object sender, EventArgs e)
@@ -66,6 +71,36 @@ namespace PicControllerMain
                 e.HasMorePages = false;
             }
 
+        }
+
+        private void LoadPrintData()
+        {
+            if (OrderID == 0)
+            { return; }
+            DataController controller = new DataController();
+            Order entity = new Order();
+            entity = controller.FindOrder(OrderID);
+            if (entity != null)
+            {
+                labNbr.Text = entity.OrderID.ToString();
+                Customer customer = new Customer();
+                customer = controller.FindCustomer(entity.CustomerID);
+                if (customer != null)
+                {
+                    labCustomerName.Text = string.Format(@"{0} [电话：{1}]", customer.CustomerName, customer.CustomerPhone);
+                }
+                labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");
+                if (entity.FinishDate.HasValue)
+                    labFinishDate.Text = entity.FinishDate.Value.ToString("yyyy-MM-dd");
+                if(entity.TotalAmount.HasValue)
+                    labOrderPrice.Text = entity.TotalAmount.Value.ToString("F2");
+            }
+        }
+
+        private void LoadCustomFields()
+        {
+            CustomFieldsHandler cfHandler = new CustomFieldsHandler();
+            cfHandler.LoadPrintCustomFields(PanelCustomFields, OrderID);
         }
     }
 }

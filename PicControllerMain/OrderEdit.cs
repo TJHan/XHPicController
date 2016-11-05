@@ -32,6 +32,7 @@ namespace PicControllerMain
                 PanelCustomSelect.Visible = false;
                 LoadOrderStatus();
                 btnSave.Text = "更新";
+                labTitle.Text = "修改订单信息";
             }
             else
             {
@@ -440,7 +441,8 @@ namespace PicControllerMain
         /// <param name="e"></param>
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            PrintPerview print = new PrintPerview(OrderID);
+            print.Show();
         }
     }
 }

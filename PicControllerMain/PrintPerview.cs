@@ -18,7 +18,6 @@ namespace PicControllerMain
             OrderID = orderID;
             InitializeComponent();
             LoadPrintData();
-            LoadCustomFields();
         }
 
         private void btnPrintSetup_Click(object sender, EventArgs e)
@@ -44,10 +43,6 @@ namespace PicControllerMain
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //Bitmap map = new Bitmap(groupBox1.Width, groupBox1.Height);
-            //groupBox1.DrawToBitmap(map, new Rectangle(0, 0, map.Width, map.Height));
-            //e.Graphics.DrawImage(map, 0, 0, map.Width, map.Height);
-
             int currentY = 0;
             System.Drawing.Printing.PrintDocument pd = sender as System.Drawing.Printing.PrintDocument;
             int width = PanelPrint.DisplayRectangle.Width;
@@ -85,22 +80,25 @@ namespace PicControllerMain
                 labNbr.Text = entity.OrderID.ToString();
                 Customer customer = new Customer();
                 customer = controller.FindCustomer(entity.CustomerID);
+                int customerID = 0;
                 if (customer != null)
                 {
                     labCustomerName.Text = string.Format(@"{0} [电话：{1}]", customer.CustomerName, customer.CustomerPhone);
+                    customerID = customer.CustomerID;
                 }
                 labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");
                 if (entity.FinishDate.HasValue)
                     labFinishDate.Text = entity.FinishDate.Value.ToString("yyyy-MM-dd");
-                if(entity.TotalAmount.HasValue)
+                if (entity.TotalAmount.HasValue)
                     labOrderPrice.Text = entity.TotalAmount.Value.ToString("F2");
+                LoadCustomFields(entity.TotalAmount.Value, customerID);
             }
         }
 
-        private void LoadCustomFields()
+        private void LoadCustomFields(decimal totalAmount, int customerID)
         {
             CustomFieldsHandler cfHandler = new CustomFieldsHandler();
-            cfHandler.LoadPrintCustomFields(PanelCustomFields, OrderID);
+            cfHandler.LoadPrintCustomFields(PanelCustomFields, customerID, OrderID, totalAmount);
         }
     }
 }

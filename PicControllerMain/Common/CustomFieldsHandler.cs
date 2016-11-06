@@ -187,16 +187,23 @@ namespace PicControllerMain.Common
             }
         }
 
-        public void LoadPrintCustomFields(Panel controllerPanel, int orderID)
+        /// <summary>
+        /// 加载打印的自定义字段集合到打印Panel上
+        /// </summary>
+        /// <param name="controllerPanel"></param>
+        /// <param name="customerID">客户主键ID</param>
+        /// <param name="orderID">订单ID</param>
+        /// <param name="totalAmount">总费用</param>
+        public void LoadPrintCustomFields(Panel controllerPanel, int customerID, int orderID, decimal totalAmount)
         {
             DataController controller = new DataController();
 
-            //
-            IEnumerable<CustomField> cfList = controller.GetCustomFieldList(2);
+            //抓取允许打印的自定义字段集合
+            IEnumerable<CustomField> cfList = controller.GetPrintCustomFieldList();
             int i = 1;
 
             //取当前用户的自定义字段的值集合
-            List<CustomFieldData> valueList = GetCustomFieldValueList(orderID);
+            List<CustomFieldData> valueList = GetCustomFieldValueList(orderID, customerID);
             foreach (var item in cfList)
             {
                 CustomFieldData cfEntity = new CustomFieldData();
@@ -204,15 +211,32 @@ namespace PicControllerMain.Common
                 {
                     cfEntity = valueList.Where<CustomFieldData>(d => d.CustomFieldID == item.CustomFieldID).FirstOrDefault();
                 }
+
+                string textValue = string.Empty;
+                //下拉菜单和单选按钮需要根据保存的id值查询选中的显示信息
+                switch (item.CustomFieldTypeID)
+                {
+                    case 5:
+                        if (cfEntity != null)
+                        {
+                            CustomFieldDataList selectedItem = controller.GetCustomFieldDataListItem(cfEntity.CustomFieldValue.ToInt());
+                            if (selectedItem != null)
+                                textValue = selectedItem.CustomFieldItemName;
+                        }
+                        break;
+                    default:
+                        textValue = cfEntity != null ? cfEntity.CustomFieldValue : string.Empty;
+                        break;
+                }
                 Label lbValue = new Label()
                 {
                     Name = item.CustomFieldID.ToString(),
                     Top = i * 21 + i * 8,
                     Left = (item.CustomFieldName.Length * 10 + 50),
                     TextAlign = ContentAlignment.MiddleLeft,
-                    Width = cfEntity != null ? (cfEntity.CustomFieldValue.Length * 10 + 30) : 0,
-                    Text = cfEntity != null ? cfEntity.CustomFieldValue : string.Empty,
-                    Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))                    
+                    Width = textValue.Length * 10 + 30,
+                    Text = textValue,
+                    Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))
                 };
                 Label lb = new Label()
                 {
@@ -227,8 +251,62 @@ namespace PicControllerMain.Common
                 controllerPanel.Controls.Add(lbValue);
                 i++;
             }
+
+            i += 2;
+            //合计费用
+            Label lbsignTotalAmount = new Label()
+            {
+                Name = string.Format(@"labTotalAmount"),
+                Text = string.Format(@"合计费用："),
+                Top = i * 21 + i * 8,
+                Left = 400,
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            controllerPanel.Controls.Add(lbsignTotalAmount);
+            Label lbsignTotalAmountValue = new Label()
+            {
+                Name = string.Format(@"labTotalAmountValue"),
+                Text = totalAmount.ToString("C"),
+                Top = i * 21 + i * 8,
+                Left = 500,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))
+            };
+            controllerPanel.Controls.Add(lbsignTotalAmountValue);
+
+            i += 1;
+            //老板签名区
+            Label lbsign1 = new Label()
+            {
+                Name = string.Format(@"labSign1"),
+                Text = string.Format(@"摄影师签字："),
+                Top = i * 21 + i * 8,
+                Left = 18,
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            controllerPanel.Controls.Add(lbsign1);
+            //客户签名区
+            Label lbCustomSign = new Label()
+            {
+                Name = string.Format(@"labCustomSign"),
+                Text = string.Format(@"客户签名："),
+                Top = i * 21 + i * 8,
+                Left = 400,
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            controllerPanel.Controls.Add(lbCustomSign);
         }
 
+        private List<CustomFieldData> GetCustomFieldValueList(int orderID, int customerID)
+        {
+            if (orderID > 0)
+            {
+                DataController controller = new DataController();
+                List<CustomFieldData> list = controller.GetPrintCustomFieldValue(orderID,customerID);
+                return list;
+            }
+            return null;
+        }
         private List<CustomFieldData> GetCustomFieldValueList(int orderID)
         {
             if (orderID > 0)
@@ -239,5 +317,6 @@ namespace PicControllerMain.Common
             }
             return null;
         }
+
     }
 }

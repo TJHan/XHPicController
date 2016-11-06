@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Data.Objects;
 using System.Text;
+using System.Configuration;
 using PicControllerMain.ParamsEntity;
+using Rock.Data.DataAccess;
 
 namespace PicControllerMain
 {
     public class DataController
     {
+        private string ConnectionString = ConfigurationManager.ConnectionStrings["PicStoreEntities1"].ToString();
         private PicStoreEntities1 _picStormContent;
         public DataController()
         {
@@ -75,7 +79,7 @@ namespace PicControllerMain
         /// </summary>
         /// <param name="type">字段所属分类0:所有，1：Customer客户表，2：Order订单表</param>
         /// <returns></returns>
-        public IEnumerable<CustomField> GetCustomFieldList(int type)
+        public IEnumerable<CustomField> GetCustomFieldList(int type = 0)
         {
             List<CustomField> list;
             if (type != 0)
@@ -86,6 +90,16 @@ namespace PicControllerMain
             {
                 list = _picStormContent.CustomField.Where<CustomField>(d => 1 == 1).ToList();
             }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取允许打印的自定义字段集合
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<CustomField> GetPrintCustomFieldList()
+        {
+            List<CustomField> list = _picStormContent.CustomField.Where<CustomField>(d => d.IsPrint == true).ToList();
             return list;
         }
         #endregion
@@ -289,6 +303,38 @@ namespace PicControllerMain
         public List<CustomFieldData> GetCustomFieldValue(int tableID)
         {
             return _picStormContent.CustomFieldData.Where<CustomFieldData>(d => d.TableID == tableID).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="orderID"></param>
+        /// <param name="customerID"></param>
+        /// <returns></returns>
+        public List<CustomFieldData> GetPrintCustomFieldValue(int orderID, int customerID)
+        {
+            using (MSSqlContext dbContext = new MSSqlContext(ConnectionString))
+            {
+                List<CustomFieldData> list;
+                string sql = @"select *from CustomFieldData where TableID=@orderID and CustomFieldID in(
+                                select CustomFieldID from CustomField where TableIndex = 2
+                                )
+                                union all
+                                select* from CustomFieldData where TableID = @customerID and CustomFieldID in(
+                                  select CustomFieldID from CustomField where TableIndex = 1
+                                )";
+                list = dbContext.FindByFilter<CustomFieldData>(sql, new { orderID = orderID, customerID = customerID }).ToList();
+                return list;
+            }
+        }
+        /// <summary>
+        /// 根据主键ID获取某条记录
+        /// </summary>
+        /// <param name="cfdlID"></param>
+        /// <returns></returns>
+        public CustomFieldDataList GetCustomFieldDataListItem(int cfdlID)
+        {
+            return _picStormContent.CustomFieldDataList.Where<CustomFieldDataList>(d => d.CustomFieldDataListID == cfdlID).FirstOrDefault();
         }
         #endregion
     }

@@ -41,14 +41,14 @@
             this.btnPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.PanelPrint = new System.Windows.Forms.Panel();
+            this.labFinishDate = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.PanelCustomFields = new System.Windows.Forms.Panel();
             this.labOrderPrice = new System.Windows.Forms.Label();
             this.labOrderDate = new System.Windows.Forms.Label();
             this.labCustomerName = new System.Windows.Forms.Label();
             this.labNbr = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.PanelCustomFields = new System.Windows.Forms.Panel();
-            this.labFinishDate = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.PanelPrint.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,9 +80,9 @@
             this.labTitle.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labTitle.Location = new System.Drawing.Point(250, 16);
             this.labTitle.Name = "labTitle";
-            this.labTitle.Size = new System.Drawing.Size(189, 20);
+            this.labTitle.Size = new System.Drawing.Size(229, 20);
             this.labTitle.TabIndex = 3;
-            this.labTitle.Text = "索尼娅婚纱摄影订单";
+            this.labTitle.Text = "索尼娅婚纱摄影专用订单";
             // 
             // label3
             // 
@@ -161,6 +161,32 @@
             this.PanelPrint.Size = new System.Drawing.Size(731, 644);
             this.PanelPrint.TabIndex = 4;
             // 
+            // labFinishDate
+            // 
+            this.labFinishDate.AutoSize = true;
+            this.labFinishDate.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labFinishDate.Location = new System.Drawing.Point(629, 77);
+            this.labFinishDate.Name = "labFinishDate";
+            this.labFinishDate.Size = new System.Drawing.Size(57, 12);
+            this.labFinishDate.TabIndex = 11;
+            this.labFinishDate.Text = "结单时间";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(558, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "结单日期：";
+            // 
+            // PanelCustomFields
+            // 
+            this.PanelCustomFields.Location = new System.Drawing.Point(3, 142);
+            this.PanelCustomFields.Name = "PanelCustomFields";
+            this.PanelCustomFields.Size = new System.Drawing.Size(725, 499);
+            this.PanelCustomFields.TabIndex = 9;
+            // 
             // labOrderPrice
             // 
             this.labOrderPrice.AutoSize = true;
@@ -209,32 +235,6 @@
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 4;
             this.label4.Text = "订单金额：";
-            // 
-            // PanelCustomFields
-            // 
-            this.PanelCustomFields.Location = new System.Drawing.Point(3, 142);
-            this.PanelCustomFields.Name = "PanelCustomFields";
-            this.PanelCustomFields.Size = new System.Drawing.Size(725, 499);
-            this.PanelCustomFields.TabIndex = 9;
-            // 
-            // labFinishDate
-            // 
-            this.labFinishDate.AutoSize = true;
-            this.labFinishDate.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labFinishDate.Location = new System.Drawing.Point(629, 77);
-            this.labFinishDate.Name = "labFinishDate";
-            this.labFinishDate.Size = new System.Drawing.Size(57, 12);
-            this.labFinishDate.TabIndex = 11;
-            this.labFinishDate.Text = "结单时间";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(558, 77);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "结单日期：";
             // 
             // PrintPerview
             // 

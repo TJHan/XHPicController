@@ -39,6 +39,7 @@ namespace PicControllerMain
                 PanelOrderStatus.Visible = false;
                 LoadCustomer();
                 btnClose.Visible = false;
+                btnPrint.Visible = false;
             }
         }
 

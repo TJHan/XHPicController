@@ -113,7 +113,7 @@
             // 
             // btnPrintSetup
             // 
-            this.btnPrintSetup.Location = new System.Drawing.Point(134, 662);
+            this.btnPrintSetup.Location = new System.Drawing.Point(153, 12);
             this.btnPrintSetup.Name = "btnPrintSetup";
             this.btnPrintSetup.Size = new System.Drawing.Size(75, 23);
             this.btnPrintSetup.TabIndex = 1;
@@ -123,7 +123,7 @@
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(247, 662);
+            this.btnPreview.Location = new System.Drawing.Point(266, 12);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 23);
             this.btnPreview.TabIndex = 2;
@@ -133,7 +133,7 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(475, 662);
+            this.btnPrint.Location = new System.Drawing.Point(493, 12);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(75, 23);
             this.btnPrint.TabIndex = 3;
@@ -143,6 +143,7 @@
             // 
             // PanelPrint
             // 
+            this.PanelPrint.AutoSize = true;
             this.PanelPrint.BackColor = System.Drawing.Color.White;
             this.PanelPrint.Controls.Add(this.labFinishDate);
             this.PanelPrint.Controls.Add(this.label6);
@@ -156,9 +157,9 @@
             this.PanelPrint.Controls.Add(this.label1);
             this.PanelPrint.Controls.Add(this.label2);
             this.PanelPrint.Controls.Add(this.label3);
-            this.PanelPrint.Location = new System.Drawing.Point(12, 12);
+            this.PanelPrint.Location = new System.Drawing.Point(12, 50);
             this.PanelPrint.Name = "PanelPrint";
-            this.PanelPrint.Size = new System.Drawing.Size(731, 644);
+            this.PanelPrint.Size = new System.Drawing.Size(731, 679);
             this.PanelPrint.TabIndex = 4;
             // 
             // labFinishDate
@@ -182,9 +183,10 @@
             // 
             // PanelCustomFields
             // 
+            this.PanelCustomFields.AutoSize = true;
             this.PanelCustomFields.Location = new System.Drawing.Point(3, 142);
             this.PanelCustomFields.Name = "PanelCustomFields";
-            this.PanelCustomFields.Size = new System.Drawing.Size(725, 499);
+            this.PanelCustomFields.Size = new System.Drawing.Size(725, 533);
             this.PanelCustomFields.TabIndex = 9;
             // 
             // labOrderPrice
@@ -240,7 +242,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 697);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(755, 751);
             this.Controls.Add(this.PanelPrint);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnPreview);
@@ -250,6 +253,7 @@
             this.PanelPrint.ResumeLayout(false);
             this.PanelPrint.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

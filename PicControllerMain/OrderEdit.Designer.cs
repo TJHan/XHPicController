@@ -302,7 +302,7 @@
             this.txtComment.MaxLength = 5000;
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(644, 142);
+            this.txtComment.Size = new System.Drawing.Size(580, 142);
             this.txtComment.TabIndex = 20;
             // 
             // label8

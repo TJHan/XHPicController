@@ -194,7 +194,8 @@ namespace PicControllerMain.Common
         /// <param name="customerID">客户主键ID</param>
         /// <param name="orderID">订单ID</param>
         /// <param name="totalAmount">总费用</param>
-        public void LoadPrintCustomFields(Panel controllerPanel, int customerID, int orderID, decimal totalAmount)
+        /// <param name="comment">备注信息</param>
+        public void LoadPrintCustomFields(Panel controllerPanel, int customerID, int orderID, decimal totalAmount, string comment)
         {
             DataController controller = new DataController();
 
@@ -252,13 +253,38 @@ namespace PicControllerMain.Common
                 i++;
             }
 
+            i += 1;
+            //备注信息
+            Label lbComment = new Label()
+            {
+                Name = string.Format(@"lbComment"),
+                Text = string.Format(@"备注："),
+                Top = i * 21 + i * 8,
+                Left = 18,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Width = 50
+            };
+            controllerPanel.Controls.Add(lbComment);
+            Label lbCommentValue = new Label()
+            {
+                Name = string.Format(@"lbCommentValue"),
+                Text = comment,
+                Top = i * 21 + i * 8,
+                Left = 70,
+                TextAlign = ContentAlignment.MiddleLeft,
+                //Width = 600,
+                AutoSize = true,
+                Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))
+            };
+            controllerPanel.Controls.Add(lbCommentValue);
+
             i += 2;
             //合计费用
             Label lbsignTotalAmount = new Label()
             {
                 Name = string.Format(@"labTotalAmount"),
                 Text = string.Format(@"合计费用："),
-                Top = i * 21 + i * 8,
+                Top = i * 21 + i * 8 + 100,
                 Left = 400,
                 TextAlign = ContentAlignment.MiddleLeft
             };
@@ -267,7 +293,7 @@ namespace PicControllerMain.Common
             {
                 Name = string.Format(@"labTotalAmountValue"),
                 Text = totalAmount.ToString("C"),
-                Top = i * 21 + i * 8,
+                Top = i * 21 + i * 8 + 100,
                 Left = 500,
                 TextAlign = ContentAlignment.MiddleLeft,
                 Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))
@@ -280,7 +306,7 @@ namespace PicControllerMain.Common
             {
                 Name = string.Format(@"labSign1"),
                 Text = string.Format(@"摄影师签字："),
-                Top = i * 21 + i * 8,
+                Top = i * 21 + i * 8 + 100,
                 Left = 18,
                 TextAlign = ContentAlignment.MiddleLeft
             };
@@ -290,7 +316,7 @@ namespace PicControllerMain.Common
             {
                 Name = string.Format(@"labCustomSign"),
                 Text = string.Format(@"客户签名："),
-                Top = i * 21 + i * 8,
+                Top = i * 21 + i * 8 + 100,
                 Left = 400,
                 TextAlign = ContentAlignment.MiddleLeft
             };
@@ -302,7 +328,7 @@ namespace PicControllerMain.Common
             if (orderID > 0)
             {
                 DataController controller = new DataController();
-                List<CustomFieldData> list = controller.GetPrintCustomFieldValue(orderID,customerID);
+                List<CustomFieldData> list = controller.GetPrintCustomFieldValue(orderID, customerID);
                 return list;
             }
             return null;

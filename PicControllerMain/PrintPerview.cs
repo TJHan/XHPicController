@@ -91,14 +91,14 @@ namespace PicControllerMain
                     labFinishDate.Text = entity.FinishDate.Value.ToString("yyyy-MM-dd");
                 if (entity.TotalAmount.HasValue)
                     labOrderPrice.Text = entity.TotalAmount.Value.ToString("F2");
-                LoadCustomFields(entity.TotalAmount.Value, customerID);
+                LoadCustomFields(entity.TotalAmount.Value, customerID, entity.Comment);
             }
         }
 
-        private void LoadCustomFields(decimal totalAmount, int customerID)
+        private void LoadCustomFields(decimal totalAmount, int customerID, string comment)
         {
             CustomFieldsHandler cfHandler = new CustomFieldsHandler();
-            cfHandler.LoadPrintCustomFields(PanelCustomFields, customerID, OrderID, totalAmount);
+            cfHandler.LoadPrintCustomFields(PanelCustomFields, customerID, OrderID, totalAmount, comment);
         }
     }
 }

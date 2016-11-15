@@ -59,6 +59,14 @@
           <Property Name="CustomFieldTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomFieldTypeName" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="MainGroup">
+          <Key>
+            <PropertyRef Name="MainGroupID" />
+          </Key>
+          <Property Name="MainGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EnteredDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderID" />
@@ -75,13 +83,25 @@
           <Property Name="AdvanceAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ExpendDays" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <EntityType Name="SubGroup">
+          <Key>
+            <PropertyRef Name="SubGroupID" />
+          </Key>
+          <Property Name="SubGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MainGroupID" Type="int" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="Contents" Type="varchar(max)" />
+        </EntityType>
         <EntityContainer Name="PicStoreModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomField" EntityType="Self.CustomField" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomFieldData" EntityType="Self.CustomFieldData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomFieldDataList" EntityType="Self.CustomFieldDataList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomFieldType" EntityType="Self.CustomFieldType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainGroup" EntityType="Self.MainGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubGroup" EntityType="Self.SubGroup" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -164,7 +184,27 @@
           <EntitySet Name="CustomFieldDataList" EntityType="Self.CustomFieldDataList" />
           <EntitySet Name="CustomFieldType" EntityType="Self.CustomFieldType" />
           <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="MainGroup" EntityType="PicStoreModel.MainGroup" />
+          <EntitySet Name="SubGroup" EntityType="PicStoreModel.SubGroup" />
         </EntityContainer>
+        <EntityType Name="MainGroup">
+          <Key>
+            <PropertyRef Name="MainGroupID" />
+          </Key>
+          <Property Name="MainGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SubGroup">
+          <Key>
+            <PropertyRef Name="SubGroupID" />
+          </Key>
+          <Property Name="SubGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MainGroupID" Type="Int32" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -244,6 +284,26 @@
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
                 <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
                 <ScalarProperty Name="ExpendDays" ColumnName="ExpendDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainGroup">
+            <EntityTypeMapping TypeName="PicStoreModel.MainGroup">
+              <MappingFragment StoreEntitySet="MainGroup">
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="MainGroupID" ColumnName="MainGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubGroup">
+            <EntityTypeMapping TypeName="PicStoreModel.SubGroup">
+              <MappingFragment StoreEntitySet="SubGroup">
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="MainGroupID" ColumnName="MainGroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="SubGroupID" ColumnName="SubGroupID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

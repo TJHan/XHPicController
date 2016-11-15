@@ -147,5 +147,11 @@ namespace PicControllerMain
         {
             this.label3.BackColor = Color.WhiteSmoke;
         }
+
+        private void labGroup_Click(object sender, EventArgs e)
+        {
+            GroupIndex group = new GroupIndex();
+            group.Show();
+        }
     }
 }

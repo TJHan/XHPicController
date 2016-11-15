@@ -337,6 +337,86 @@ namespace PicControllerMain
             return _picStormContent.CustomFieldDataList.Where<CustomFieldDataList>(d => d.CustomFieldDataListID == cfdlID).FirstOrDefault();
         }
         #endregion
+
+        #region 套系管理
+        /// <summary>
+        /// 获取主套系集合
+        /// </summary>
+        /// <returns></returns>
+        public List<MainGroup> GetMainGroupList()
+        {
+            List<MainGroup> list = _picStormContent.MainGroup.Where<MainGroup>(d => 1 == 1).ToList();
+            return list;
+        }
+
+        /// <summary>
+        /// 新建主套系
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <returns>返回新建的主键ID</returns>
+        public int SaveMainGroup(string groupName)
+        {
+            MainGroup entity = new MainGroup()
+            {
+                GroupName = groupName,
+                EnteredDate = DateTime.Now
+            };
+            _picStormContent.MainGroup.Add(entity);
+            _picStormContent.SaveChanges();
+            return entity.MainGroupID;
+        }
+
+        /// <summary>
+        /// 修改主套餐名称
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="groupID"></param>
+        /// <returns></returns>
+        public bool UpdateMainGroup(string groupName, int groupID)
+        {
+            MainGroup entity = new MainGroup();
+            entity = _picStormContent.MainGroup.FirstOrDefault(d => d.MainGroupID == groupID);
+            entity.GroupName = groupName;
+            return _picStormContent.SaveChanges() == 1;
+
+        }
+
+        /// <summary>
+        /// 检查主套系名称是否已存在
+        /// </summary>
+        /// <param name="groupName">套系名称</param>
+        /// <returns></returns>
+        public bool CheckMainGroupNameExists(string groupName, int groupID = 0)
+        {
+            if (groupID == 0)
+            {
+                //新建检查
+                return _picStormContent.MainGroup.Where<MainGroup>(d => d.GroupName.Equals(groupName)).ToList().Count > 0;
+            }
+            else {
+                //修改检查
+                return _picStormContent.MainGroup.Where<MainGroup>(d => d.GroupName.Equals(groupName) && d.MainGroupID != groupID).ToList().Count > 0;
+            }
+        }
+
+        /// <summary>
+        /// 获取子套餐集合
+        /// </summary>
+        /// <param name="mainGroupID">主套餐主键ID</param>
+        /// <returns></returns>
+        public List<SubGroup> GetSubGroupList(int mainGroupID)
+        {
+            return _picStormContent.SubGroup.Where<SubGroup>(d => d.MainGroupID == mainGroupID).ToList();
+        }
+
+        public bool CheckSubGroupNameExists(string groupName, int groupID, int subGroupID = 0)
+        {
+            if (subGroupID == 0)
+            { }
+            else { }
+            return true;
+        }
+        #endregion
     }
 
     public class CustomFieldsColumnsList

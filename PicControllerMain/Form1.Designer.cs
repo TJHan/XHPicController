@@ -48,6 +48,8 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.labSetting = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.labGroup = new System.Windows.Forms.Label();
+            this.labPrint = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +70,7 @@
             this.groupBox1.Controls.Add(this.lvDataList);
             this.groupBox1.Location = new System.Drawing.Point(12, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1231, 654);
+            this.groupBox1.Size = new System.Drawing.Size(822, 654);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "订单数据查询";
@@ -102,7 +104,7 @@
             // 
             // btnCreateOrder
             // 
-            this.btnCreateOrder.Location = new System.Drawing.Point(1150, 93);
+            this.btnCreateOrder.Location = new System.Drawing.Point(742, 93);
             this.btnCreateOrder.Name = "btnCreateOrder";
             this.btnCreateOrder.Size = new System.Drawing.Size(75, 23);
             this.btnCreateOrder.TabIndex = 6;
@@ -168,7 +170,7 @@
             this.lvDataList.FullRowSelect = true;
             this.lvDataList.Location = new System.Drawing.Point(6, 122);
             this.lvDataList.Name = "lvDataList";
-            this.lvDataList.Size = new System.Drawing.Size(1219, 490);
+            this.lvDataList.Size = new System.Drawing.Size(810, 490);
             this.lvDataList.TabIndex = 0;
             this.lvDataList.UseCompatibleStateImageBehavior = false;
             this.lvDataList.View = System.Windows.Forms.View.Details;
@@ -240,11 +242,38 @@
             this.label3.MouseLeave += new System.EventHandler(this.label3_MouseLeave);
             this.label3.MouseHover += new System.EventHandler(this.label3_MouseHover);
             // 
+            // labGroup
+            // 
+            this.labGroup.AutoSize = true;
+            this.labGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labGroup.Location = new System.Drawing.Point(181, 4);
+            this.labGroup.Name = "labGroup";
+            this.labGroup.Padding = new System.Windows.Forms.Padding(5);
+            this.labGroup.Size = new System.Drawing.Size(65, 24);
+            this.labGroup.TabIndex = 2;
+            this.labGroup.Text = "套系管理";
+            this.labGroup.Click += new System.EventHandler(this.labGroup_Click);
+            // 
+            // labPrint
+            // 
+            this.labPrint.AutoSize = true;
+            this.labPrint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labPrint.Location = new System.Drawing.Point(266, 4);
+            this.labPrint.Name = "labPrint";
+            this.labPrint.Padding = new System.Windows.Forms.Padding(5);
+            this.labPrint.Size = new System.Drawing.Size(65, 24);
+            this.labPrint.TabIndex = 3;
+            this.labPrint.Text = "打印管理";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 702);
+            this.ClientSize = new System.Drawing.Size(846, 702);
+            this.Controls.Add(this.labPrint);
+            this.Controls.Add(this.labGroup);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labSetting);
             this.Controls.Add(this.groupBox1);
@@ -279,6 +308,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox ddlOrderStatus;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label labGroup;
+        private System.Windows.Forms.Label labPrint;
     }
 }
 

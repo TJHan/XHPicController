@@ -315,7 +315,7 @@ namespace PicControllerMain
         {
             using (MSSqlContext dbContext = new MSSqlContext(ConnectionString))
             {
-                List<CustomFieldData> list;
+                IEnumerable<CustomFieldData> list;
                 string sql = @"select *from CustomFieldData where TableID=@orderID and CustomFieldID in(
                                 select CustomFieldID from CustomField where TableIndex = 2
                                 )
@@ -323,8 +323,8 @@ namespace PicControllerMain
                                 select* from CustomFieldData where TableID = @customerID and CustomFieldID in(
                                   select CustomFieldID from CustomField where TableIndex = 1
                                 )";
-                list = dbContext.FindByFilter<CustomFieldData>(sql, new { orderID = orderID, customerID = customerID }).ToList();
-                return list;
+                list = dbContext.FindByFilter<CustomFieldData>(sql, new { orderID = orderID, customerID = customerID });
+                return list != null ? list.ToList() : null;
             }
         }
         /// <summary>
@@ -409,12 +409,82 @@ namespace PicControllerMain
             return _picStormContent.SubGroup.Where<SubGroup>(d => d.MainGroupID == mainGroupID).ToList();
         }
 
+        /// <summary>
+        /// 检查子套系名字是否已存在
+        /// </summary>
+        /// <param name="groupName">子套系名称</param>
+        /// <param name="groupID">主套系主键ID</param>
+        /// <param name="subGroupID">子套系主键ID</param>
+        /// <returns></returns>
         public bool CheckSubGroupNameExists(string groupName, int groupID, int subGroupID = 0)
         {
             if (subGroupID == 0)
-            { }
-            else { }
-            return true;
+            {
+                //新建检查
+                return _picStormContent.SubGroup.Where<SubGroup>(d => d.GroupName.Equals(groupName) && d.MainGroupID == groupID).ToList().Count > 0;
+            }
+            else {
+                //修改检查
+                return _picStormContent.SubGroup.Where<SubGroup>(d => d.GroupName.Equals(groupName) && d.MainGroupID == groupID && d.SubGroupID != subGroupID).ToList().Count > 0;
+            }
+        }
+
+        /// <summary>
+        /// 新建子套系
+        /// </summary>
+        /// <param name="groupName">子套系名称</param>
+        /// <param name="groupID">主套系主键ID</param>
+        /// <returns></returns>
+        public int SaveSubGroup(string groupName, int groupID)
+        {
+            SubGroup entity = new SubGroup()
+            {
+                GroupName = groupName,
+                MainGroupID = groupID,
+                EnteredDate = DateTime.Now
+            };
+            _picStormContent.SubGroup.Add(entity);
+            _picStormContent.SaveChanges();
+            return entity.SubGroupID;
+        }
+
+        /// <summary>
+        /// 修改子套系
+        /// </summary>
+        /// <param name="groupName">子套系名称</param>
+        /// <param name="subGroupID">自套系主键ID</param>
+        /// <returns></returns>
+        public bool UpdateSubGroup(string groupName, int subGroupID)
+        {
+            SubGroup entity = new SubGroup();
+            entity = _picStormContent.SubGroup.FirstOrDefault(d => d.SubGroupID == subGroupID);
+            entity.GroupName = groupName;
+            return _picStormContent.SaveChanges() == 1;
+        }
+
+        /// <summary>
+        /// 保存套餐详情信息
+        /// </summary>
+        /// <param name="subGroupID"></param>
+        /// <param name="content"></param>
+        public void UpdateSubGroupContent(int subGroupID, string content)
+        {
+            SubGroup entity = new SubGroup();
+            entity = _picStormContent.SubGroup.FirstOrDefault(d => d.SubGroupID == subGroupID);
+            entity.Contents = content;
+            _picStormContent.SaveChanges();
+        }
+
+        /// <summary>
+        /// 获取套系的详情信息
+        /// </summary>
+        /// <param name="subGroupID"></param>
+        /// <returns></returns>
+        public string GetSubGroupContent(int subGroupID)
+        {
+            SubGroup entity = new SubGroup();
+            entity = _picStormContent.SubGroup.FirstOrDefault(d => d.SubGroupID == subGroupID);
+            return entity != null ? entity.Contents : string.Empty;
         }
         #endregion
     }

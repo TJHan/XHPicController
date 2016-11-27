@@ -30,8 +30,9 @@ namespace PicControllerMain
         public virtual DbSet<CustomFieldData> CustomFieldData { get; set; }
         public virtual DbSet<CustomFieldDataList> CustomFieldDataList { get; set; }
         public virtual DbSet<CustomFieldType> CustomFieldType { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<MainGroup> MainGroup { get; set; }
         public virtual DbSet<SubGroup> SubGroup { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<V_GroupInfo> V_GroupInfo { get; set; }
     }
 }

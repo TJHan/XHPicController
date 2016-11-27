@@ -202,7 +202,8 @@ namespace PicControllerMain.Common
             //抓取允许打印的自定义字段集合
             IEnumerable<CustomField> cfList = controller.GetPrintCustomFieldList();
             int i = 1;
-
+            //取订单的套系信息
+            
             //取当前用户的自定义字段的值集合
             List<CustomFieldData> valueList = GetCustomFieldValueList(orderID, customerID);
             foreach (var item in cfList)
@@ -237,7 +238,6 @@ namespace PicControllerMain.Common
                     TextAlign = ContentAlignment.MiddleLeft,
                     Width = textValue.Length * 10 + 30,
                     Text = textValue,
-                    Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))
                 };
                 Label lb = new Label()
                 {
@@ -274,7 +274,6 @@ namespace PicControllerMain.Common
                 TextAlign = ContentAlignment.MiddleLeft,
                 //Width = 600,
                 AutoSize = true,
-                Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))
             };
             controllerPanel.Controls.Add(lbCommentValue);
 
@@ -296,7 +295,6 @@ namespace PicControllerMain.Common
                 Top = i * 21 + i * 8 + 100,
                 Left = 500,
                 TextAlign = ContentAlignment.MiddleLeft,
-                Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)))
             };
             controllerPanel.Controls.Add(lbsignTotalAmountValue);
 

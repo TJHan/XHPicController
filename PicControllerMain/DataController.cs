@@ -186,6 +186,8 @@ namespace PicControllerMain
             order.Comment = entity.Comment;
             order.UpdateDate = DateTime.Now;
             order.FinishDate = entity.FinishDate;
+            order.SubGroupID = entity.SubGroupID;
+            order.GroupContent = entity.GroupContent;
             _picStormContent.SaveChanges();
         }
         #endregion
@@ -485,6 +487,16 @@ namespace PicControllerMain
             SubGroup entity = new SubGroup();
             entity = _picStormContent.SubGroup.FirstOrDefault(d => d.SubGroupID == subGroupID);
             return entity != null ? entity.Contents : string.Empty;
+        }
+
+        /// <summary>
+        /// 获取套系信息
+        /// </summary>
+        /// <param name="subGroupID"></param>
+        /// <returns></returns>
+        public V_GroupInfo GetGroupInfo(int subGroupID)
+        {
+            return _picStormContent.V_GroupInfo.Where(d => d.SubGroupID == subGroupID).FirstOrDefault();
         }
         #endregion
     }

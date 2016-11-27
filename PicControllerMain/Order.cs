@@ -25,5 +25,7 @@ namespace PicControllerMain
         public Nullable<decimal> TotalAmount { get; set; }
         public Nullable<decimal> AdvanceAmount { get; set; }
         public Nullable<decimal> ExpendDays { get; set; }
+        public string GroupContent { get; set; }
+        public Nullable<int> SubGroupID { get; set; }
     }
 }

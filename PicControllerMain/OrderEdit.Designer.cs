@@ -61,6 +61,12 @@
             this.PanelCustomFieldList = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbMainGroup = new System.Windows.Forms.ComboBox();
+            this.cbSubGroup = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtGroupContent = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.PanelOrderStatus.SuspendLayout();
             this.PanelCustomSelect.SuspendLayout();
@@ -168,6 +174,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.txtGroupContent);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.cbSubGroup);
+            this.groupBox1.Controls.Add(this.cbMainGroup);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.PanelOrderStatus);
             this.groupBox1.Controls.Add(this.PanelCustomSelect);
             this.groupBox1.Controls.Add(this.txtComment);
@@ -186,7 +198,7 @@
             this.groupBox1.Controls.Add(this.txtTotalAmount);
             this.groupBox1.Location = new System.Drawing.Point(12, 47);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(746, 436);
+            this.groupBox1.Size = new System.Drawing.Size(746, 503);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "订单基础数据";
@@ -302,13 +314,13 @@
             this.txtComment.MaxLength = 5000;
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(580, 142);
+            this.txtComment.Size = new System.Drawing.Size(580, 55);
             this.txtComment.TabIndex = 20;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(37, 286);
+            this.label8.Location = new System.Drawing.Point(49, 286);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 12);
             this.label8.TabIndex = 19;
@@ -341,9 +353,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.PanelCustomFieldList);
-            this.groupBox2.Location = new System.Drawing.Point(12, 489);
+            this.groupBox2.Location = new System.Drawing.Point(12, 556);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(746, 268);
+            this.groupBox2.Size = new System.Drawing.Size(746, 201);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "自定义字段";
@@ -354,7 +366,7 @@
             this.PanelCustomFieldList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelCustomFieldList.Location = new System.Drawing.Point(6, 20);
             this.PanelCustomFieldList.Name = "PanelCustomFieldList";
-            this.PanelCustomFieldList.Size = new System.Drawing.Size(734, 242);
+            this.PanelCustomFieldList.Size = new System.Drawing.Size(734, 175);
             this.PanelCustomFieldList.TabIndex = 0;
             // 
             // btnClose
@@ -376,6 +388,64 @@
             this.btnPrint.Text = "打印订单";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 347);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "选择套系：";
+            // 
+            // cbMainGroup
+            // 
+            this.cbMainGroup.DisplayMember = "GroupName";
+            this.cbMainGroup.FormattingEnabled = true;
+            this.cbMainGroup.Location = new System.Drawing.Point(96, 347);
+            this.cbMainGroup.Name = "cbMainGroup";
+            this.cbMainGroup.Size = new System.Drawing.Size(166, 20);
+            this.cbMainGroup.TabIndex = 24;
+            this.cbMainGroup.ValueMember = "MainGroupID";
+            this.cbMainGroup.SelectedIndexChanged += new System.EventHandler(this.cbMainGroup_SelectedIndexChanged);
+            // 
+            // cbSubGroup
+            // 
+            this.cbSubGroup.DisplayMember = "GroupName";
+            this.cbSubGroup.FormattingEnabled = true;
+            this.cbSubGroup.Location = new System.Drawing.Point(327, 347);
+            this.cbSubGroup.Name = "cbSubGroup";
+            this.cbSubGroup.Size = new System.Drawing.Size(144, 20);
+            this.cbSubGroup.TabIndex = 25;
+            this.cbSubGroup.ValueMember = "SubGroupID";
+            this.cbSubGroup.SelectedIndexChanged += new System.EventHandler(this.cbSubGroup_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(268, 350);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "子套系：";
+            // 
+            // txtGroupContent
+            // 
+            this.txtGroupContent.Location = new System.Drawing.Point(96, 373);
+            this.txtGroupContent.MaxLength = 5000;
+            this.txtGroupContent.Multiline = true;
+            this.txtGroupContent.Name = "txtGroupContent";
+            this.txtGroupContent.Size = new System.Drawing.Size(580, 124);
+            this.txtGroupContent.TabIndex = 27;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(25, 376);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "套系详情：";
             // 
             // OrderEdit
             // 
@@ -437,5 +507,11 @@
         private System.Windows.Forms.ComboBox ddlOrderStatus;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbMainGroup;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cbSubGroup;
+        private System.Windows.Forms.TextBox txtGroupContent;
+        private System.Windows.Forms.Label label13;
     }
 }

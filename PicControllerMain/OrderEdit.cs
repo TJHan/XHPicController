@@ -19,6 +19,7 @@ namespace PicControllerMain
         {
             OrderID = orderID;
             InitializeComponent();
+            LoadMainGroup();
             InitControl();
             InitOrderEntity();
             LoadCustomFields();
@@ -65,6 +66,11 @@ namespace PicControllerMain
                 txtYuKuan.Text = (entity.TotalAmount - entity.AdvanceAmount).ToString();
                 ddlOrderStatus.Text = entity.Status;
                 txtComment.Text = entity.Comment;
+                if (entity.SubGroupID.HasValue)
+                {
+                    cbSubGroup.SelectedValue = entity.SubGroupID.Value;
+                }
+                txtGroupContent.Text = entity.GroupContent;
             }
 
         }
@@ -95,88 +101,6 @@ namespace PicControllerMain
                 lvCustomerList.Items.Add(item);
             }
 
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            LoadCustomer();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtCustomerID.Text.Trim()))
-            {
-                MessageBox.Show("选个客户先！！");
-                return;
-            }
-            if (string.IsNullOrEmpty(txtTotalAmount.Text.Trim()) || txtTotalAmount.Text.ToDecimal() <= 0)
-            {
-                MessageBox.Show("订单总金额不正常啊！！ 订单存不了，再改改");
-                txtTotalAmount.Focus();
-                return;
-            }
-
-            if (txtTotalAmount.Text.ToDecimal() < txtAdvanceAmount.Text.ToDecimal())
-            {
-                MessageBox.Show("预付款比订单总金额还大？ 订单存不了，再改改");
-                return;
-            }
-            try
-            {
-                Order entity = new Order();
-                entity.CustomerID = txtCustomerID.Text.ToInt();
-                entity.TotalAmount = txtTotalAmount.Text.ToDecimal();
-                entity.CreateDate = txtCreateDate.Text.ToDateTime();
-                entity.AdvanceAmount = txtAdvanceAmount.Text.ToDecimal();
-                entity.Status = Enum.GetName(typeof(EnumOrderStatus), EnumOrderStatus.订单进行中);
-                entity.Comment = txtComment.Text.Trim();
-
-                DataController controller = new DataController();
-                if (OrderID > 0)
-                {
-                    entity.OrderID = OrderID;
-                    entity.Status = ddlOrderStatus.SelectedItem as string;
-                    if (entity.Status == Enum.GetName(typeof(EnumOrderStatus), 4))
-                    {
-                        entity.FinishDate = DateTime.Now;
-                    }
-                    controller.UpdateOrder(entity);
-                }
-                else {
-                    OrderID = controller.SaveOrder(entity);
-                }
-
-                SaveCustomFieldValue();
-
-                MessageBox.Show("订单数据保存成功");
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("订单数据保存异常，请重试");
-            }
-        }
-
-        private void lvCustomerList_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            int index = lvCustomerList.SelectedIndices[0];
-            txtCustomer.Text = lvCustomerList.Items[index].SubItems[2].Text;
-            txtCustomerID.Text = lvCustomerList.Items[index].SubItems[1].Text;
-        }
-
-        private void txtTotalAmount_TextChanged(object sender, EventArgs e)
-        {
-            Decimal total = txtTotalAmount.Text.ToDecimal();
-            Decimal advance = txtAdvanceAmount.Text.ToDecimal();
-            txtYuKuan.Text = (total - advance).ToString("F2");
-        }
-
-        private void txtAdvanceAmount_TextChanged(object sender, EventArgs e)
-        {
-            Decimal total = txtTotalAmount.Text.ToDecimal();
-            Decimal advance = txtAdvanceAmount.Text.ToDecimal();
-            txtYuKuan.Text = (total - advance).ToString("F2");
         }
 
         private void LoadCustomFields()
@@ -357,6 +281,117 @@ namespace PicControllerMain
             }
         }
 
+        private void LoadMainGroup()
+        {
+            DataController controller = new DataController();
+            List<MainGroup> list = controller.GetMainGroupList();
+            cbMainGroup.DataSource = list;
+        }
+
+        private void LoadSubGroup(int mainGroupID)
+        {
+            cbSubGroup.DataSource = null;
+            DataController controller = new DataController();
+            List<SubGroup> list = controller.GetSubGroupList(mainGroupID);
+            cbSubGroup.DataSource = list;
+            cbSubGroup.DisplayMember = "GroupName";
+            cbSubGroup.ValueMember = "SubGroupID";
+        }
+
+        private void LoadGroupContent(int subGroupID)
+        {
+            DataController controller = new DataController();
+            txtGroupContent.Text = controller.GetSubGroupContent(subGroupID);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadCustomer();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtCustomerID.Text.Trim()))
+            {
+                MessageBox.Show("选个客户先！！");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtTotalAmount.Text.Trim()) || txtTotalAmount.Text.ToDecimal() <= 0)
+            {
+                MessageBox.Show("订单总金额不正常啊！！ 订单存不了，再改改");
+                txtTotalAmount.Focus();
+                return;
+            }
+
+            if (txtTotalAmount.Text.ToDecimal() < txtAdvanceAmount.Text.ToDecimal())
+            {
+                MessageBox.Show("预付款比订单总金额还大？ 订单存不了，再改改");
+                return;
+            }
+            if (cbSubGroup.SelectedIndex < 0)
+            {
+                MessageBox.Show("请选择套系");
+                return;
+            }
+            try
+            {
+                Order entity = new Order();
+                entity.CustomerID = txtCustomerID.Text.ToInt();
+                entity.TotalAmount = txtTotalAmount.Text.ToDecimal();
+                entity.CreateDate = txtCreateDate.Text.ToDateTime();
+                entity.AdvanceAmount = txtAdvanceAmount.Text.ToDecimal();
+                entity.Status = Enum.GetName(typeof(EnumOrderStatus), EnumOrderStatus.订单进行中);
+                entity.Comment = txtComment.Text.Trim();
+                entity.SubGroupID = cbSubGroup.SelectedValue.ToString().ToInt();
+                entity.GroupContent = txtGroupContent.Text.Trim();
+                DataController controller = new DataController();
+                if (OrderID > 0)
+                {
+                    entity.OrderID = OrderID;
+                    entity.Status = ddlOrderStatus.SelectedItem as string;
+                    if (entity.Status == Enum.GetName(typeof(EnumOrderStatus), 4))
+                    {
+                        entity.FinishDate = DateTime.Now;
+                    }
+                    controller.UpdateOrder(entity);
+                }
+                else {
+                    OrderID = controller.SaveOrder(entity);
+                }
+
+                SaveCustomFieldValue();
+
+                MessageBox.Show("订单数据保存成功");
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("订单数据保存异常，请重试");
+            }
+        }
+
+        private void lvCustomerList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lvCustomerList.SelectedIndices[0];
+            txtCustomer.Text = lvCustomerList.Items[index].SubItems[2].Text;
+            txtCustomerID.Text = lvCustomerList.Items[index].SubItems[1].Text;
+        }
+
+        private void txtTotalAmount_TextChanged(object sender, EventArgs e)
+        {
+            Decimal total = txtTotalAmount.Text.ToDecimal();
+            Decimal advance = txtAdvanceAmount.Text.ToDecimal();
+            txtYuKuan.Text = (total - advance).ToString("F2");
+        }
+
+        private void txtAdvanceAmount_TextChanged(object sender, EventArgs e)
+        {
+            Decimal total = txtTotalAmount.Text.ToDecimal();
+            Decimal advance = txtAdvanceAmount.Text.ToDecimal();
+            txtYuKuan.Text = (total - advance).ToString("F2");
+        }
+
         /// <summary>
         /// 一次性获取用户录入的自定义字段的值的集合
         /// </summary>
@@ -426,7 +461,7 @@ namespace PicControllerMain
         {
             Order entity = new Order();
             DataController controller = new DataController();
-            entity = controller.FindOrder(OrderID);            
+            entity = controller.FindOrder(OrderID);
             entity.Status = Enum.GetName(typeof(EnumOrderStatus), EnumOrderStatus.订单结束);
             entity.FinishDate = DateTime.Now;
 
@@ -444,6 +479,24 @@ namespace PicControllerMain
         {
             PrintPerview print = new PrintPerview(OrderID);
             print.Show();
+        }
+
+        private void cbMainGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainGroup group = (MainGroup)cbMainGroup.SelectedItem;
+            if (group != null)
+            {
+                LoadSubGroup(group.MainGroupID);
+            }
+        }
+
+        private void cbSubGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SubGroup group = (SubGroup)cbSubGroup.SelectedItem;
+            if (group != null)
+                LoadGroupContent(group.SubGroupID);
+            else
+                txtGroupContent.Text = string.Empty;
         }
     }
 }

@@ -103,6 +103,29 @@
           <Property Name="Contents" Type="varchar(max)" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“PicStore.dbo.v_CustomerOrder”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="v_CustomerOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="100" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="FinishDate" Type="datetime" />
+          <Property Name="Comment" Type="varchar" MaxLength="5000" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AdvanceAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ExpendDays" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GroupContent" Type="varchar(max)" />
+          <Property Name="SubGroupID" Type="int" />
+          <Property Name="SubGroupName" Type="varchar" MaxLength="100" />
+          <Property Name="MainGroupName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“PicStore.dbo.V_GroupInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_GroupInfo">
           <Key>
@@ -124,6 +147,25 @@
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderSetting" EntityType="Self.OrderSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubGroup" EntityType="Self.SubGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_CustomerOrder" EntityType="Self.v_CustomerOrder" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_CustomerOrder].[OrderID] AS [OrderID], 
+    [v_CustomerOrder].[CustomerID] AS [CustomerID], 
+    [v_CustomerOrder].[EnteredDate] AS [EnteredDate], 
+    [v_CustomerOrder].[UpdateDate] AS [UpdateDate], 
+    [v_CustomerOrder].[Status] AS [Status], 
+    [v_CustomerOrder].[CreateDate] AS [CreateDate], 
+    [v_CustomerOrder].[FinishDate] AS [FinishDate], 
+    [v_CustomerOrder].[Comment] AS [Comment], 
+    [v_CustomerOrder].[TotalAmount] AS [TotalAmount], 
+    [v_CustomerOrder].[AdvanceAmount] AS [AdvanceAmount], 
+    [v_CustomerOrder].[ExpendDays] AS [ExpendDays], 
+    [v_CustomerOrder].[GroupContent] AS [GroupContent], 
+    [v_CustomerOrder].[SubGroupID] AS [SubGroupID], 
+    [v_CustomerOrder].[SubGroupName] AS [SubGroupName], 
+    [v_CustomerOrder].[MainGroupName] AS [MainGroupName]
+    FROM [dbo].[v_CustomerOrder] AS [v_CustomerOrder]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="V_GroupInfo" EntityType="Self.V_GroupInfo" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [V_GroupInfo].[GroupName] AS [GroupName], 
@@ -202,6 +244,7 @@
           <EntitySet Name="Order" EntityType="PicStoreModel.Order" />
           <EntitySet Name="V_GroupInfo" EntityType="PicStoreModel.V_GroupInfo" />
           <EntitySet Name="OrderSetting" EntityType="PicStoreModel.OrderSetting" />
+          <EntitySet Name="v_CustomerOrder" EntityType="PicStoreModel.v_CustomerOrder" />
         </EntityContainer>
         <EntityType Name="MainGroup">
           <Key>
@@ -255,6 +298,27 @@
           </Key>
           <Property Name="OrderSettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="v_CustomerOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="FinishDate" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AdvanceAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ExpendDays" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GroupContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SubGroupID" Type="Int32" />
+          <Property Name="SubGroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MainGroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -375,6 +439,27 @@
               <MappingFragment StoreEntitySet="OrderSetting">
                 <ScalarProperty Name="OrderTitle" ColumnName="OrderTitle" />
                 <ScalarProperty Name="OrderSettingID" ColumnName="OrderSettingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_CustomerOrder">
+            <EntityTypeMapping TypeName="PicStoreModel.v_CustomerOrder">
+              <MappingFragment StoreEntitySet="v_CustomerOrder">
+                <ScalarProperty Name="MainGroupName" ColumnName="MainGroupName" />
+                <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
+                <ScalarProperty Name="SubGroupID" ColumnName="SubGroupID" />
+                <ScalarProperty Name="GroupContent" ColumnName="GroupContent" />
+                <ScalarProperty Name="ExpendDays" ColumnName="ExpendDays" />
+                <ScalarProperty Name="AdvanceAmount" ColumnName="AdvanceAmount" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

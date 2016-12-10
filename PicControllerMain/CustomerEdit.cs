@@ -19,9 +19,10 @@ namespace PicControllerMain
             InitializeComponent();
             InitCustomerEntity();
             LoadCustomFields();
+            LoadOrderList();
         }
-        
 
+        #region 客户详情tab
         private void InitCustomerEntity()
         {
             DataController controller = new DataController();
@@ -72,7 +73,7 @@ namespace PicControllerMain
             SaveCustomFieldValue();
 
             MessageBox.Show("数据保存成功");
-            this.DialogResult = DialogResult.OK;            
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -255,7 +256,7 @@ namespace PicControllerMain
                             Width = (item.CustomFieldName.Length * 10 + 50)
                         };
                         PanelCustomFieldList.Controls.Add(lbddl);
-                        PanelCustomFieldList.Controls.Add(ddl);                        
+                        PanelCustomFieldList.Controls.Add(ddl);
                         break;
                     case 6://单选按钮
                         IEnumerable<CustomFieldDataList> cfdrList = controller.GetCustomFieldDataListList(item.CustomFieldID);
@@ -317,6 +318,92 @@ namespace PicControllerMain
                 return list;
             }
             return null;
+        }
+        #endregion
+
+        #region 订单列表tab
+        private void LoadOrderList()
+        {
+            DataController controller = new DataController();
+            List<v_CustomerOrder> result = controller.GetOrderListByCID(CustomerID);
+            foreach (var order in result)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Add(order.OrderID.ToString());
+                item.SubItems.Add(order.Status);
+                item.SubItems.Add(order.EnteredDate.Value.ToString());
+                item.SubItems.Add(order.TotalAmount.Value.ToString("C"));
+                item.SubItems.Add(order.MainGroupName);
+                item.SubItems.Add(order.SubGroupName);
+                lvOrderList.Items.Add(item);
+            }
+        }
+        #endregion
+
+        private void lvOrderList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var index = lvOrderList.SelectedIndices[0];
+            int id = lvOrderList.Items[index].SubItems[1].Text.ToInt();
+            ControlClear();
+            LoadOrderInfo(id);
+        }
+
+        private void LoadOrderInfo(int orderID)
+        {
+            DataController controller = new DataController();
+            Order entity = new Order();
+            entity = controller.FindOrder(orderID);
+            if (entity != null)
+            {
+                labNbr.Text = entity.OrderID.ToString();
+                Customer customer = new Customer();
+                customer = controller.FindCustomer(entity.CustomerID);
+                int customerID = 0;
+                if (customer != null)
+                {
+                    labCustomerName.Text = string.Format(@"{0} [电话：{1}]", customer.CustomerName, customer.CustomerPhone);
+                    customerID = customer.CustomerID;
+                }
+                labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");
+                if (entity.FinishDate.HasValue)
+                    labFinishDate.Text = entity.FinishDate.Value.ToString("yyyy-MM-dd");
+                if (entity.TotalAmount.HasValue)
+                    labOrderPrice.Text = entity.TotalAmount.Value.ToString("F2");
+
+                //加载套系区域
+                if(entity.SubGroupID.HasValue)
+                    LoadGroupInfo(entity.SubGroupID.Value, entity.GroupContent);
+                //加载自定义区域
+                LoadCustomFields(entity.TotalAmount.Value, orderID, customerID, entity.Comment);
+            }
+        }
+
+        private void LoadCustomFields(decimal totalAmount, int orderID, int customerID, string comment)
+        {
+            CustomFieldsHandler cfHandler = new CustomFieldsHandler();
+            cfHandler.LoadPrintCustomFields(PanelCustomFields, customerID, orderID, totalAmount, comment);
+        }
+
+        private void LoadGroupInfo(int subGroupID, string content)
+        {
+            DataController controller = new DataController();
+            V_GroupInfo entity = controller.GetGroupInfo(subGroupID);
+            if (entity != null)
+            {
+                labGroupName.Text = string.Format(@"{0}     子套系名称：{1}", entity.GroupName, entity.SubGroupName);
+            }
+            labGroupContent.Text = content;
+        }
+        private void ControlClear()
+        {
+            labNbr.Text = string.Empty;
+            labOrderDate.Text = string.Empty;
+            labOrderPrice.Text = string.Empty;
+            labCustomerName.Text = string.Empty;
+            labFinishDate.Text = string.Empty;
+            labGroupName.Text = string.Empty;
+            labGroupContent.Text = string.Empty;
+            PanelCustomFields.Controls.Clear();
         }
     }
 }

@@ -40,6 +40,12 @@
             this.txtYuKuan = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtGroupContent = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbSubGroup = new System.Windows.Forms.ComboBox();
+            this.cbMainGroup = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.PanelOrderStatus = new System.Windows.Forms.Panel();
             this.ddlOrderStatus = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -61,12 +67,6 @@
             this.PanelCustomFieldList = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cbMainGroup = new System.Windows.Forms.ComboBox();
-            this.cbSubGroup = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtGroupContent = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.PanelOrderStatus.SuspendLayout();
             this.PanelCustomSelect.SuspendLayout();
@@ -203,6 +203,64 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "订单基础数据";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(25, 376);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 12);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "套系详情：";
+            // 
+            // txtGroupContent
+            // 
+            this.txtGroupContent.Location = new System.Drawing.Point(96, 373);
+            this.txtGroupContent.MaxLength = 5000;
+            this.txtGroupContent.Multiline = true;
+            this.txtGroupContent.Name = "txtGroupContent";
+            this.txtGroupContent.Size = new System.Drawing.Size(580, 124);
+            this.txtGroupContent.TabIndex = 27;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(268, 350);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "子套系：";
+            // 
+            // cbSubGroup
+            // 
+            this.cbSubGroup.DisplayMember = "GroupName";
+            this.cbSubGroup.FormattingEnabled = true;
+            this.cbSubGroup.Location = new System.Drawing.Point(327, 347);
+            this.cbSubGroup.Name = "cbSubGroup";
+            this.cbSubGroup.Size = new System.Drawing.Size(144, 20);
+            this.cbSubGroup.TabIndex = 25;
+            this.cbSubGroup.ValueMember = "SubGroupID";
+            this.cbSubGroup.SelectedIndexChanged += new System.EventHandler(this.cbSubGroup_SelectedIndexChanged);
+            // 
+            // cbMainGroup
+            // 
+            this.cbMainGroup.DisplayMember = "GroupName";
+            this.cbMainGroup.FormattingEnabled = true;
+            this.cbMainGroup.Location = new System.Drawing.Point(96, 347);
+            this.cbMainGroup.Name = "cbMainGroup";
+            this.cbMainGroup.Size = new System.Drawing.Size(166, 20);
+            this.cbMainGroup.TabIndex = 24;
+            this.cbMainGroup.ValueMember = "MainGroupID";
+            this.cbMainGroup.SelectedIndexChanged += new System.EventHandler(this.cbMainGroup_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 347);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "选择套系：";
+            // 
             // PanelOrderStatus
             // 
             this.PanelOrderStatus.Controls.Add(this.ddlOrderStatus);
@@ -231,6 +289,7 @@
             // 
             // PanelCustomSelect
             // 
+            this.PanelCustomSelect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelCustomSelect.Controls.Add(this.label9);
             this.PanelCustomSelect.Controls.Add(this.lvCustomerList);
             this.PanelCustomSelect.Controls.Add(this.btnSearch);
@@ -388,64 +447,6 @@
             this.btnPrint.Text = "打印订单";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 347);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "选择套系：";
-            // 
-            // cbMainGroup
-            // 
-            this.cbMainGroup.DisplayMember = "GroupName";
-            this.cbMainGroup.FormattingEnabled = true;
-            this.cbMainGroup.Location = new System.Drawing.Point(96, 347);
-            this.cbMainGroup.Name = "cbMainGroup";
-            this.cbMainGroup.Size = new System.Drawing.Size(166, 20);
-            this.cbMainGroup.TabIndex = 24;
-            this.cbMainGroup.ValueMember = "MainGroupID";
-            this.cbMainGroup.SelectedIndexChanged += new System.EventHandler(this.cbMainGroup_SelectedIndexChanged);
-            // 
-            // cbSubGroup
-            // 
-            this.cbSubGroup.DisplayMember = "GroupName";
-            this.cbSubGroup.FormattingEnabled = true;
-            this.cbSubGroup.Location = new System.Drawing.Point(327, 347);
-            this.cbSubGroup.Name = "cbSubGroup";
-            this.cbSubGroup.Size = new System.Drawing.Size(144, 20);
-            this.cbSubGroup.TabIndex = 25;
-            this.cbSubGroup.ValueMember = "SubGroupID";
-            this.cbSubGroup.SelectedIndexChanged += new System.EventHandler(this.cbSubGroup_SelectedIndexChanged);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(268, 350);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 12);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "子套系：";
-            // 
-            // txtGroupContent
-            // 
-            this.txtGroupContent.Location = new System.Drawing.Point(96, 373);
-            this.txtGroupContent.MaxLength = 5000;
-            this.txtGroupContent.Multiline = true;
-            this.txtGroupContent.Name = "txtGroupContent";
-            this.txtGroupContent.Size = new System.Drawing.Size(580, 124);
-            this.txtGroupContent.TabIndex = 27;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(25, 376);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(65, 12);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "套系详情：";
             // 
             // OrderEdit
             // 

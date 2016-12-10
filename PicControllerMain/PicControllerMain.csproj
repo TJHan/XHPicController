@@ -165,6 +165,9 @@
     <Compile Include="SystemConfig.Designer.cs">
       <DependentUpon>SystemConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="v_CustomerOrder.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="V_GroupInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

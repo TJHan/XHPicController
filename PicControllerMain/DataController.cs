@@ -257,6 +257,16 @@ namespace PicControllerMain
             _picStormContent.SaveChanges();
             return entity.CustomerID;
         }
+
+        /// <summary>
+        /// 获取客户的订单列表
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <returns></returns>
+        public List<v_CustomerOrder> GetOrderListByCID(int customerID)
+        {
+            return _picStormContent.v_CustomerOrder.Where(d => d.CustomerID == customerID).ToList();
+        }
         #endregion
 
         #region 自定义字段相关
@@ -526,6 +536,8 @@ namespace PicControllerMain
                 _picStormContent.SaveChanges();
             }
         }
+
+        
     }
 
     public class CustomFieldsColumnsList

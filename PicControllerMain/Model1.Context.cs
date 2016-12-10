@@ -34,5 +34,6 @@ namespace PicControllerMain
         public virtual DbSet<SubGroup> SubGroup { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<V_GroupInfo> V_GroupInfo { get; set; }
+        public virtual DbSet<OrderSetting> OrderSetting { get; set; }
     }
 }

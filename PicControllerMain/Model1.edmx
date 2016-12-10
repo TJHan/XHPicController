@@ -85,6 +85,13 @@
           <Property Name="GroupContent" Type="varchar(max)" />
           <Property Name="SubGroupID" Type="int" />
         </EntityType>
+        <EntityType Name="OrderSetting">
+          <Key>
+            <PropertyRef Name="OrderSettingID" />
+          </Key>
+          <Property Name="OrderSettingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderTitle" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="SubGroup">
           <Key>
             <PropertyRef Name="SubGroupID" />
@@ -115,6 +122,7 @@
           <EntitySet Name="CustomFieldType" EntityType="Self.CustomFieldType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainGroup" EntityType="Self.MainGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderSetting" EntityType="Self.OrderSetting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubGroup" EntityType="Self.SubGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="V_GroupInfo" EntityType="Self.V_GroupInfo" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -193,6 +201,7 @@
           <EntitySet Name="SubGroup" EntityType="PicStoreModel.SubGroup" />
           <EntitySet Name="Order" EntityType="PicStoreModel.Order" />
           <EntitySet Name="V_GroupInfo" EntityType="PicStoreModel.V_GroupInfo" />
+          <EntitySet Name="OrderSetting" EntityType="PicStoreModel.OrderSetting" />
         </EntityContainer>
         <EntityType Name="MainGroup">
           <Key>
@@ -239,6 +248,13 @@
           <Property Name="SubGroupName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SubGroupID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderSetting">
+          <Key>
+            <PropertyRef Name="OrderSettingID" />
+          </Key>
+          <Property Name="OrderSettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -351,6 +367,14 @@
                 <ScalarProperty Name="Contents" ColumnName="Contents" />
                 <ScalarProperty Name="SubGroupName" ColumnName="SubGroupName" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderSetting">
+            <EntityTypeMapping TypeName="PicStoreModel.OrderSetting">
+              <MappingFragment StoreEntitySet="OrderSetting">
+                <ScalarProperty Name="OrderTitle" ColumnName="OrderTitle" />
+                <ScalarProperty Name="OrderSettingID" ColumnName="OrderSettingID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

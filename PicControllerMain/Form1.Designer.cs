@@ -266,6 +266,7 @@
             this.labPrint.Size = new System.Drawing.Size(65, 24);
             this.labPrint.TabIndex = 3;
             this.labPrint.Text = "打印管理";
+            this.labPrint.Click += new System.EventHandler(this.labPrint_Click);
             // 
             // Form1
             // 

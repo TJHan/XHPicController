@@ -499,6 +499,33 @@ namespace PicControllerMain
             return _picStormContent.V_GroupInfo.Where(d => d.SubGroupID == subGroupID).FirstOrDefault();
         }
         #endregion
+
+        #region 订单设置信息
+
+        #endregion
+
+        /// <summary>
+        /// 获取订单信息设置对象
+        /// </summary>
+        /// <returns></returns>
+        public OrderSetting GetOrderSetting()
+        {
+            return _picStormContent.OrderSetting.Where(d => 1 == 1).FirstOrDefault();
+        }
+
+        public void SaveOrderSetting(OrderSetting setting)
+        {
+            if (setting.OrderSettingID == 0)
+            {
+                _picStormContent.OrderSetting.Add(setting);
+                _picStormContent.SaveChanges();
+            }
+            else {
+                OrderSetting entity = _picStormContent.OrderSetting.Where(d => d.OrderSettingID == setting.OrderSettingID).FirstOrDefault();
+                entity.OrderTitle = setting.OrderTitle;
+                _picStormContent.SaveChanges();
+            }
+        }
     }
 
     public class CustomFieldsColumnsList

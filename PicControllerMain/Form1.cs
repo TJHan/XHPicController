@@ -153,5 +153,11 @@ namespace PicControllerMain
             GroupIndex group = new GroupIndex();
             group.Show();
         }
+
+        private void labPrint_Click(object sender, EventArgs e)
+        {
+            PrintSetting setting = new PrintSetting();
+            setting.Show();
+        }
     }
 }

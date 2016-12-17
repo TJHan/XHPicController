@@ -85,7 +85,7 @@ namespace PicControllerMain
                     }
                 }
                 else {
-                    int id = Controller.SaveMainGroup(groupName);                    
+                    Controller.SaveMainGroup(groupName);                    
                 }
                 txtMainGroupName.Text = string.Empty;
                 LoadMainGroup();
@@ -135,7 +135,7 @@ namespace PicControllerMain
             {
                 if (SubGroupID == 0)
                 {
-                    SubGroupID = Controller.SaveSubGroup(groupName, GroupID);
+                    Controller.SaveSubGroup(groupName, GroupID);
                 }
                 else {
                     Controller.UpdateSubGroup(groupName, SubGroupID);

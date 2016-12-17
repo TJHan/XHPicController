@@ -39,12 +39,11 @@ namespace PicControllerMain
                     labCustomerName.Text = string.Format(@"{0} [电话：{1}]", customer.CustomerName, customer.CustomerPhone);
                     customerID = customer.CustomerID;
                 }
-                labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");
-                if (entity.FinishDate.HasValue)
-                    labFinishDate.Text = entity.FinishDate.Value.ToString("yyyy-MM-dd");
+                labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");                
                 if (entity.TotalAmount.HasValue)
-                    labOrderPrice.Text = entity.TotalAmount.Value.ToString("F2");
-
+                    labOrderPrice.Text = entity.TotalAmount.Value.ToString("C");
+                if (entity.AdvanceAmount.HasValue)
+                    labDingJin.Text = entity.AdvanceAmount.Value.ToString("C");
                 //加载套系区域
                 LoadGroupInfo(entity.SubGroupID.Value, entity.GroupContent);
                 //加载自定义区域

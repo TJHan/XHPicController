@@ -203,7 +203,7 @@ namespace PicControllerMain.Common
             IEnumerable<CustomField> cfList = controller.GetPrintCustomFieldList();
             int i = 1;
             //取订单的套系信息
-            
+
             //取当前用户的自定义字段的值集合
             List<CustomFieldData> valueList = GetCustomFieldValueList(orderID, customerID);
             foreach (var item in cfList)
@@ -250,6 +250,7 @@ namespace PicControllerMain.Common
                 };
                 controllerPanel.Controls.Add(lb);
                 controllerPanel.Controls.Add(lbValue);
+                
                 i++;
             }
 
@@ -277,13 +278,14 @@ namespace PicControllerMain.Common
             };
             controllerPanel.Controls.Add(lbCommentValue);
 
+
             i += 2;
             //合计费用
             Label lbsignTotalAmount = new Label()
             {
                 Name = string.Format(@"labTotalAmount"),
                 Text = string.Format(@"合计费用："),
-                Top = i * 21 + i * 8 + 100,
+                Top = i * 21 + i * 8 + 50,
                 Left = 400,
                 TextAlign = ContentAlignment.MiddleLeft
             };
@@ -292,11 +294,12 @@ namespace PicControllerMain.Common
             {
                 Name = string.Format(@"labTotalAmountValue"),
                 Text = totalAmount.ToString("C"),
-                Top = i * 21 + i * 8 + 100,
+                Top = i * 21 + i * 8 + 50,
                 Left = 500,
                 TextAlign = ContentAlignment.MiddleLeft,
             };
             controllerPanel.Controls.Add(lbsignTotalAmountValue);
+
 
             i += 1;
             //老板签名区
@@ -304,7 +307,7 @@ namespace PicControllerMain.Common
             {
                 Name = string.Format(@"labSign1"),
                 Text = string.Format(@"摄影师签字："),
-                Top = i * 21 + i * 8 + 100,
+                Top = i * 21 + i * 8 + 50,
                 Left = 18,
                 TextAlign = ContentAlignment.MiddleLeft
             };
@@ -314,11 +317,12 @@ namespace PicControllerMain.Common
             {
                 Name = string.Format(@"labCustomSign"),
                 Text = string.Format(@"客户签名："),
-                Top = i * 21 + i * 8 + 100,
+                Top = i * 21 + i * 8 + 50,
                 Left = 400,
                 TextAlign = ContentAlignment.MiddleLeft
             };
             controllerPanel.Controls.Add(lbCustomSign);
+
         }
 
         private List<CustomFieldData> GetCustomFieldValueList(int orderID, int customerID)

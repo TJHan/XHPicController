@@ -39,7 +39,7 @@ namespace PicControllerMain
                     labCustomerName.Text = string.Format(@"{0} [电话：{1}]", customer.CustomerName, customer.CustomerPhone);
                     customerID = customer.CustomerID;
                 }
-                labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");                
+                labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");
                 if (entity.TotalAmount.HasValue)
                     labOrderPrice.Text = entity.TotalAmount.Value.ToString("C");
                 if (entity.AdvanceAmount.HasValue)
@@ -85,6 +85,7 @@ namespace PicControllerMain
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
+            currentY = 0;
             this.printPreviewDialog1.Document = printDocument1;
 
             this.printPreviewDialog1.ShowDialog();
@@ -92,17 +93,19 @@ namespace PicControllerMain
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            currentY = 0;
             this.printDialog1.Document = this.printDocument1;
             if (this.printDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.printDocument1.Print();
             }
         }
-
+        private int currentY = 0;
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            int currentY = 0;
+            //currentY = 0;
             System.Drawing.Printing.PrintDocument pd = sender as System.Drawing.Printing.PrintDocument;
+            int imageheight = 0;
             int width = PanelPrint.DisplayRectangle.Width;
             int height = PanelPrint.DisplayRectangle.Height;
 
@@ -112,7 +115,8 @@ namespace PicControllerMain
             {
                 Bitmap bmp = new Bitmap(width, height);
                 PanelPrint.DrawToBitmap(bmp, new Rectangle(10, 10, bmp.Width, bmp.Height));
-                e.Graphics.DrawImage(bmp, (pwidth - bmp.Width) / 2, 0, new RectangleF(0, currentY, bmp.Width, bmp.Height), GraphicsUnit.Pixel);
+                imageheight = (pwidth - bmp.Width) / 2;
+                e.Graphics.DrawImage(bmp, imageheight, 0, new RectangleF(0, currentY, bmp.Width, bmp.Height), GraphicsUnit.Pixel);
                 currentY += pheight;
 
                 if (height - currentY > 0)

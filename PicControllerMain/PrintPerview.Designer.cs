@@ -53,11 +53,11 @@
             this.labOrderPrice = new System.Windows.Forms.Label();
             this.labNbr = new System.Windows.Forms.Label();
             this.labCustomerName = new System.Windows.Forms.Label();
-            this.PanelCustomFields = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.labDingJin = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.PanelCustomFields = new System.Windows.Forms.Panel();
             this.PanelPrint.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -89,7 +89,7 @@
             // 
             this.labTitle.AutoSize = true;
             this.labTitle.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labTitle.Location = new System.Drawing.Point(250, 16);
+            this.labTitle.Location = new System.Drawing.Point(250, 8);
             this.labTitle.Name = "labTitle";
             this.labTitle.Size = new System.Drawing.Size(229, 20);
             this.labTitle.TabIndex = 3;
@@ -162,7 +162,7 @@
             this.PanelPrint.Controls.Add(this.labTitle);
             this.PanelPrint.Location = new System.Drawing.Point(12, 50);
             this.PanelPrint.Name = "PanelPrint";
-            this.PanelPrint.Size = new System.Drawing.Size(706, 708);
+            this.PanelPrint.Size = new System.Drawing.Size(706, 1100);
             this.PanelPrint.TabIndex = 4;
             // 
             // tableLayoutPanel2
@@ -170,24 +170,24 @@
             this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 601F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 606F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.labGroupName, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.labGroupContent, 1, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 143);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 130);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.83871F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.16129F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(690, 412);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(690, 511);
             this.tableLayoutPanel2.TabIndex = 11;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 21);
+            this.label7.Location = new System.Drawing.Point(4, 26);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 12);
             this.label7.TabIndex = 15;
@@ -214,7 +214,7 @@
             // labGroupContent
             // 
             this.labGroupContent.AutoSize = true;
-            this.labGroupContent.Location = new System.Drawing.Point(94, 21);
+            this.labGroupContent.Location = new System.Drawing.Point(94, 26);
             this.labGroupContent.Name = "labGroupContent";
             this.labGroupContent.Size = new System.Drawing.Size(53, 12);
             this.labGroupContent.TabIndex = 14;
@@ -227,7 +227,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.labOrderDate, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 1);
@@ -242,7 +242,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label9, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label10, 2, 3);
             this.tableLayoutPanel1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 54);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 38);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -310,15 +310,6 @@
             this.labCustomerName.TabIndex = 6;
             this.labCustomerName.Text = "客户姓名";
             // 
-            // PanelCustomFields
-            // 
-            this.PanelCustomFields.AutoSize = true;
-            this.PanelCustomFields.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelCustomFields.Location = new System.Drawing.Point(6, 561);
-            this.PanelCustomFields.Name = "PanelCustomFields";
-            this.PanelCustomFields.Size = new System.Drawing.Size(690, 135);
-            this.PanelCustomFields.TabIndex = 9;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -356,12 +347,22 @@
             this.label10.TabIndex = 15;
             this.label10.Text = "取片日期：";
             // 
+            // PanelCustomFields
+            // 
+            this.PanelCustomFields.AutoSize = true;
+            this.PanelCustomFields.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelCustomFields.Location = new System.Drawing.Point(6, 647);
+            this.PanelCustomFields.MinimumSize = new System.Drawing.Size(0, 200);
+            this.PanelCustomFields.Name = "PanelCustomFields";
+            this.PanelCustomFields.Size = new System.Drawing.Size(690, 200);
+            this.PanelCustomFields.TabIndex = 9;
+            // 
             // PrintPerview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(732, 767);
+            this.ClientSize = new System.Drawing.Size(748, 865);
             this.Controls.Add(this.PanelPrint);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnPreview);

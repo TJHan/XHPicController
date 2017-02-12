@@ -159,5 +159,11 @@ namespace PicControllerMain
             PrintSetting setting = new PrintSetting();
             setting.Show();
         }
+
+        private void labShopInfo_Click(object sender, EventArgs e)
+        {
+            ShopInfo info = new ShopInfo();
+            info.Show();
+        }
     }
 }

@@ -511,9 +511,6 @@ namespace PicControllerMain
         #endregion
 
         #region 订单设置信息
-
-        #endregion
-
         /// <summary>
         /// 获取订单信息设置对象
         /// </summary>
@@ -533,11 +530,47 @@ namespace PicControllerMain
             else {
                 OrderSetting entity = _picStormContent.OrderSetting.Where(d => d.OrderSettingID == setting.OrderSettingID).FirstOrDefault();
                 entity.OrderTitle = setting.OrderTitle;
+                entity.Comment = setting.Comment;
+                entity.CommentTitle = setting.CommentTitle;
+                _picStormContent.SaveChanges();
+            }
+        }
+        #endregion
+
+
+        #region 店铺信息管理
+
+        /// <summary>
+        /// 获取店铺详情记录
+        /// </summary>
+        /// <returns></returns>
+        public Shop GetShopInfo()
+        {
+            return _picStormContent.Shop.Where(d => 1 == 1).FirstOrDefault();
+        }
+
+        public void SaveShopInfo(Shop shop)
+        {
+            if (shop.ShopID == 0)
+            {
+                _picStormContent.Shop.Add(shop);
+                _picStormContent.SaveChanges();
+            }
+            else {
+                Shop entity = _picStormContent.Shop.Where(d => d.ShopID == shop.ShopID).FirstOrDefault();
+                entity.ShopName = shop.ShopName;
+                entity.ShopAddress = shop.ShopAddress;
+                entity.ShopPhone = shop.ShopPhone;
+                entity.ShopWeiXin = shop.ShopWeiXin;
+                entity.ShopQQ = shop.ShopQQ;
+                entity.ShopEmail = shop.ShopEmail;
+                entity.ShopFax = shop.ShopFax;
                 _picStormContent.SaveChanges();
             }
         }
 
-        
+        #endregion
+
     }
 
     public class CustomFieldsColumnsList

@@ -29,6 +29,8 @@ namespace PicControllerMain
             {
                 txtOrderTitle.Text = setting.OrderTitle;
                 OrderSettingID = setting.OrderSettingID;
+                txtComment.Text = setting.Comment;
+                txtCommentTitle.Text = setting.CommentTitle;
             }
 
         }
@@ -43,7 +45,9 @@ namespace PicControllerMain
             OrderSetting setting = new OrderSetting()
             {
                 OrderSettingID = this.OrderSettingID,
-                OrderTitle = txtOrderTitle.Text.Trim()
+                OrderTitle = txtOrderTitle.Text.Trim(),
+                Comment = txtComment.Text.Trim(),
+                CommentTitle = txtCommentTitle.Text.Trim()
             };
             controller.SaveOrderSetting(setting);
             MessageBox.Show("保存成功");

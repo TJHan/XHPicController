@@ -12,11 +12,15 @@ namespace PicControllerMain
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderSetting
+    public partial class Shop
     {
-        public int OrderSettingID { get; set; }
-        public string OrderTitle { get; set; }
-        public string Comment { get; set; }
-        public string CommentTitle { get; set; }
+        public int ShopID { get; set; }
+        public string ShopName { get; set; }
+        public string ShopAddress { get; set; }
+        public string ShopPhone { get; set; }
+        public string ShopEmail { get; set; }
+        public string ShopWeiXin { get; set; }
+        public string ShopQQ { get; set; }
+        public string ShopFax { get; set; }
     }
 }

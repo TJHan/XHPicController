@@ -91,6 +91,21 @@
           </Key>
           <Property Name="OrderSettingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Comment" Type="varchar" MaxLength="2000" />
+          <Property Name="CommentTitle" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="100" />
+          <Property Name="ShopAddress" Type="varchar" MaxLength="1000" />
+          <Property Name="ShopPhone" Type="varchar" MaxLength="100" />
+          <Property Name="ShopEmail" Type="varchar" MaxLength="1000" />
+          <Property Name="ShopWeiXin" Type="varchar" MaxLength="100" />
+          <Property Name="ShopQQ" Type="varchar" MaxLength="50" />
+          <Property Name="ShopFax" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SubGroup">
           <Key>
@@ -146,6 +161,7 @@
           <EntitySet Name="MainGroup" EntityType="Self.MainGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderSetting" EntityType="Self.OrderSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubGroup" EntityType="Self.SubGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="v_CustomerOrder" EntityType="Self.v_CustomerOrder" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -243,8 +259,9 @@
           <EntitySet Name="SubGroup" EntityType="PicStoreModel.SubGroup" />
           <EntitySet Name="Order" EntityType="PicStoreModel.Order" />
           <EntitySet Name="V_GroupInfo" EntityType="PicStoreModel.V_GroupInfo" />
-          <EntitySet Name="OrderSetting" EntityType="PicStoreModel.OrderSetting" />
           <EntitySet Name="v_CustomerOrder" EntityType="PicStoreModel.v_CustomerOrder" />
+          <EntitySet Name="OrderSetting" EntityType="PicStoreModel.OrderSetting" />
+          <EntitySet Name="Shop" EntityType="PicStoreModel.Shop" />
         </EntityContainer>
         <EntityType Name="MainGroup">
           <Key>
@@ -292,13 +309,6 @@
           <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SubGroupID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="OrderSetting">
-          <Key>
-            <PropertyRef Name="OrderSettingID" />
-          </Key>
-          <Property Name="OrderSettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="v_CustomerOrder">
           <Key>
             <PropertyRef Name="OrderID" />
@@ -319,6 +329,28 @@
           <Property Name="SubGroupID" Type="Int32" />
           <Property Name="SubGroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MainGroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OrderSetting">
+          <Key>
+            <PropertyRef Name="OrderSettingID" />
+          </Key>
+          <Property Name="OrderSettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="CommentTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShopAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ShopPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShopEmail" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ShopWeiXin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShopQQ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShopFax" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -434,14 +466,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderSetting">
-            <EntityTypeMapping TypeName="PicStoreModel.OrderSetting">
-              <MappingFragment StoreEntitySet="OrderSetting">
-                <ScalarProperty Name="OrderTitle" ColumnName="OrderTitle" />
-                <ScalarProperty Name="OrderSettingID" ColumnName="OrderSettingID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="v_CustomerOrder">
             <EntityTypeMapping TypeName="PicStoreModel.v_CustomerOrder">
               <MappingFragment StoreEntitySet="v_CustomerOrder">
@@ -460,6 +484,30 @@
                 <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderSetting">
+            <EntityTypeMapping TypeName="PicStoreModel.OrderSetting">
+              <MappingFragment StoreEntitySet="OrderSetting">
+                <ScalarProperty Name="CommentTitle" ColumnName="CommentTitle" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="OrderTitle" ColumnName="OrderTitle" />
+                <ScalarProperty Name="OrderSettingID" ColumnName="OrderSettingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shop">
+            <EntityTypeMapping TypeName="PicStoreModel.Shop">
+              <MappingFragment StoreEntitySet="Shop">
+                <ScalarProperty Name="ShopFax" ColumnName="ShopFax" />
+                <ScalarProperty Name="ShopQQ" ColumnName="ShopQQ" />
+                <ScalarProperty Name="ShopWeiXin" ColumnName="ShopWeiXin" />
+                <ScalarProperty Name="ShopEmail" ColumnName="ShopEmail" />
+                <ScalarProperty Name="ShopPhone" ColumnName="ShopPhone" />
+                <ScalarProperty Name="ShopAddress" ColumnName="ShopAddress" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

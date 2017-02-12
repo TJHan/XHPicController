@@ -50,6 +50,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labGroup = new System.Windows.Forms.Label();
             this.labPrint = new System.Windows.Forms.Label();
+            this.labShopInfo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -268,11 +269,25 @@
             this.labPrint.Text = "打印管理";
             this.labPrint.Click += new System.EventHandler(this.labPrint_Click);
             // 
+            // labShopInfo
+            // 
+            this.labShopInfo.AutoSize = true;
+            this.labShopInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labShopInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labShopInfo.Location = new System.Drawing.Point(558, 4);
+            this.labShopInfo.Name = "labShopInfo";
+            this.labShopInfo.Padding = new System.Windows.Forms.Padding(5);
+            this.labShopInfo.Size = new System.Drawing.Size(89, 24);
+            this.labShopInfo.TabIndex = 4;
+            this.labShopInfo.Text = "店铺信息管理";
+            this.labShopInfo.Click += new System.EventHandler(this.labShopInfo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 702);
+            this.Controls.Add(this.labShopInfo);
             this.Controls.Add(this.labPrint);
             this.Controls.Add(this.labGroup);
             this.Controls.Add(this.label3);
@@ -311,6 +326,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Label labGroup;
         private System.Windows.Forms.Label labPrint;
+        private System.Windows.Forms.Label labShopInfo;
     }
 }
 

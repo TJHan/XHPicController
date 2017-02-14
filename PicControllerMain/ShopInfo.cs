@@ -13,6 +13,7 @@ namespace PicControllerMain
     public partial class ShopInfo : Form
     {
         DataController controller;
+        private int keyID { get; set; }
         public ShopInfo()
         {
             controller = new DataController();
@@ -32,6 +33,7 @@ namespace PicControllerMain
                 txtQQ.Text = entity.ShopQQ;
                 txtEmail.Text = entity.ShopEmail;
                 txtFax.Text = entity.ShopFax;
+                keyID = entity.ShopID;
             }
         }
 
@@ -45,11 +47,12 @@ namespace PicControllerMain
                 ShopWeiXin = txtWeiXin.Text.Trim(),
                 ShopQQ = txtQQ.Text.Trim(),
                 ShopEmail = txtEmail.Text.Trim(),
-                ShopFax = txtFax.Text.Trim()
+                ShopFax = txtFax.Text.Trim(),
+                ShopID = keyID
             };
             controller.SaveShopInfo(shop);
             MessageBox.Show("保存成功");
-
+            this.Close();
         }
     }
 }

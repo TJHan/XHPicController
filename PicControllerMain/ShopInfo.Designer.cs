@@ -58,6 +58,7 @@
             // txtShopName
             // 
             this.txtShopName.Location = new System.Drawing.Point(121, 16);
+            this.txtShopName.MaxLength = 100;
             this.txtShopName.Name = "txtShopName";
             this.txtShopName.Size = new System.Drawing.Size(456, 21);
             this.txtShopName.TabIndex = 1;
@@ -65,6 +66,7 @@
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(121, 43);
+            this.txtAddress.MaxLength = 1000;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(456, 21);
             this.txtAddress.TabIndex = 3;
@@ -81,6 +83,7 @@
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(121, 70);
+            this.txtPhone.MaxLength = 100;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(456, 21);
             this.txtPhone.TabIndex = 5;
@@ -97,6 +100,7 @@
             // txtWeiXin
             // 
             this.txtWeiXin.Location = new System.Drawing.Point(121, 97);
+            this.txtWeiXin.MaxLength = 100;
             this.txtWeiXin.Name = "txtWeiXin";
             this.txtWeiXin.Size = new System.Drawing.Size(456, 21);
             this.txtWeiXin.TabIndex = 7;
@@ -113,6 +117,7 @@
             // txtQQ
             // 
             this.txtQQ.Location = new System.Drawing.Point(121, 124);
+            this.txtQQ.MaxLength = 50;
             this.txtQQ.Name = "txtQQ";
             this.txtQQ.Size = new System.Drawing.Size(456, 21);
             this.txtQQ.TabIndex = 9;
@@ -129,6 +134,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(121, 151);
+            this.txtEmail.MaxLength = 1000;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(456, 21);
             this.txtEmail.TabIndex = 11;
@@ -163,6 +169,7 @@
             // txtFax
             // 
             this.txtFax.Location = new System.Drawing.Point(121, 180);
+            this.txtFax.MaxLength = 100;
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(456, 21);
             this.txtFax.TabIndex = 14;

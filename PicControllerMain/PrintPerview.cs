@@ -12,25 +12,28 @@ namespace PicControllerMain
 {
     public partial class PrintPerview : Form
     {
+
+        private DataController controller;
         private int OrderID { get; set; }
         public PrintPerview(int orderID)
         {
             OrderID = orderID;
+            controller = new DataController();
             InitializeComponent();
             LoadPrintData();
             LoadOrderSetting();
+            LoadShopInfo();
         }
 
         private void LoadPrintData()
         {
             if (OrderID == 0)
             { return; }
-            DataController controller = new DataController();
             Order entity = new Order();
             entity = controller.FindOrder(OrderID);
             if (entity != null)
             {
-                labNbr.Text = entity.OrderID.ToString();
+                labNbr.Text = LoadOrderNumber(entity.OrderID.ToString());
                 Customer customer = new Customer();
                 customer = controller.FindCustomer(entity.CustomerID);
                 int customerID = 0;
@@ -41,35 +44,57 @@ namespace PicControllerMain
                 }
                 labOrderDate.Text = entity.CreateDate.Value.ToString("yyyy-MM-dd");
                 if (entity.TotalAmount.HasValue)
+                {
                     labOrderPrice.Text = entity.TotalAmount.Value.ToString("C");
+                    labTotalAmount.Text = entity.TotalAmount.Value.ToString("C");
+                }
                 if (entity.AdvanceAmount.HasValue)
                     labDingJin.Text = entity.AdvanceAmount.Value.ToString("C");
                 //加载套系区域
                 LoadGroupInfo(entity.SubGroupID.Value, entity.GroupContent);
+                labRemark.Text = entity.Comment;
                 //加载自定义区域
-                LoadCustomFields(entity.TotalAmount.Value, customerID, entity.Comment);
+                //LoadCustomFields(entity.TotalAmount.Value, customerID, entity.Comment);
             }
         }
 
+        /// <summary>
+        /// 加载订单设置信息
+        /// </summary>
         private void LoadOrderSetting()
         {
-            DataController controller = new DataController();
             OrderSetting setting = controller.GetOrderSetting();
             if (setting != null)
             {
                 labTitle.Text = setting.OrderTitle;
+                labCommentTitle.Text = setting.CommentTitle;
+                labComment.Text = setting.Comment;
+            }
+        }
+
+        /// <summary>
+        /// 加载店铺信息
+        /// </summary>
+        private void LoadShopInfo()
+        {
+            Shop shop = controller.GetShopInfo();
+            if (shop != null)
+            {
+                labAddress.Text = shop.ShopAddress;
+                labPhone.Text = shop.ShopPhone;
+                labQQ.Text = shop.ShopQQ;
+                labEmail.Text = shop.ShopEmail.Replace(";", "  ");
             }
         }
 
         private void LoadCustomFields(decimal totalAmount, int customerID, string comment)
         {
             CustomFieldsHandler cfHandler = new CustomFieldsHandler();
-            cfHandler.LoadPrintCustomFields(PanelCustomFields, customerID, OrderID, totalAmount, comment);
+            //cfHandler.LoadPrintCustomFields(PanelCustomFields, customerID, OrderID, totalAmount, comment);
         }
 
         private void LoadGroupInfo(int subGroupID, string content)
         {
-            DataController controller = new DataController();
             V_GroupInfo entity = controller.GetGroupInfo(subGroupID);
             if (entity != null)
             {
@@ -128,6 +153,16 @@ namespace PicControllerMain
                 e.HasMorePages = false;
             }
 
+        }
+
+        /// <summary>
+        /// 格式化订单编号
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private string LoadOrderNumber(string id)
+        {
+            return string.Format(@"NO.{0}", id.PadLeft(9, '0'));
         }
 
     }

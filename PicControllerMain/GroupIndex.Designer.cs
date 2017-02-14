@@ -42,6 +42,8 @@
             this.btnSaveInfo = new System.Windows.Forms.Button();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnDeleteMainGroup = new System.Windows.Forms.Button();
+            this.btnDeleteSubGroup = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -49,20 +51,21 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDeleteMainGroup);
             this.groupBox1.Controls.Add(this.btnMainCancel);
             this.groupBox1.Controls.Add(this.btnSaveMainGroup);
             this.groupBox1.Controls.Add(this.txtMainGroupName);
             this.groupBox1.Controls.Add(this.lbMainGroup);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(220, 525);
+            this.groupBox1.Size = new System.Drawing.Size(220, 546);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "一级主套系";
             // 
             // btnMainCancel
             // 
-            this.btnMainCancel.Location = new System.Drawing.Point(139, 482);
+            this.btnMainCancel.Location = new System.Drawing.Point(139, 502);
             this.btnMainCancel.Name = "btnMainCancel";
             this.btnMainCancel.Size = new System.Drawing.Size(75, 23);
             this.btnMainCancel.TabIndex = 3;
@@ -101,20 +104,21 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDeleteSubGroup);
             this.groupBox2.Controls.Add(this.btnSubCancel);
             this.groupBox2.Controls.Add(this.btnSaveSubGroup);
             this.groupBox2.Controls.Add(this.txtSubGroupName);
             this.groupBox2.Controls.Add(this.lbSubGroup);
             this.groupBox2.Location = new System.Drawing.Point(238, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(220, 525);
+            this.groupBox2.Size = new System.Drawing.Size(220, 546);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "二级套系";
             // 
             // btnSubCancel
             // 
-            this.btnSubCancel.Location = new System.Drawing.Point(139, 482);
+            this.btnSubCancel.Location = new System.Drawing.Point(139, 502);
             this.btnSubCancel.Name = "btnSubCancel";
             this.btnSubCancel.Size = new System.Drawing.Size(75, 23);
             this.btnSubCancel.TabIndex = 4;
@@ -158,7 +162,7 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(464, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(600, 525);
+            this.groupBox3.Size = new System.Drawing.Size(600, 546);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "套系详情";
@@ -189,6 +193,25 @@
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "套系详情：";
+            // 
+            // btnDeleteMainGroup
+            // 
+            this.btnDeleteMainGroup.Location = new System.Drawing.Point(139, 478);
+            this.btnDeleteMainGroup.Name = "btnDeleteMainGroup";
+            this.btnDeleteMainGroup.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteMainGroup.TabIndex = 4;
+            this.btnDeleteMainGroup.Text = "删除";
+            this.btnDeleteMainGroup.UseVisualStyleBackColor = true;
+            this.btnDeleteMainGroup.Click += new System.EventHandler(this.btnDeleteMainGroup_Click);
+            // 
+            // btnDeleteSubGroup
+            // 
+            this.btnDeleteSubGroup.Location = new System.Drawing.Point(138, 478);
+            this.btnDeleteSubGroup.Name = "btnDeleteSubGroup";
+            this.btnDeleteSubGroup.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteSubGroup.TabIndex = 5;
+            this.btnDeleteSubGroup.Text = "删除";
+            this.btnDeleteSubGroup.UseVisualStyleBackColor = true;
             // 
             // GroupIndex
             // 
@@ -226,5 +249,7 @@
         private System.Windows.Forms.Button btnSaveInfo;
         private System.Windows.Forms.Button btnMainCancel;
         private System.Windows.Forms.Button btnSubCancel;
+        private System.Windows.Forms.Button btnDeleteMainGroup;
+        private System.Windows.Forms.Button btnDeleteSubGroup;
     }
 }

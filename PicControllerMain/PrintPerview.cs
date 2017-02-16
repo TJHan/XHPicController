@@ -141,6 +141,10 @@ namespace PicControllerMain
                 Bitmap bmp = new Bitmap(width, height);
                 PanelPrint.DrawToBitmap(bmp, new Rectangle(10, 10, bmp.Width, bmp.Height));
                 imageheight = (pwidth - bmp.Width) / 2;
+
+                e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
                 e.Graphics.DrawImage(bmp, imageheight, 0, new RectangleF(0, currentY, bmp.Width, bmp.Height), GraphicsUnit.Pixel);
                 currentY += pheight;
 

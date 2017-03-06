@@ -477,7 +477,9 @@ namespace PicControllerMain
         /// <param name="e"></param>
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            PrintPerview print = new PrintPerview(OrderID);
+            //PrintPerview print = new PrintPerview(OrderID);
+            //print.Show();
+            RDLCPrint print = new RDLCPrint(OrderID);
             print.Show();
         }
 

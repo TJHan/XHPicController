@@ -1,9 +1,11 @@
 ﻿using PicControllerMain.Common;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -15,6 +17,8 @@ namespace PicControllerMain
 
         private DataController controller;
         private int OrderID { get; set; }
+        
+
         public PrintPerview(int orderID)
         {
             OrderID = orderID;
@@ -33,7 +37,7 @@ namespace PicControllerMain
             entity = controller.FindOrder(OrderID);
             if (entity != null)
             {
-                labNbr.Text = LoadOrderNumber(entity.OrderID.ToString());
+                labNbr.Text = entity.OrderID.ToString().ToOrderNumber();
                 Customer customer = new Customer();
                 customer = controller.FindCustomer(entity.CustomerID);
                 int customerID = 0;
@@ -125,10 +129,11 @@ namespace PicControllerMain
                 this.printDocument1.Print();
             }
         }
+
         private int currentY = 0;
+        public Font Fontfont;
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //currentY = 0;
             System.Drawing.Printing.PrintDocument pd = sender as System.Drawing.Printing.PrintDocument;
             int imageheight = 0;
             int width = PanelPrint.DisplayRectangle.Width;
@@ -140,6 +145,7 @@ namespace PicControllerMain
             {
                 Bitmap bmp = new Bitmap(width, height);
                 PanelPrint.DrawToBitmap(bmp, new Rectangle(10, 10, bmp.Width, bmp.Height));
+
                 imageheight = (pwidth - bmp.Width) / 2;
 
                 e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -153,21 +159,10 @@ namespace PicControllerMain
                     e.HasMorePages = true;
                 }
             }
-            else {
+            else
+            {
                 e.HasMorePages = false;
             }
-
         }
-
-        /// <summary>
-        /// 格式化订单编号
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private string LoadOrderNumber(string id)
-        {
-            return string.Format(@"NO.{0}", id.PadLeft(9, '0'));
-        }
-
     }
 }

@@ -55,5 +55,16 @@ namespace PicControllerMain.Common
                 return DateTime.MinValue;
             }
         }
+
+
+        /// <summary>
+        /// 格式化订单编号
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static string ToOrderNumber(this string id)
+        {
+            return string.Format(@"NO.{0}", id.PadLeft(9, '0'));
+        }
     }
 }

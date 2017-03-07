@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteMainGroup = new System.Windows.Forms.Button();
             this.btnMainCancel = new System.Windows.Forms.Button();
             this.btnSaveMainGroup = new System.Windows.Forms.Button();
             this.txtMainGroupName = new System.Windows.Forms.TextBox();
             this.lbMainGroup = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteSubGroup = new System.Windows.Forms.Button();
             this.btnSubCancel = new System.Windows.Forms.Button();
             this.btnSaveSubGroup = new System.Windows.Forms.Button();
             this.txtSubGroupName = new System.Windows.Forms.TextBox();
@@ -42,8 +44,6 @@
             this.btnSaveInfo = new System.Windows.Forms.Button();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDeleteMainGroup = new System.Windows.Forms.Button();
-            this.btnDeleteSubGroup = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -62,6 +62,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "一级主套系";
+            // 
+            // btnDeleteMainGroup
+            // 
+            this.btnDeleteMainGroup.Location = new System.Drawing.Point(139, 478);
+            this.btnDeleteMainGroup.Name = "btnDeleteMainGroup";
+            this.btnDeleteMainGroup.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteMainGroup.TabIndex = 4;
+            this.btnDeleteMainGroup.Text = "删除";
+            this.btnDeleteMainGroup.UseVisualStyleBackColor = true;
+            this.btnDeleteMainGroup.Click += new System.EventHandler(this.btnDeleteMainGroup_Click);
             // 
             // btnMainCancel
             // 
@@ -86,6 +96,7 @@
             // txtMainGroupName
             // 
             this.txtMainGroupName.Location = new System.Drawing.Point(6, 455);
+            this.txtMainGroupName.MaxLength = 100;
             this.txtMainGroupName.Name = "txtMainGroupName";
             this.txtMainGroupName.Size = new System.Drawing.Size(126, 21);
             this.txtMainGroupName.TabIndex = 1;
@@ -116,6 +127,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "二级套系";
             // 
+            // btnDeleteSubGroup
+            // 
+            this.btnDeleteSubGroup.Location = new System.Drawing.Point(138, 478);
+            this.btnDeleteSubGroup.Name = "btnDeleteSubGroup";
+            this.btnDeleteSubGroup.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteSubGroup.TabIndex = 5;
+            this.btnDeleteSubGroup.Text = "删除";
+            this.btnDeleteSubGroup.UseVisualStyleBackColor = true;
+            // 
             // btnSubCancel
             // 
             this.btnSubCancel.Location = new System.Drawing.Point(139, 502);
@@ -139,6 +159,7 @@
             // txtSubGroupName
             // 
             this.txtSubGroupName.Location = new System.Drawing.Point(6, 455);
+            this.txtSubGroupName.MaxLength = 100;
             this.txtSubGroupName.Name = "txtSubGroupName";
             this.txtSubGroupName.Size = new System.Drawing.Size(126, 21);
             this.txtSubGroupName.TabIndex = 3;
@@ -180,8 +201,10 @@
             // txtInfo
             // 
             this.txtInfo.Location = new System.Drawing.Point(6, 35);
+            this.txtInfo.MaxLength = 20000;
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
+            this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtInfo.Size = new System.Drawing.Size(588, 441);
             this.txtInfo.TabIndex = 1;
             // 
@@ -193,25 +216,6 @@
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
             this.label1.Text = "套系详情：";
-            // 
-            // btnDeleteMainGroup
-            // 
-            this.btnDeleteMainGroup.Location = new System.Drawing.Point(139, 478);
-            this.btnDeleteMainGroup.Name = "btnDeleteMainGroup";
-            this.btnDeleteMainGroup.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteMainGroup.TabIndex = 4;
-            this.btnDeleteMainGroup.Text = "删除";
-            this.btnDeleteMainGroup.UseVisualStyleBackColor = true;
-            this.btnDeleteMainGroup.Click += new System.EventHandler(this.btnDeleteMainGroup_Click);
-            // 
-            // btnDeleteSubGroup
-            // 
-            this.btnDeleteSubGroup.Location = new System.Drawing.Point(138, 478);
-            this.btnDeleteSubGroup.Name = "btnDeleteSubGroup";
-            this.btnDeleteSubGroup.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteSubGroup.TabIndex = 5;
-            this.btnDeleteSubGroup.Text = "删除";
-            this.btnDeleteSubGroup.UseVisualStyleBackColor = true;
             // 
             // GroupIndex
             // 

@@ -357,6 +357,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
+                              <Value>￥</Value>
+                              <Style>
+                                <FontFamily>FangSong</FontFamily>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
                               <Value>=Parameters!OrderAmount.Value</Value>
                               <Style>
                                 <FontFamily>FangSong</FontFamily>
@@ -486,6 +492,12 @@
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
+                            <TextRun>
+                              <Value>￥</Value>
+                              <Style>
+                                <FontFamily>FangSong</FontFamily>
+                              </Style>
+                            </TextRun>
                             <TextRun>
                               <Value>=Parameters!DingJin.Value</Value>
                               <Style>
@@ -1000,6 +1012,12 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value>￥</Value>
+                    <Style>
+                      <FontFamily>FangSong</FontFamily>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
                     <Value>=Parameters!TotalAmount.Value</Value>
                     <Style>
                       <FontFamily>FangSong</FontFamily>
@@ -1012,7 +1030,7 @@
             <Top>0.04306in</Top>
             <Left>0.83056in</Left>
             <Height>0.17708in</Height>
-            <Width>1.39236in</Width>
+            <Width>2.49653in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>

@@ -45,7 +45,7 @@ namespace PicControllerMain
             {
                 //订单编号
                 SetupReportParameters("CustomerNumber", entity.OrderID.ToString().ToOrderNumber());
-                
+
                 Customer customer = new Customer();
                 customer = controller.FindCustomer(entity.CustomerID);
                 int customerID = 0;
@@ -60,16 +60,16 @@ namespace PicControllerMain
                 if (entity.TotalAmount.HasValue)
                 {
                     //订单金额
-                    SetupReportParameters("OrderAmount", entity.TotalAmount.Value.ToString("C"));
+                    SetupReportParameters("OrderAmount", entity.TotalAmount.Value.ToString());
                     //合计费用
-                    SetupReportParameters("TotalAmount", entity.TotalAmount.Value.ToString("C"));
+                    SetupReportParameters("TotalAmount", entity.TotalAmount.Value.ToString());
                 }
                 //定金
                 if (entity.AdvanceAmount.HasValue)
-                    SetupReportParameters("DingJin", entity.AdvanceAmount.Value.ToString("C"));
+                    SetupReportParameters("DingJin", entity.AdvanceAmount.Value.ToString());
                 //加载套系区域
                 LoadGroupInfo(entity.SubGroupID.Value, entity.GroupContent);
-                
+
                 //订单备注
                 SetupReportParameters("RemarkInfo", entity.Comment);
             }
@@ -82,7 +82,7 @@ namespace PicControllerMain
         {
             OrderSetting setting = controller.GetOrderSetting();
             if (setting != null)
-            {                
+            {
                 SetupReportParameters("OrderTitle", setting.OrderTitle);
                 SetupReportParameters("CommentTitle", setting.CommentTitle);
                 SetupReportParameters("CommentInfo", setting.Comment);
@@ -115,7 +115,7 @@ namespace PicControllerMain
             if (entity != null)
             {
                 SetupReportParameters("GroupInfo", entity.Contents);
-                SetupReportParameters("GroupTitle", string.Format(@"{0}     子套系名称：{1}", entity.GroupName, entity.SubGroupName));                
+                SetupReportParameters("GroupTitle", string.Format(@"{0}     子套系名称：{1}", entity.GroupName, entity.SubGroupName));
             }
         }
 
@@ -126,8 +126,11 @@ namespace PicControllerMain
         /// <param name="value">参数值</param>
         private void SetupReportParameters(string paraName, string value)
         {
-            ReportParameter rp = new ReportParameter(paraName, value);
-            reportViewer1.LocalReport.SetParameters(rp);
+            if (!string.IsNullOrEmpty(value))
+            {
+                ReportParameter rp = new ReportParameter(paraName, value);
+                reportViewer1.LocalReport.SetParameters(rp);
+            }
         }
     }
 }

@@ -13,6 +13,14 @@ namespace PicControllerMain
     public partial class CustomerEdit : Form
     {
         private int CustomerID { get; set; }
+        public String CustomerName { get; set; }
+        public int ID { get; set; }
+
+        /// <summary>
+        /// 客户详情维护页面
+        /// </summary>
+        /// <param name="id">客户ID</param>
+        /// <param name="modelIndex">模块标示</param>
         public CustomerEdit(int id = 0)
         {
             CustomerID = id;
@@ -73,8 +81,11 @@ namespace PicControllerMain
             SaveCustomFieldValue();
 
             MessageBox.Show("数据保存成功");
+            this.CustomerName = txtUserName.Text.Trim();
+            this.ID = CustomerID;
             this.DialogResult = DialogResult.OK;
             this.Close();
+            
         }
 
         /// <summary>
@@ -371,7 +382,7 @@ namespace PicControllerMain
                     labOrderPrice.Text = entity.TotalAmount.Value.ToString("F2");
 
                 //加载套系区域
-                if(entity.SubGroupID.HasValue)
+                if (entity.SubGroupID.HasValue)
                     LoadGroupInfo(entity.SubGroupID.Value, entity.GroupContent);
                 //加载自定义区域
                 LoadCustomFields(entity.TotalAmount.Value, orderID, customerID, entity.Comment);

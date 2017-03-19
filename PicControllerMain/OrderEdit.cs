@@ -303,7 +303,72 @@ namespace PicControllerMain
             DataController controller = new DataController();
             txtGroupContent.Text = controller.GetSubGroupContent(subGroupID);
         }
+        
+        /// <summary>
+        /// 一次性获取用户录入的自定义字段的值的集合
+        /// </summary>
+        /// <returns></returns>
+        private List<CustomFieldData> GetCustomFieldValueList()
+        {
+            if (OrderID > 0)
+            {
+                DataController controller = new DataController();
+                List<CustomFieldData> list = controller.GetCustomFieldValue(OrderID);
+                return list;
+            }
+            return null;
+        }
 
+        /// <summary>
+        /// 保存用户输入的自定义字段值
+        /// </summary>
+        private void SaveCustomFieldValue()
+        {
+            string sql = string.Empty;
+            DataController controller = new DataController();
+            List<CustomFieldsColumnsList> parList = new List<CustomFieldsColumnsList>();
+            foreach (Control item in PanelCustomFieldList.Controls)
+            {
+                if (item is TextBox)
+                {
+                    TextBox txt = (TextBox)item;
+                    parList.Add(new CustomFieldsColumnsList
+                    {
+                        CustomFieldID = txt.Name.ToInt(),
+                        TableID = OrderID,
+                        FieldValue = txt.Text.Trim()
+                    });
+                }
+                else if (item is ComboBox)
+                {
+                    ComboBox ddl = (ComboBox)item;
+                    parList.Add(new CustomFieldsColumnsList
+                    {
+                        CustomFieldID = ddl.Name.ToInt(),
+                        TableID = OrderID,
+                        FieldValue = ddl.SelectedValue.ToString()
+                    });
+                }
+                else if (item is Panel)
+                {
+                    foreach (var pitem in item.Controls)
+                    {
+                        RadioButton rb = (RadioButton)pitem;
+                        if (rb.Checked)
+                        {
+                            parList.Add(new CustomFieldsColumnsList
+                            {
+                                CustomFieldID = rb.Name.ToInt(),
+                                TableID = OrderID,
+                                FieldValue = rb.Text
+                            });
+                        }
+                    }
+                }
+            }
+            controller.UpdateCustomFieldData(parList);
+        }
+        
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadCustomer();
@@ -391,72 +456,7 @@ namespace PicControllerMain
             Decimal advance = txtAdvanceAmount.Text.ToDecimal();
             txtYuKuan.Text = (total - advance).ToString("F2");
         }
-
-        /// <summary>
-        /// 一次性获取用户录入的自定义字段的值的集合
-        /// </summary>
-        /// <returns></returns>
-        private List<CustomFieldData> GetCustomFieldValueList()
-        {
-            if (OrderID > 0)
-            {
-                DataController controller = new DataController();
-                List<CustomFieldData> list = controller.GetCustomFieldValue(OrderID);
-                return list;
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// 保存用户输入的自定义字段值
-        /// </summary>
-        private void SaveCustomFieldValue()
-        {
-            string sql = string.Empty;
-            DataController controller = new DataController();
-            List<CustomFieldsColumnsList> parList = new List<CustomFieldsColumnsList>();
-            foreach (Control item in PanelCustomFieldList.Controls)
-            {
-                if (item is TextBox)
-                {
-                    TextBox txt = (TextBox)item;
-                    parList.Add(new CustomFieldsColumnsList
-                    {
-                        CustomFieldID = txt.Name.ToInt(),
-                        TableID = OrderID,
-                        FieldValue = txt.Text.Trim()
-                    });
-                }
-                else if (item is ComboBox)
-                {
-                    ComboBox ddl = (ComboBox)item;
-                    parList.Add(new CustomFieldsColumnsList
-                    {
-                        CustomFieldID = ddl.Name.ToInt(),
-                        TableID = OrderID,
-                        FieldValue = ddl.SelectedValue.ToString()
-                    });
-                }
-                else if (item is Panel)
-                {
-                    foreach (var pitem in item.Controls)
-                    {
-                        RadioButton rb = (RadioButton)pitem;
-                        if (rb.Checked)
-                        {
-                            parList.Add(new CustomFieldsColumnsList
-                            {
-                                CustomFieldID = rb.Name.ToInt(),
-                                TableID = OrderID,
-                                FieldValue = rb.Text
-                            });
-                        }
-                    }
-                }
-            }
-            controller.UpdateCustomFieldData(parList);
-        }
-
+        
         private void btnClose_Click(object sender, EventArgs e)
         {
             Order entity = new Order();
@@ -499,6 +499,18 @@ namespace PicControllerMain
                 LoadGroupContent(group.SubGroupID);
             else
                 txtGroupContent.Text = string.Empty;
+        }
+
+        private void btnAddNewCustomer_Click(object sender, EventArgs e)
+        {
+            CustomerEdit customer = new CustomerEdit();
+            customer.ShowDialog();
+            if (customer.DialogResult == DialogResult.OK)
+            {
+                LoadCustomer();
+                txtCustomer.Text = customer.CustomerName;
+                txtCustomerID.Text = customer.ID.ToString();
+            }
         }
     }
 }

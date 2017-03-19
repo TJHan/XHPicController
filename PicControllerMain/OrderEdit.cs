@@ -66,6 +66,8 @@ namespace PicControllerMain
                 txtYuKuan.Text = (entity.TotalAmount - entity.AdvanceAmount).ToString();
                 ddlOrderStatus.Text = entity.Status;
                 txtComment.Text = entity.Comment;
+                cbMainGroup.SelectedValue = entity.GroupID.Value;
+                                
                 if (entity.SubGroupID.HasValue)
                 {
                     cbSubGroup.SelectedValue = entity.SubGroupID.Value;
@@ -303,7 +305,7 @@ namespace PicControllerMain
             DataController controller = new DataController();
             txtGroupContent.Text = controller.GetSubGroupContent(subGroupID);
         }
-        
+
         /// <summary>
         /// 一次性获取用户录入的自定义字段的值的集合
         /// </summary>
@@ -368,7 +370,7 @@ namespace PicControllerMain
             }
             controller.UpdateCustomFieldData(parList);
         }
-        
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadCustomer();
@@ -407,7 +409,8 @@ namespace PicControllerMain
                 entity.AdvanceAmount = txtAdvanceAmount.Text.ToDecimal();
                 entity.Status = Enum.GetName(typeof(EnumOrderStatus), EnumOrderStatus.订单进行中);
                 entity.Comment = txtComment.Text.Trim();
-                entity.SubGroupID = cbSubGroup.SelectedValue.ToString().ToInt();
+                entity.GroupID = cbMainGroup.SelectedValue != null ? cbMainGroup.SelectedValue.ToString().ToInt() : 0;
+                entity.SubGroupID = cbSubGroup.SelectedValue != null ? cbSubGroup.SelectedValue.ToString().ToInt() : 0;
                 entity.GroupContent = txtGroupContent.Text.Trim();
                 DataController controller = new DataController();
                 if (OrderID > 0)
@@ -456,7 +459,7 @@ namespace PicControllerMain
             Decimal advance = txtAdvanceAmount.Text.ToDecimal();
             txtYuKuan.Text = (total - advance).ToString("F2");
         }
-        
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Order entity = new Order();

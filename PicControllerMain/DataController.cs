@@ -188,6 +188,7 @@ namespace PicControllerMain
             order.FinishDate = entity.FinishDate;
             order.SubGroupID = entity.SubGroupID;
             order.GroupContent = entity.GroupContent;
+            order.GroupID = entity.GroupID;
             _picStormContent.SaveChanges();
         }
         #endregion

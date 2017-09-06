@@ -135,6 +135,7 @@
             this.btnDeleteSubGroup.TabIndex = 5;
             this.btnDeleteSubGroup.Text = "删除";
             this.btnDeleteSubGroup.UseVisualStyleBackColor = true;
+            this.btnDeleteSubGroup.Click += new System.EventHandler(this.btnDeleteSubGroup_Click);
             // 
             // btnSubCancel
             // 

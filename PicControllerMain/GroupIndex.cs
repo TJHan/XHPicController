@@ -213,10 +213,6 @@ namespace PicControllerMain
             }
         }
 
-        private void btnDeleteMainGroup_Click(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// 主套系取消选择项
@@ -232,5 +228,14 @@ namespace PicControllerMain
             txtMainGroupName.Text = string.Empty;
         }
         #endregion
+
+        private void btnDeleteSubGroup_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnDeleteMainGroup_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

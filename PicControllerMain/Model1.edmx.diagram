@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="PicStoreModel.MainGroup" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="PicStoreModel.SubGroup" Width="1.5" PointX="2.75" PointY="7.75" />
         <EntityTypeShape EntityType="PicStoreModel.V_GroupInfo" Width="1.5" PointX="4.375" PointY="4.75" />
-        <EntityTypeShape EntityType="PicStoreModel.v_CustomerOrder" Width="1.5" PointX="9.375" PointY="6.75" />
         <EntityTypeShape EntityType="PicStoreModel.OrderSetting" Width="1.5" PointX="6.75" PointY="3.75" />
         <EntityTypeShape EntityType="PicStoreModel.Shop" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="PicStoreModel.Order" Width="1.5" PointX="6.375" PointY="6.75" />

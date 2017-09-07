@@ -68,7 +68,8 @@ namespace PicControllerMain
                 if (entity.AdvanceAmount.HasValue)
                     SetupReportParameters("DingJin", entity.AdvanceAmount.Value.ToString());
                 //加载套系区域
-                LoadGroupInfo(entity.SubGroupID.Value, entity.GroupContent);
+                SetupReportParameters("GroupInfo", entity.GroupContent);
+                SetupReportParameters("GroupTitle", string.Format(@"{0}     子套系名称：{1}", entity.GroupName, entity.SubGroupName));
 
                 //订单备注
                 SetupReportParameters("RemarkInfo", entity.Comment);
@@ -101,21 +102,6 @@ namespace PicControllerMain
                 SetupReportParameters("Phone", shop.ShopPhone);
                 SetupReportParameters("QQ", shop.ShopQQ);
                 SetupReportParameters("EmailList", shop.ShopEmail.Replace(";", "  "));
-            }
-        }
-
-        /// <summary>
-        /// 加载套系信息
-        /// </summary>
-        /// <param name="subGroupID"></param>
-        /// <param name="content"></param>
-        private void LoadGroupInfo(int subGroupID, string content)
-        {
-            V_GroupInfo entity = controller.GetGroupInfo(subGroupID);
-            if (entity != null)
-            {
-                SetupReportParameters("GroupInfo", entity.Contents);
-                SetupReportParameters("GroupTitle", string.Format(@"{0}     子套系名称：{1}", entity.GroupName, entity.SubGroupName));
             }
         }
 

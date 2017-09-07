@@ -55,7 +55,9 @@ namespace PicControllerMain
                 if (entity.AdvanceAmount.HasValue)
                     labDingJin.Text = entity.AdvanceAmount.Value.ToString("C");
                 //加载套系区域
-                LoadGroupInfo(entity.SubGroupID.Value, entity.GroupContent);
+                labGroupName.Text = string.Format(@"{0}     子套系名称：{1}", entity.GroupName, entity.SubGroupName);
+                labGroupContent.Text = entity.GroupContent;
+
                 labRemark.Text = entity.Comment;
                 //加载自定义区域
                 //LoadCustomFields(entity.TotalAmount.Value, customerID, entity.Comment);
@@ -95,16 +97,6 @@ namespace PicControllerMain
         {
             CustomFieldsHandler cfHandler = new CustomFieldsHandler();
             //cfHandler.LoadPrintCustomFields(PanelCustomFields, customerID, OrderID, totalAmount, comment);
-        }
-
-        private void LoadGroupInfo(int subGroupID, string content)
-        {
-            V_GroupInfo entity = controller.GetGroupInfo(subGroupID);
-            if (entity != null)
-            {
-                labGroupName.Text = string.Format(@"{0}     子套系名称：{1}", entity.GroupName, entity.SubGroupName);
-            }
-            labGroupContent.Text = content;
         }
 
         private void btnPrintSetup_Click(object sender, EventArgs e)

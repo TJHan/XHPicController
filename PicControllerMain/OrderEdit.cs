@@ -412,6 +412,8 @@ namespace PicControllerMain
                 entity.GroupID = cbMainGroup.SelectedValue != null ? cbMainGroup.SelectedValue.ToString().ToInt() : 0;
                 entity.SubGroupID = cbSubGroup.SelectedValue != null ? cbSubGroup.SelectedValue.ToString().ToInt() : 0;
                 entity.GroupContent = txtGroupContent.Text.Trim();
+                entity.GroupName = cbMainGroup.SelectedValue != null ? ((MainGroup)cbMainGroup.SelectedItem).GroupName : string.Empty;
+                entity.SubGroupName = cbSubGroup.SelectedValue != null ? ((SubGroup)cbSubGroup.SelectedItem).GroupName : string.Empty;
                 DataController controller = new DataController();
                 if (OrderID > 0)
                 {

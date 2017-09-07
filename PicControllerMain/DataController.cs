@@ -264,9 +264,9 @@ namespace PicControllerMain
         /// </summary>
         /// <param name="customerID"></param>
         /// <returns></returns>
-        public List<v_CustomerOrder> GetOrderListByCID(int customerID)
+        public List<Order> GetOrderListByCID(int customerID)
         {
-            return _picStormContent.v_CustomerOrder.Where(d => d.CustomerID == customerID).ToList();
+            return _picStormContent.Order.Where(d => d.CustomerID == customerID).ToList();
         }
         #endregion
 

@@ -336,7 +336,7 @@ namespace PicControllerMain
         private void LoadOrderList()
         {
             DataController controller = new DataController();
-            List<v_CustomerOrder> result = controller.GetOrderListByCID(CustomerID);
+            List<Order> result = controller.GetOrderListByCID(CustomerID);
             foreach (var order in result)
             {
                 ListViewItem item = new ListViewItem();
@@ -344,7 +344,7 @@ namespace PicControllerMain
                 item.SubItems.Add(order.Status);
                 item.SubItems.Add(order.EnteredDate.Value.ToString());
                 item.SubItems.Add(order.TotalAmount.Value.ToString("C"));
-                item.SubItems.Add(order.MainGroupName);
+                item.SubItems.Add(order.GroupName);
                 item.SubItems.Add(order.SubGroupName);
                 lvOrderList.Items.Add(item);
             }

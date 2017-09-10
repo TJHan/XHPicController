@@ -1,47 +1,37 @@
-﻿using System;
+﻿using PicControllerMain.Common;
+using PicControllerMain.ParamsEntity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using PicControllerMain.ParamsEntity;
-using PicControllerMain.Common;
-
 
 namespace PicControllerMain
 {
-    public partial class OrderEdit : Form
+    public partial class OrderDetails : Form
     {
         private int OrderID { get; set; }
-        public OrderEdit(int orderID = 0)
+        public OrderDetails(int orderID)
         {
-            OrderID = orderID;
+            this.OrderID = orderID;
             InitializeComponent();
-            LoadMainGroup();
             InitControl();
             InitOrderEntity();
             LoadCustomFields();
         }
-
         private void InitControl()
         {
             txtCreateDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-            if (OrderID > 0)
-            {
-                PanelCustomSelect.Visible = false;
-                LoadOrderStatus();
-                btnSave.Text = "更新";
-                labTitle.Text = "修改订单信息";
-            }
-            else
-            {
-                PanelOrderStatus.Visible = false;
-                LoadCustomer();
-            }
+            LoadOrderStatus();
         }
-
+        private void LoadOrderStatus()
+        {
+            ddlOrderStatus.DataSource = Enum.GetNames(typeof(EnumOrderStatus));
+        }
         private void InitOrderEntity()
         {
             if (OrderID == 0)
@@ -64,43 +54,10 @@ namespace PicControllerMain
                 txtYuKuan.Text = (entity.TotalAmount - entity.AdvanceAmount).ToString();
                 ddlOrderStatus.Text = entity.Status;
                 txtComment.Text = entity.Comment;
-                cbMainGroup.SelectedValue = entity.GroupID.Value;
-                                
-                if (entity.SubGroupID.HasValue)
-                {
-                    cbSubGroup.SelectedValue = entity.SubGroupID.Value;
-                }
+                txtMainGroup.Text = entity.GroupName;
+                txtSubGroup.Text = entity.SubGroupName;
                 txtGroupContent.Text = entity.GroupContent;
             }
-
-        }
-
-        private void LoadOrderStatus()
-        {
-            ddlOrderStatus.DataSource = Enum.GetNames(typeof(EnumOrderStatus));
-        }
-
-        /// <summary>
-        /// 加载客户数据集合
-        /// </summary>
-        private void LoadCustomer()
-        {
-            DataController controller = new DataController();
-            OrderCustomerSearchParams pars = new OrderCustomerSearchParams()
-            {
-                ParamsString = txtSearch.Text.Trim()
-            };
-
-            List<Customer> list = controller.LoadCustomerList(pars);
-            lvCustomerList.Items.Clear();
-            foreach (var customer in list)
-            {
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Add(customer.CustomerID.ToString());
-                item.SubItems.Add(string.Format(@"{0} [电话：{1}]", customer.CustomerName, customer.CustomerPhone));
-                lvCustomerList.Items.Add(item);
-            }
-
         }
 
         private void LoadCustomFields()
@@ -281,29 +238,6 @@ namespace PicControllerMain
             }
         }
 
-        private void LoadMainGroup()
-        {
-            DataController controller = new DataController();
-            List<MainGroup> list = controller.GetMainGroupList();
-            cbMainGroup.DataSource = list;
-        }
-
-        private void LoadSubGroup(int mainGroupID)
-        {
-            cbSubGroup.DataSource = null;
-            DataController controller = new DataController();
-            List<SubGroup> list = controller.GetSubGroupList(mainGroupID);
-            cbSubGroup.DataSource = list;
-            cbSubGroup.DisplayMember = "GroupName";
-            cbSubGroup.ValueMember = "SubGroupID";
-        }
-
-        private void LoadGroupContent(int subGroupID)
-        {
-            DataController controller = new DataController();
-            txtGroupContent.Text = controller.GetSubGroupContent(subGroupID);
-        }
-
         /// <summary>
         /// 一次性获取用户录入的自定义字段的值的集合
         /// </summary>
@@ -319,68 +253,8 @@ namespace PicControllerMain
             return null;
         }
 
-        /// <summary>
-        /// 保存用户输入的自定义字段值
-        /// </summary>
-        private void SaveCustomFieldValue()
-        {
-            string sql = string.Empty;
-            DataController controller = new DataController();
-            List<CustomFieldsColumnsList> parList = new List<CustomFieldsColumnsList>();
-            foreach (Control item in PanelCustomFieldList.Controls)
-            {
-                if (item is TextBox)
-                {
-                    TextBox txt = (TextBox)item;
-                    parList.Add(new CustomFieldsColumnsList
-                    {
-                        CustomFieldID = txt.Name.ToInt(),
-                        TableID = OrderID,
-                        FieldValue = txt.Text.Trim()
-                    });
-                }
-                else if (item is ComboBox)
-                {
-                    ComboBox ddl = (ComboBox)item;
-                    parList.Add(new CustomFieldsColumnsList
-                    {
-                        CustomFieldID = ddl.Name.ToInt(),
-                        TableID = OrderID,
-                        FieldValue = ddl.SelectedValue.ToString()
-                    });
-                }
-                else if (item is Panel)
-                {
-                    foreach (var pitem in item.Controls)
-                    {
-                        RadioButton rb = (RadioButton)pitem;
-                        if (rb.Checked)
-                        {
-                            parList.Add(new CustomFieldsColumnsList
-                            {
-                                CustomFieldID = rb.Name.ToInt(),
-                                TableID = OrderID,
-                                FieldValue = rb.Text
-                            });
-                        }
-                    }
-                }
-            }
-            controller.UpdateCustomFieldData(parList);
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            LoadCustomer();
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtCustomerID.Text.Trim()))
-            {
-                MessageBox.Show("选个客户先！！");
-                return;
-            }
+        {           
             if (string.IsNullOrEmpty(txtTotalAmount.Text.Trim()) || txtTotalAmount.Text.ToDecimal() <= 0)
             {
                 MessageBox.Show("订单总金额不正常啊！！ 订单存不了，再改改");
@@ -393,11 +267,6 @@ namespace PicControllerMain
                 MessageBox.Show("预付款比订单总金额还大？ 订单存不了，再改改");
                 return;
             }
-            if (cbSubGroup.SelectedIndex < 0)
-            {
-                MessageBox.Show("请选择套系");
-                return;
-            }
             try
             {
                 Order entity = new Order();
@@ -407,11 +276,7 @@ namespace PicControllerMain
                 entity.AdvanceAmount = txtAdvanceAmount.Text.ToDecimal();
                 entity.Status = Enum.GetName(typeof(EnumOrderStatus), EnumOrderStatus.订单进行中);
                 entity.Comment = txtComment.Text.Trim();
-                entity.GroupID = cbMainGroup.SelectedValue != null ? cbMainGroup.SelectedValue.ToString().ToInt() : 0;
-                entity.SubGroupID = cbSubGroup.SelectedValue != null ? cbSubGroup.SelectedValue.ToString().ToInt() : 0;
                 entity.GroupContent = txtGroupContent.Text.Trim();
-                entity.GroupName = cbMainGroup.SelectedValue != null ? ((MainGroup)cbMainGroup.SelectedItem).GroupName : string.Empty;
-                entity.SubGroupName = cbSubGroup.SelectedValue != null ? ((SubGroup)cbSubGroup.SelectedItem).GroupName : string.Empty;
                 DataController controller = new DataController();
                 if (OrderID > 0)
                 {
@@ -427,7 +292,7 @@ namespace PicControllerMain
                     OrderID = controller.SaveOrder(entity);
                 }
 
-                SaveCustomFieldValue();
+                //SaveCustomFieldValue();
 
                 MessageBox.Show("订单数据保存成功");
                 this.DialogResult = DialogResult.OK;
@@ -439,55 +304,24 @@ namespace PicControllerMain
             }
         }
 
-        private void lvCustomerList_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
-            int index = lvCustomerList.SelectedIndices[0];
-            txtCustomer.Text = lvCustomerList.Items[index].SubItems[2].Text;
-            txtCustomerID.Text = lvCustomerList.Items[index].SubItems[1].Text;
+            RDLCPrint print = new RDLCPrint(OrderID);
+            print.Show();
         }
 
-        private void txtTotalAmount_TextChanged(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            Decimal total = txtTotalAmount.Text.ToDecimal();
-            Decimal advance = txtAdvanceAmount.Text.ToDecimal();
-            txtYuKuan.Text = (total - advance).ToString("F2");
-        }
+            Order entity = new Order();
+            DataController controller = new DataController();
+            entity = controller.FindOrder(OrderID);
+            entity.Status = Enum.GetName(typeof(EnumOrderStatus), EnumOrderStatus.订单结束);
+            entity.FinishDate = DateTime.Now;
 
-        private void txtAdvanceAmount_TextChanged(object sender, EventArgs e)
-        {
-            Decimal total = txtTotalAmount.Text.ToDecimal();
-            Decimal advance = txtAdvanceAmount.Text.ToDecimal();
-            txtYuKuan.Text = (total - advance).ToString("F2");
-        }
-
-        private void cbMainGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MainGroup group = (MainGroup)cbMainGroup.SelectedItem;
-            if (group != null)
-            {
-                LoadSubGroup(group.MainGroupID);
-            }
-        }
-
-        private void cbSubGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SubGroup group = (SubGroup)cbSubGroup.SelectedItem;
-            if (group != null)
-                LoadGroupContent(group.SubGroupID);
-            else
-                txtGroupContent.Text = string.Empty;
-        }
-
-        private void btnAddNewCustomer_Click(object sender, EventArgs e)
-        {
-            CustomerEdit customer = new CustomerEdit();
-            customer.ShowDialog();
-            if (customer.DialogResult == DialogResult.OK)
-            {
-                LoadCustomer();
-                txtCustomer.Text = customer.CustomerName;
-                txtCustomerID.Text = customer.ID.ToString();
-            }
+            controller.UpdateOrder(entity);
+            MessageBox.Show("订单已成功结束");
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

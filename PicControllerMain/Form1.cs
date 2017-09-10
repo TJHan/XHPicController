@@ -119,9 +119,10 @@ namespace PicControllerMain
         {
             var index = lvDataList.SelectedIndices[0];
             int id = lvDataList.Items[index].SubItems[1].Text.ToInt();
-            OrderEdit edit = new OrderEdit(id);
-            edit.ShowDialog();
-            if (edit.DialogResult == DialogResult.OK)
+            
+            OrderDetails details = new OrderDetails(id);
+            details.ShowDialog();
+            if (details.DialogResult == DialogResult.OK)
             {
                 LoadData();
             }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Configuration;
 using PicControllerMain.ParamsEntity;
 using Rock.Data.DataAccess;
+using System.Data.Entity;
 
 namespace PicControllerMain
 {
@@ -508,6 +509,64 @@ namespace PicControllerMain
         public V_GroupInfo GetGroupInfo(int subGroupID)
         {
             return _picStormContent.V_GroupInfo.Where(d => d.SubGroupID == subGroupID).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 删除子套系
+        /// </summary>
+        /// <param name="subGroupID"></param>
+        /// <returns></returns>
+        public bool DeleteSubGroup(int subGroupID)
+        {
+            bool result = true;
+            try
+            {
+                SubGroup entity = _picStormContent.SubGroup.FirstOrDefault(d => d.SubGroupID == subGroupID);
+                _picStormContent.SubGroup.Remove(entity);
+                _picStormContent.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                throw ex;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 删除主套系
+        /// </summary>
+        /// <param name="groupID"></param>
+        /// <returns></returns>
+        public bool DeleteMainGroup(int groupID)
+        {
+            bool result = true;            
+            using (MSSqlContext context = MSSqlContext.BeginTransaction(ConnectionString))
+            {
+                try
+                {
+                    string sql = @"DELETE FROM MainGroup WHERE MainGroupID = @MainGroupID;
+                                    DELETE FROM SubGroup WHERE MainGroupID = @MainGroupID";
+                    context.ExecuteNonQuery(sql, new
+                    {
+                        MainGroupID = groupID
+                    });
+                    context.Commit();
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    context.RollBack();
+                    throw ex;
+                }
+                finally
+                {
+                    context.Close();
+                }
+            }
+
+            return result;
         }
         #endregion
 

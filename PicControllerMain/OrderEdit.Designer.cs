@@ -50,6 +50,8 @@
             this.ddlOrderStatus = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.PanelCustomSelect = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnAddNewCustomer = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.lvCustomerList = new System.Windows.Forms.ListView();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,10 +67,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PanelCustomFieldList = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnAddNewCustomer = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.PanelOrderStatus.SuspendLayout();
             this.PanelCustomSelect.SuspendLayout();
@@ -304,6 +302,26 @@
             this.PanelCustomSelect.Size = new System.Drawing.Size(446, 271);
             this.PanelCustomSelect.TabIndex = 21;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(87, 248);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(263, 12);
+            this.label14.TabIndex = 23;
+            this.label14.Text = "是不是个新客户吧？  点击右边的新建按钮吧-->";
+            // 
+            // btnAddNewCustomer
+            // 
+            this.btnAddNewCustomer.Location = new System.Drawing.Point(356, 243);
+            this.btnAddNewCustomer.Name = "btnAddNewCustomer";
+            this.btnAddNewCustomer.Size = new System.Drawing.Size(75, 23);
+            this.btnAddNewCustomer.TabIndex = 22;
+            this.btnAddNewCustomer.Text = "新建客户";
+            this.btnAddNewCustomer.UseVisualStyleBackColor = true;
+            this.btnAddNewCustomer.Click += new System.EventHandler(this.btnAddNewCustomer_Click);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -432,53 +450,11 @@
             this.PanelCustomFieldList.Size = new System.Drawing.Size(734, 175);
             this.PanelCustomFieldList.TabIndex = 0;
             // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(677, 763);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "结单";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(596, 763);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
-            this.btnPrint.TabIndex = 15;
-            this.btnPrint.Text = "打印订单";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnAddNewCustomer
-            // 
-            this.btnAddNewCustomer.Location = new System.Drawing.Point(356, 243);
-            this.btnAddNewCustomer.Name = "btnAddNewCustomer";
-            this.btnAddNewCustomer.Size = new System.Drawing.Size(75, 23);
-            this.btnAddNewCustomer.TabIndex = 22;
-            this.btnAddNewCustomer.Text = "新建客户";
-            this.btnAddNewCustomer.UseVisualStyleBackColor = true;
-            this.btnAddNewCustomer.Click += new System.EventHandler(this.btnAddNewCustomer_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(87, 248);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(263, 12);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "是不是个新客户吧？  点击右边的新建按钮吧-->";
-            // 
             // OrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 798);
-            this.Controls.Add(this.btnPrint);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
@@ -530,8 +506,6 @@
         private System.Windows.Forms.Panel PanelOrderStatus;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox ddlOrderStatus;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbMainGroup;
         private System.Windows.Forms.Label label12;

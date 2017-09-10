@@ -53,7 +53,7 @@ namespace PicControllerMain
                 txtInfo.Text = content;
             }
         }
-        
+
         private void btnSaveSubGroup_Click(object sender, EventArgs e)
         {
             string errorMsg = string.Empty;
@@ -112,7 +112,7 @@ namespace PicControllerMain
                 lbSubGroup.SelectedIndex = -1;
                 SubGroupID = 0;
                 txtSubGroupName.Text = string.Empty;
-                txtInfo.Text = string.Empty;                
+                txtInfo.Text = string.Empty;
                 MessageBox.Show("保存成功");
             }
             catch (Exception ex)
@@ -131,7 +131,7 @@ namespace PicControllerMain
                 LoadContent();
             }
         }
-        
+
         private void btnSubCancel_Click(object sender, EventArgs e)
         {
             lbSubGroup.SelectedIndex = -1;
@@ -140,11 +140,12 @@ namespace PicControllerMain
             txtSubGroupName.Text = string.Empty;
         }
 
-        private void ClearSubGroup()
+        private void ClearSubGroup(bool clearList = true)
         {
             SubGroupID = 0;
             txtSubGroupName.Text = string.Empty;
-            lbSubGroup.DataSource = new List<SubGroup>();
+            if (clearList)
+                lbSubGroup.DataSource = new List<SubGroup>();
             txtInfo.Text = string.Empty;
         }
         private void ClearMainGroup()
@@ -231,11 +232,52 @@ namespace PicControllerMain
 
         private void btnDeleteSubGroup_Click(object sender, EventArgs e)
         {
+            if (SubGroupID == 0)
+            {
+                MessageBox.Show("先选择要删除的子套系");
+                return;
+            }
+            if (MessageBox.Show("确定要删除此套系？", "删除提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (Controller.DeleteSubGroup(SubGroupID))
+                    {
+                        MessageBox.Show("子套系删除成功！");
+                        LoadSubGroup();
+                        ClearSubGroup(false);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
+            }
         }
         private void btnDeleteMainGroup_Click(object sender, EventArgs e)
         {
-
+            if (GroupID == 0)
+            {
+                MessageBox.Show("先选择要删除的主套系");
+                return;
+            }
+            if (MessageBox.Show("确定要删除此套系？", "删除提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (Controller.DeleteMainGroup(GroupID))
+                    {
+                        MessageBox.Show("主套系删除成功！");
+                        LoadMainGroup();
+                        ClearMainGroup();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }
